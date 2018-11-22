@@ -59,26 +59,6 @@
         float: right;
       }
 
-      .order-page .header-tab {
-        width: 100%;
-        background-color: #fff;
-        margin-bottom: 20px;
-        font-size: 0;
-      }
-      .order-page .header-tab-title li {
-        font-size: 16px;
-        display: inline-block;
-        text-align: center;
-        width: 25%;
-        height: 40px;
-        line-height: 40px;
-        border-bottom: 2px solid #fff;
-        cursor: pointer;
-      }
-      .order-page .header-tab-title li.layui-this {
-        border-bottom: 2px solid rgb(240, 97, 47);
-      }
-
       /* 弹出框 */
       .layui-layer .layui-layer-content {
         text-align: center;
@@ -110,14 +90,6 @@
 
   <body>
     <div class="order-page layui-row">
-      <div class="header-tab">
-        <ul class="header-tab-title">
-          <li class="layui-this" lay-id="111">未量房</li>
-          <li lay-id="222">已量房</li>
-          <li lay-id="333">签单成功</li>
-          <li lay-id="444">全部订单</li>
-        </ul>
-      </div>
       <form class="layui-form" action="">
         <div class="layui-form-item layui-row">
           <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
@@ -198,16 +170,6 @@
                 <option value="3">设计师4</option>
                 <option value="4">设计师5</option>
               </select>
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <label class="layui-form-label">历史订单</label>
-            <div class="layui-input-block">
-              <!--
-                <input type="checkbox" name="like[write]" lay-skin="primary" title="">
-              -->
-
-              <input type="checkbox" name="old_orders" lay-skin="switch" />
             </div>
           </div>
         </div>

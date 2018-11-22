@@ -28,13 +28,13 @@
         height: 2px;
         background-color: rgb(240, 97, 47);
       }
-      
+
+      .form-basic-container,
       .form-address-container,
       .form-concat-container,
       .form-checkboxs-container {
         border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
-        padding-top: 10px;
+        padding-top: 20px;
         padding-bottom: 10px;
       }
       .form-checkboxs-container .layui-inline > * {
@@ -73,7 +73,7 @@
         background-color: rgb(240, 97, 47);
       }
 
-      .form-address-container label {
+      .form-address-container label.suffix-label {
         padding-left: 0;
         padding-right: 0;
         width: auto;
@@ -81,7 +81,16 @@
       }
       .form-address-container label.line {
         width: 1px;
-        background-color: green;
+        margin-top: 9px;
+        background-color: blue;
+      }
+      .form-address-container .color-blue {
+        cursor: pointer;
+        color: blue;
+      }
+
+      .form-basic-container p {
+        margin: 10px 0;
       }
     </style>
   </head>
@@ -92,9 +101,53 @@
       <div class="hr-primary"></div>
       <form class="layui-form" action="">
 
+        <div class="form-basic-container layui-row">
+          <div class="layui-col-md8">
+            <p>
+              <span>公司全称：</span>
+              <span>五十家装修工程有限公司</span>
+              <span>(企业营业执照全称，第一次输入后不可修改)</span>
+            </p>
+            <p>
+              <span>品牌成立日期：</span>
+              <span>2000-10-10</span>
+            </p>
+            <p>
+              <span>合同状态：</span>
+              <span>中止（合同截止日期：2018-10-21）</span>
+            </p>
+            <p>
+              <span>店铺名称：</span>
+              <span>五十家</span>
+              <span>（商家一个月可修改一次）</span>
+              <button class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon">&#xe642;</i>
+                <span>修改</span>
+              </button>
+            </p>
+            <p>
+              <span>店铺资质：</span>
+              <button class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon">&#xe654;</i>
+                <span>上传</span>
+              </button>
+            </p>
+          </div>
+
+          <div class="layui-col-md6">
+            <p>品牌LOGO：</p>
+            <div>
+              <button>点击上传</button>
+              <p>LOGO 尺寸：200px × 200px</p>
+              <p>仅支持 JPG、PNG 图片类型</p>
+              <p>文件小于 200KB </p>
+            </div>
+          </div>
+        </div>
+
         <!-- 半包，全包，局部，全案 -->
         <div class="form-checkboxs-container layui-form-item layui-row">
-          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
             <input type="checkbox" name="" title="半包" lay-skin="primary" />
             <textarea
               name=""
@@ -116,7 +169,7 @@
               >
             </div>
           </div>
-          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
             <input type="checkbox" name="" title="全包" lay-skin="primary" />
             <textarea
               name=""
@@ -138,7 +191,7 @@
               >
             </div>
           </div>
-          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
             <input type="checkbox" name="" title="局部" lay-skin="primary" />
             <textarea
               name=""
@@ -160,7 +213,7 @@
               >
             </div>
           </div>
-          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
             <input type="checkbox" name="" title="全案" lay-skin="primary" />
             <textarea
               name=""
@@ -259,7 +312,8 @@
             </div>
             <label class="suffix-label layui-form-label">m&sup2;</label>
             <label class="suffix-label layui-form-label">已定位</label>
-            <label class="suffix-label layui-form-label">删除改地址</label>
+            <label class="suffix-label layui-form-label color-blue line"></label>
+            <label class="suffix-label layui-form-label color-blue">删除该地址</label>
             <button class="layui-btn">已设为显示地址</button>
           </div>
           <div class="layui-form-item">
@@ -287,9 +341,9 @@
               <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
             </div>
             <label class="suffix-label layui-form-label">m&sup2;</label>
-            <label class="suffix-label layui-form-label">地图定位</label>
-            <label class="suffix-label layui-form-label line"></label>
-            <label class="suffix-label layui-form-label">删除改地址</label>
+            <label class="suffix-label layui-form-label color-blue">地图定位</label>
+            <label class="suffix-label layui-form-label color-blue line"></label>
+            <label class="suffix-label layui-form-label color-blue">删除该地址</label>
             <button class="layui-btn">已设为显示地址</button>
           </div>
         </div>
