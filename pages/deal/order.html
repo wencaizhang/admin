@@ -323,7 +323,7 @@
             imgsrc: imgsrc
           });
           form.render("select"); // 动态生成的 select 需要 render
-          form.on("select", function(data) {
+          form.on("select(designer)", function(data) {
             layer.msg("打开开发者控制台查看选择的值");
             console.log(data.value); //得到被选中的值
           });
@@ -349,7 +349,7 @@
             btnAlign: "c",
             moveType: 1, //拖拽模式，0或者1
             content:
-              '<form class="layui-form" lay-filter="bind-designer"><select name="bind-designer">\
+              '<form class="layui-form" lay-filter="designer"><select name="bind-designer">\
                 <option value="">请选择一个设计师</option>\
                 <option value="010">设计师A</option>\
                 <option value="021">设计师B</option>\
