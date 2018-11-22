@@ -16,11 +16,11 @@
     />
     <style>
       .search-btn {
-        width:100px;
-        background:rgba(240,97,47,1);
+        width: 100px;
+        background: rgba(240, 97, 47, 1);
       }
       .reset-btn {
-        width:100px;
+        width: 100px;
       }
       body {
         padding-right: 20px;
@@ -88,7 +88,6 @@
         line-height: 30px;
       }
       .layui-layer .layui-layer-content .img {
-
       }
       .layui-layer .layui-layer-title {
         text-align: center;
@@ -106,7 +105,6 @@
         cursor: pointer;
         margin: 0 3px;
       }
-
     </style>
   </head>
 
@@ -215,7 +213,11 @@
         </div>
         <div class="layui-form-item">
           <div class="layui-input-block">
-            <button class="search-btn layui-btn" lay-submit lay-filter="formDemo">
+            <button
+              class="search-btn layui-btn"
+              lay-submit
+              lay-filter="formDemo"
+            >
               查询
             </button>
             <button type="reset" class="reset-btn layui-btn layui-btn-primary">
@@ -228,14 +230,13 @@
         <h4 class="layui-inline" style="font-size: 18px;">查询结果</h4>
         <div class="table-meta-right layui-unselect">
           <span style="margin-right: 10px;">
-            共有
-            <span class="number">2000</span>
-            条项目信息
+            共有 <span class="number">2000</span> 条项目信息
           </span>
           <span>
             <span class="prev-btn page-btn" title="上一页">&lt;</span>
             <span class="page">
-              <span class="curr-page" style="color: rgb(240, 97, 47);">1</span> / <span class="total-page">36</span>
+              <span class="curr-page" style="color: rgb(240, 97, 47);">1</span>
+              / <span class="total-page">36</span>
             </span>
             <span class="next-btn page-btn" title="下一页">&gt;</span>
           </span>
@@ -307,43 +308,62 @@
 
         //监听表单信息提交
         form.on("submit(formDemo)", function(data) {
-          console.log('表单数据如下：')
-          console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-          layer.msg('打开开发者控制台查看表单数据');
+          console.log("表单数据如下：");
+          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+          layer.msg("打开开发者控制台查看表单数据");
           return false; // 阻止表单跳转
         });
 
-        $('.not-binding').on('click', function () {
-          var name = '设计师姓名'
-          var imgsrc = 'https://avatars1.githubusercontent.com/u/34718241?s=460&v=4'
+        $(".not-binding").on("click", function() {
+          var name = "设计师姓名";
+          var imgsrc =
+            "https://avatars1.githubusercontent.com/u/34718241?s=460&v=4";
           alertTips({
             name: name,
-            imgsrc: imgsrc,
+            imgsrc: imgsrc
           });
-        })
+          form.render("select"); // 动态生成的 select 需要 render
+          form.on("select", function(data) {
+            layer.msg("打开开发者控制台查看选择的值");
+            console.log(data.value); //得到被选中的值
+          });
+        });
 
-        function alertTips (options, callback) {
+        function alertTips(options, callback) {
           var options = options || {};
-          var name = options.name || '设计师姓名';
-          var imgsrc = options.imgsrc || '';
+          var name = options.name || "设计师姓名";
+          var imgsrc = options.imgsrc || "";
           // 示范一个公告层
           layer.open({
-            type: 1
-            ,title: ['绑定设计师', 'padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;'] //不显示标题栏
-            ,closeBtn: 1
-            ,area: '300px;'
-            ,shade: 0.4
-            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-            ,resize: false
-            ,btn: ['确认',]
-            ,btnAlign: 'c'
-            ,moveType: 1 //拖拽模式，0或者1
-            ,content: '<p class="text">' + name + '</p>\
-                      <img class="img" src="' + imgsrc + '" alt="' + name + '" />'
-            ,yes: function(index, layero){
+            type: 1,
+            title: [
+              "绑定设计师",
+              "padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;"
+            ], //不显示标题栏
+            closeBtn: 1,
+            area: "300px;",
+            shade: 0.4,
+            id: "LAY_layuipro", //设定一个id，防止重复弹出
+            resize: false,
+            btn: ["确认"],
+            btnAlign: "c",
+            moveType: 1, //拖拽模式，0或者1
+            content:
+              '<form class="layui-form" lay-filter="bind-designer"><select name="bind-designer">\
+                <option value="">请选择一个设计师</option>\
+                <option value="010">设计师A</option>\
+                <option value="021">设计师B</option>\
+                <option value="0571">设计师C</option>\
+              </select></form>\
+              <img class="img" src="' +
+              imgsrc +
+              '" alt="' +
+              name +
+              '" />',
+            yes: function(index, layero) {
               //如果设定了yes回调，需进行手工关闭
               layer.close(index);
-              typeof callback === 'function' && callback()
+              typeof callback === "function" && callback();
             }
           });
         }
