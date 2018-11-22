@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <title>美居精选</title>
+    <link rel="stylesheet" href="./lib/layui/css/layui.css" />
+    <style>
+      .layui-layout-admin .layui-header {
+        background-color: #fff;
+        color: #000;
+        border-bottom: 2px solid rgb(240, 97, 47);
+      }
+      .layui-nav {
+        background-color: #fff;
+      }
+      .layui-nav .layui-nav-item a {
+        color: #000;
+      }
+      .layui-nav-itemed > a {
+        color: #000 !important;
+      }
+      .layui-nav .layui-nav-item a:hover,
+      .layui-nav .layui-this a {
+        color: #000;
+      }
+
+      .layui-layout-admin .layui-body {
+        background-color: rgb(238, 238, 238);
+        bottom: 0;
+        padding-left: 20px;
+        padding-top: 40px;
+        overflow-y: hidden;
+      }
+
+      .layui-nav-tree .layui-nav-item a:hover {
+        background-color: #f5f5f5 !important;
+        color: rgb(240, 97, 47) !important;
+      }
+      .layui-nav-tree .layui-this,
+      .layui-nav-tree .layui-this a {
+        background-color: #f5f5f5 !important;
+        color: rgb(240, 97, 47) !important;
+      }
+      .layui-nav-itemed > .layui-nav-child {
+        background-color: #fff !important;
+      }
+      .layui-nav .layui-nav-more {
+        border-color: rgb(240, 97, 47) transparent transparent;
+      }
+      .layui-nav .layui-nav-mored,
+      .layui-nav-itemed > a .layui-nav-more {
+        border-color: transparent transparent rgb(240, 97, 47);
+      }
+
+      .layui-nav .layui-nav-child a {
+        padding: 0 30px;
+      }
+
+      .layui-nav-tree .layui-nav-bar {
+        background-color: rgb(240, 97, 47);
+      }
+    </style>
+  </head>
+  <body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <div class="layui-logo">美居精选</div>
+        <ul class="layui-nav layui-layout-right">
+          <li class="layui-nav-item">
+            <a
+              href="javascript:;"
+              data-url="./index/email.html"
+              data-id="4"
+              data-text="进入店铺"
+            >
+              <span>进入店铺</span>
+            </a>
+          </li>
+          <li class="layui-nav-item">
+            <a
+              href="javascript:;"
+              data-url="./index/email.html"
+              data-id="4"
+              data-text="消息中心"
+            >
+              <span>消息中心</span>
+            </a>
+          </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">欢迎您，装修公司名称</a>
+            <dl class="layui-nav-child">
+              <dd><a href="">基本资料</a></dd>
+              <dd><a href="">安全设置</a></dd>
+            </dl>
+          </li>
+        </ul>
+      </div>
+
+      <div class="layui-side">
+        <div class="layui-side-scroll">
+          <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+          <ul
+            id="sideNav"
+            class="layui-nav layui-nav-tree"
+            lay-filter="leftNav"
+          >
+            <li class="layui-nav-item layui-nav-itemed">
+              <a class="" href="javascript:;">所有商品</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;">列表一</a></dd>
+                <dd><a href="javascript:;">列表二</a></dd>
+                <dd><a href="javascript:;">列表三</a></dd>
+                <dd><a href="">超链接</a></dd>
+              </dl>
+            </li>
+            <li class="layui-nav-item">
+              <a href="javascript:;">解决方案</a>
+              <dl class="layui-nav-child">
+                <dd><a href="javascript:;">列表一</a></dd>
+                <dd><a href="javascript:;">列表二</a></dd>
+                <dd><a href="">超链接</a></dd>
+              </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">云市场</a></li>
+            <li class="layui-nav-item"><a href="">发布商品</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <p
+          style="position: absolute; top: 0; left: 0;margin: 10px; margin-left: 20px;"
+        >
+          <span
+            id="layui-breadcrumb"
+            class="layui-breadcrumb"
+            lay-filter="layui-breadcrumb"
+            lay-separator=">"
+          >
+            <a href="">装修商家后台</a> <a href="">首页</a>
+          </span>
+        </p>
+        <iframe
+          src="./pages/home/index.html"
+          width="100%"
+          height="100%"
+          style="border: 0;"
+          name="iframe"
+          class="iframe"
+          id="iframe"
+          framborder="0"
+        >
+        </iframe>
+      </div>
+
+      <!-- 底部固定区域 -->
+      <!--
+        <div class="layui-footer">
+          © layui.com - 底部固定区域
+        </div>
+      -->
+    </div>
+    <script src="./lib/layui/layui.js"></script>
+    <script src="./scripts/main.js"></script>
+    <script id="sideNavTemplate" type="text/html">
+      <!-- 左侧菜单模板 -->
+      {{#  d.forEach(function(item, index){ }}
+        <li class="layui-nav-item
+          {{# if (item.this) { }}  {{ 'layui-this' }}  {{# } }}
+          {{# if (item.itemed) { }}  {{ 'layui-nav-itemed' }}  {{# } }}
+        ">
+          <a href="javascript:;" data-id={{ index }} data-url="{{ item.href }}" data-text="{{ item.title }}">
+            <!-- <i class="iconfont">{{= item.icon }}</i> -->
+            <cite>{{ item.title }}</cite>
+          </a>
+          {{# if (item.children && item.children.length) { }}
+            <dl class="layui-nav-child">
+            {{#  item.children.forEach(function(item2, index2){ }}
+              <dd class="{{# if (item2.this) { }}  {{ 'layui-this' }}  {{# } }}">
+                <a href="javascript:;" data-id={{ index2 }} data-url="{{ item2.href }}" data-text="{{ item2.title }}">
+                  <!-- <span class="l-line"></span> -->
+                  <cite>{{ item2.title }}</cite>
+                </a>
+              </dd>
+            {{#  }); }}
+            </dl>
+          {{#  }; }}
+        </li>
+      {{#  }); }}
+    </script>
+    <script>
+      layui.use(["laytpl", "jquery"], function() {
+        var laytpl = layui.laytpl;
+        var $ = layui.jquery;
+        var menuList = [
+          { title: "首页", href: "./pages/home/index.html", this: true },
+          {
+            title: "交易管理",
+            children: [
+              {
+                title: "订单管理",
+                href: "./pages/deal/order.html"
+              }
+            ]
+          },
+          {
+            title: "店铺管理",
+            children: [
+              {
+                title: "基本设置",
+                href: "./pages/system.html"
+              },
+              {
+                title: "案例设置",
+                href: "./pages/system.html"
+              },
+              {
+                title: "广告管理",
+                href: "./pages/system.html"
+              },
+              {
+                title: "店铺资质",
+                href: "./pages/system.html"
+              }
+            ]
+          },
+          {
+            title: "客户服务",
+            children: [
+              {
+                title: "投诉管理",
+                href: "./pages/system.html"
+              },
+              {
+                title: "问答-待回答",
+                href: "./pages/system.html"
+              },
+              {
+                title: "问答-已回答",
+                href: "./pages/system.html"
+              }
+            ]
+          },
+          { title: "数据中心" },
+          {
+            title: "角色管理",
+            children: [
+              { title: "工长", href: "./pages/system.html" },
+              { title: "设计师", href: "./pages/system.html" }
+            ]
+          },
+          { title: "账号管理" }
+        ];
+
+        window.menuList = menuList;
+        initIframeSrc();
+        function initIframeSrc() {
+          var url = window.location.hash.split("#")[1];
+          if (!url) { return false; }
+
+          // 修改 iframe 路径
+          $("#iframe").attr("src", url);
+
+          // 对左侧菜单展开和选中状态进行修正
+          var checkedItem = menuList.find(function(item) {
+            if (item.href === url) { return true; }
+
+            if (item.children && item.children.length) {
+              var flag = item.children.find(function(item2) {
+                return item2.href === url;
+              });
+              if (flag) {
+                return true;
+              }
+            }
+          });
+
+          // 取消全部的高亮状态
+          menuList.map(function (item) {
+            item.checked = false;
+            item.this = false;
+            if (item.children && item.children.length) {
+              item.children.map(function (item2) {
+                item2.checked = false;
+                item2.this = false;
+              })
+            }
+          });
+
+          // 高亮对应的
+          checkedItem.itemed = true;
+          if (checkedItem.href === url) {
+            checkedItem.this = true;
+          } else {
+            checkedItem.children.forEach(function (item) {
+              if (item.href === url) {
+                item.this = true;
+              }
+            })
+          }
+
+        }
+
+        // 渲染左侧菜单
+        var getTpl = sideNavTemplate.innerHTML;
+        var view = document.getElementById("sideNav");
+        laytpl(getTpl).render(menuList, function(html) {
+          view.innerHTML = html;
+        });
+      });
+    </script>
+  </body>
+</html>

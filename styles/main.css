@@ -1,0 +1,15 @@
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.dib {
+  display: inline-block;
+}
+.bg-primary {
+  background-color: rgb(240, 97, 47);
+}
+.color-primary {
+  color: rgb(240, 97, 47);
+}

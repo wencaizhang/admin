@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>订单详情</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../lib/layui/css/layui.css"
+    />
+    <style>
+      /* 水平线 */
+      .hr-primary {
+        height: 2px;
+        background-color: rgb(240, 97, 47);
+      }
+
+      .form-checkboxs-box {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+      }
+      .layui-inline > * {
+        margin-bottom: 10px;
+      }
+      .layui-inline .layui-input-inline {
+        width: 120px;
+      }
+      .layui-inline label {
+        text-align: left;
+        padding-left: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="order-page layui-row">
+      <h2 class="title">基本设置</h2>
+      <div class="hr-primary"></div>
+      <form class="layui-form" action="">
+        <div class="form-checkboxs-box layui-form-item layui-row">
+          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+            <input type="checkbox" name="" title="半包" lay-skin="primary" />
+            <textarea
+              name=""
+              required
+              lay-verify="required"
+              placeholder="请输入"
+              class="layui-textarea"
+            ></textarea>
+            <div class="layui-clear">
+              <input
+                type="text"
+                name="price_min"
+                placeholder="￥"
+                autocomplete="off"
+                class="layui-input layui-input-inline"
+              />
+              <label class="layui-form-label layui-input-inline"
+                >元 / m&sup2;</label
+              >
+            </div>
+          </div>
+          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+            <input type="checkbox" name="" title="全包" lay-skin="primary" />
+            <textarea
+              name=""
+              required
+              lay-verify="required"
+              placeholder="请输入"
+              class="layui-textarea"
+            ></textarea>
+            <div class="layui-clear">
+              <input
+                type="text"
+                name="price_min"
+                placeholder="￥"
+                autocomplete="off"
+                class="layui-input layui-input-inline"
+              />
+              <label class="layui-form-label layui-input-inline"
+                >元 / m&sup2;</label
+              >
+            </div>
+          </div>
+          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+            <input type="checkbox" name="" title="局部" lay-skin="primary" />
+            <textarea
+              name=""
+              required
+              lay-verify="required"
+              placeholder="请输入"
+              class="layui-textarea"
+            ></textarea>
+            <div class="layui-clear">
+              <input
+                type="text"
+                name="price_min"
+                placeholder="￥"
+                autocomplete="off"
+                class="layui-input layui-input-inline"
+              />
+              <label class="layui-form-label layui-input-inline"
+                >元 / m&sup2;</label
+              >
+            </div>
+          </div>
+          <div class="layui-inline layui-col-xs4 layui-col-md4 layui-col-sm4">
+            <input type="checkbox" name="" title="全案" lay-skin="primary" />
+            <textarea
+              name=""
+              required
+              lay-verify="required"
+              placeholder="请输入"
+              class="layui-textarea"
+            ></textarea>
+            <div class="layui-clear">
+              <input
+                type="text"
+                name="price_min"
+                placeholder="￥"
+                autocomplete="off"
+                class="layui-input layui-input-inline"
+              />
+              <label class="layui-form-label layui-input-inline"
+                >元 / m&sup2;</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">商铺电话</label>
+          <div class="layui-input-inline layui-clear">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入电话" autocomplete="off" class="layui-input layui-input-inline">
+            <label class="layui-form-label">（（（商铺电话</label>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button
+              class="search-btn layui-btn"
+              lay-submit
+              lay-filter="formDemo"
+            >
+              查询
+            </button>
+            <button type="reset" class="reset-btn layui-btn layui-btn-primary">
+              重置
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script
+      src="../../lib/layui/layui.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script>
+      //Demo
+      layui.use(["form", "element", "laydate", "jquery"], function() {
+        var form = layui.form;
+        var element = layui.element;
+        var laydate = layui.laydate;
+        var $ = layui.jquery;
+
+        // 时间选择器，执行一个laydate实例
+        laydate.render({
+          elem: "#time-from" //指定元素
+        });
+        laydate.render({
+          elem: "#time-to" //指定元素
+        });
+
+        form.render();
+
+        //监听表单信息提交
+        form.on("submit(formDemo)", function(data) {
+          console.log(data.elem); //被执行事件的元素DOM对象，一般为button对象
+          console.log(data.form); //被执行提交的form对象，一般在存在form标签时才会返回
+          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+          layer.msg(JSON.stringify(data.field));
+          return false; // 阻止表单跳转
+        });
+
+        $(".not-binding").on("click", function() {
+          var name = "设计师姓名";
+          var imgsrc =
+            "https://avatars1.githubusercontent.com/u/34718241?s=460&v=4";
+          alertTips({
+            name: name,
+            imgsrc: imgsrc
+          });
+        });
+
+        function alertTips(options, callback) {
+          var options = options || {};
+          var name = options.name || "设计师姓名";
+          var imgsrc = options.imgsrc || "";
+          // 示范一个公告层
+          layer.open({
+            type: 1,
+            title: [
+              "绑定设计师",
+              "padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;"
+            ], //不显示标题栏
+            closeBtn: 1,
+            area: "300px;",
+            shade: 0.4,
+            id: "LAY_layuipro", //设定一个id，防止重复弹出
+            resize: false,
+            btn: ["确认"],
+            btnAlign: "c",
+            moveType: 1, //拖拽模式，0或者1
+            content:
+              '<p class="text">' +
+              name +
+              '</p>\
+                      <img class="img" src="' +
+              imgsrc +
+              '" alt="' +
+              name +
+              '" />',
+            yes: function(index, layero) {
+              //如果设定了yes回调，需进行手工关闭
+              layer.close(index);
+              typeof callback === "function" && callback();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <style>
+    body {
+      padding-right: 20px;
+    }
+
+    /* 水平线 */
+    .hr {
+      height: 2px;
+      background-color: rgb(204, 204, 204);
+    }
+    .hr-primary {
+      height: 2px;
+      background-color: rgb(240, 97, 47);
+    }
+
+
+    /* 部分公用代码 */
+    .home-page .wrap {
+      background-color: #fff;
+      margin-bottom: 30px;
+    }
+    .home-page .wrap .title,
+    .home-page .wrap li {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .home-page .wrap li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .home-page .wrap ul li:last-child {
+      border: none;
+    }
+    .home-page .wrap .title {
+      font-size: 18px;
+      height: 36px;
+      line-height: 36px;
+    }
+
+    /* 抢单部分 */
+    .order-box .content {
+      padding: 0 20px;
+    }
+    .order-box .content .meta {
+      border-bottom: 1px solid #ccc;
+      height: 30px;
+      line-height: 30px;
+      padding: 6px 0;
+    }
+    .order-box .content .meta span {
+      margin-right: 20px;
+    }
+    .order-box .content .desc {
+      padding: 10px 0 20px;
+    }
+    
+    .order-box .get-order-btn {
+      margin: 10px 20px;
+      height: 30px;
+      line-height: 30px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      background-color: rgb(240, 97, 47);
+    }
+    .order-box .get-order-btn:hover {
+      border: none;
+      color: #fff;
+      background-color: rgb(240, 97, 47);
+    }
+    .order-box > .meta {
+      height: 50px;
+      line-height: 50px;
+      margin-right: 15px;
+    }
+    .order-box > .meta .close-btn:hover {
+      color: rgb(240, 97, 47);
+    }
+    .order-box > .meta .close-btn {
+      margin-left: 20px;
+      cursor: pointer;
+      color: #666;
+    }
+
+    /* 消息通知 */
+    .inform li span,
+    .message li span {
+      float: right;
+    }
+
+    /* header 商家介绍部分 */
+    .home-page .header li {
+      margin: 0 10px;
+      border: 0;
+      display: inline-block;
+    }
+    .header .rightbox li .icon {
+      width: 60px;
+      height: 60px;
+      display: inline-block;
+      background-color: rgb(240, 97, 47);;
+      border-radius: 50%;
+    }
+    .header .rightbox li .sub-title,
+    .header .rightbox li .number {
+      text-align: center;
+    }
+    .header .rightbox li .number {
+      color: rgb(240, 97, 47);
+      font-weight: bold;
+    }
+    .dib {
+      display: inline-block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="home-page layui-row layui-col-space30">
+    <!-- 顶部商家信息 -->
+    <div class="header" style=" padding: 15px;">
+      <div class="header-content layui-clear" style="padding: 15px; background-color: #fff;">
+        <div class="leftbox" style="display: inline-block;">
+          <div class="dib logo" style="width: 100px; height: 100px; background: #ccc; vertical-align: middle;">
+            LOGO
+          </div>
+          <div class="dib message">
+            <p style="font-weight: bold; font-size: 18px;">北京五十家装修有限公司</p>
+            <p>
+              <span>
+                <span>口碑值：</span>
+                <span>888</span>
+              </span>
+              <span>
+                <span>信息完整度：</span>
+                <span>88%</span>
+              </span>
+            </p>
+            <p>
+              <span>合同截止日期：</span>
+              <span>2018-08-08</span>
+            </p>
+          </div>
+        </div>
+        <div class="rightbox" style="float: right;">
+          <ul>
+            <li>
+              <div class="icon"></div>
+              <div class="sub-title">设计师</div>
+              <div class="number">5</div>
+            </li>
+            <li>
+              <div class="icon"></div>
+              <div class="sub-title">施工队</div>
+              <div class="number">5</div>
+            </li>
+            <li>
+              <div class="icon"></div>
+              <div class="sub-title">促销活动</div>
+              <div class="number">5</div>
+            </li>
+            <li>
+              <div class="icon"></div>
+              <div class="sub-title">装修案例</div>
+              <div class="number">5</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-xs8 layui-col-sm8">
+      <!-- 业务预警 -->
+      <div class="wrap">
+        <h4 class="title">业务预警</h4>
+        <div class="hr"></div>
+        <ul>
+          <li><a href="javascript:;">合同到期预警</a></li>
+          <li><a href="javascript:;">合同到期预警</a></li>
+          <li><a href="javascript:;">合同到期预警</a></li>
+        </ul>
+      </div>
+      <!-- 待办事项 -->
+      <div class="wrap">
+        <h4 class="title">待办事项</h4>
+        <div class="hr"></div>
+        <ul>
+          <li><a href="javascript:;">待办事项</a></li>
+          <li><a href="javascript:;">待办事项</a></li>
+          <li><a href="javascript:;">待办事项</a></li>
+        </ul>
+      </div>
+      <!-- 抢单 -->
+      <div class="wrap order-box">
+
+        <button class="get-order-btn layui-btn layui-btn-primary">抢单</button>
+        <div class="meta" style="float: right;">
+          <span class="time">2018-11-21</span>
+          <i class="layui-icon layui-icon-close close-btn" title="删除"></i>
+        </div>
+
+        <div class="hr hr-primary"></div>
+        <div class="content">
+          <p class="meta">
+            <span>北京</span>
+            <span>石景山区</span>
+            <span>付女士</span>
+            <span>90m&sup2;</span>
+            <span>二居室</span>
+            <span>全包</span>
+            <span>20.25万</span>
+          </p>
+          <p class="desc">平台客服填写的首次派单详情，客户喜欢的颜色，风格，装修房屋的常住人口数量以及人口结构，对设计师的需求</p>
+        </div>
+      </div>
+    </div>
+    <div class="layui-col-xs4 layui-col-sm4">
+      <!-- 系统公告 -->
+      <div class="wrap inform">
+        <h4 class="title">系统公告</h4>
+        <div class="hr"></div>
+        <ul>
+          <li><a href="javascript:;">系统公告</a><span>2018-11-20</span></li>
+          <li><a href="javascript:;">系统公告</a><span>2018-11-20</span></li>
+          <li><a href="javascript:;">系统公告</a><span>2018-11-20</span></li>
+        </ul>
+      </div>
+      <!-- 消息通知 -->
+      <div class="wrap message">
+        <h4 class="title" style="display: inline-block;">消息通知</h4>
+        <a href="javascript:;" style="float: right; height: 36px; line-height: 36px; display: inline-block; margin-right: 20px;">
+          <span class="">更多</span>
+          <i class="layui-icon layui-icon-next" style="color: rgb(240, 97, 47); font-size: 14px;" title="更多"></i>
+        </a>
+        <div class="hr"></div>
+        <ul>
+          <li><a href="javascript:;">消息通知</a><span>2018-11-20</span></li>
+          <li><a href="javascript:;">消息通知</a><span>2018-11-20</span></li>
+          <li><a href="javascript:;">消息通知</a><span>2018-11-20</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    //Demo
+    layui.use(["form", "jquery"], function () {
+      var $ = layui.jquery;
+      $('.btn').on('click', function () {
+        // 抢单
+        alertTips()
+      })
+      $('.close-btn').on('click', function () {
+        // 关闭抢单div
+        destorySelf(this)
+      })
+
+      function destorySelf(ele) {
+        $(ele).parents('.wrap').remove();
+      }
+      function alertTips(options, callback) {
+        var options = options || {};
+        var name = options.name || '设计师姓名';
+        var imgsrc = options.imgsrc || '';
+        // 示范一个公告层
+        layer.open({
+          type: 1
+          , title: ['很遗憾', 'text-align: center;padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;'] //不显示标题栏
+          , closeBtn: 1
+          , area: '300px;'
+          , shade: 0.4
+          , id: 'LAY_layuipro' //设定一个id，防止重复弹出
+          , resize: false
+          , btn: ['确定',]
+          , btnAlign: 'c'
+          , moveType: 1 //拖拽模式，0或者1
+          , content: '<p class="text" style="text-align: center; margin-top: 10px;">请加快手速的训练吧！</p>'
+          , yes: function (index, layero) {
+            //如果设定了yes回调，需进行手工关闭
+            layer.close(index);
+            typeof callback === 'function' && callback()
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
