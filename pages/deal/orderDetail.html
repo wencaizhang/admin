@@ -1,412 +1,421 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-    />
-    <title>订单详情</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../lib/layui/css/layui.css"
-    />
-    <style>
-      body {
-        background-color: #fff;
-        padding-right: 20px;
-        padding-left: 20px;
-      }
-      .layui-form-item .layui-input-inline.fln {
-        float: none;
-      }
-      /* 水平线 */
-      .hr-primary {
-        height: 2px;
-        background-color: rgb(240, 97, 47);
-      }
 
-      .form-basic-container,
-      .form-address-container,
-      .form-concat-container,
-      .form-checkboxs-container {
-        border-top: 1px solid #ccc;
-        padding-top: 20px;
-        padding-bottom: 10px;
-      }
-      .form-checkboxs-container .layui-inline > * {
-        margin-bottom: 10px;
-      }
-      .form-checkboxs-container .layui-inline .layui-input-inline {
-        width: 120px;
-      }
-      .form-checkboxs-container .layui-inline label {
-        text-align: left;
-        padding-left: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>订单详情</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <link rel="stylesheet" href="../../lib/webuploader/webuploader.css">
+  <style>
+    .layui-input:focus, .layui-textarea:focus {
+      border-color: rgb(240, 97, 47)!important;
+    }
+    body {
+      background-color: #fff;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+    .layui-form-item .layui-input-inline.fln {
+      float: none;
+    }
+    .dib {
+      display: inline-block;
+    }
+    /* 水平线 */
+    .hr-primary {
+      height: 2px;
+      background-color: rgb(240, 97, 47);
+    }
 
-      /* 后缀 label */
-      .form-item .layui-form-label.suffix-label {
-        width: auto;
-        padding-left: 0;
-      }
+    h2.title {
+      height: 40px;
+      line-height: 40px;
+    }
 
-      /* 发送验证码按钮 */
-      .sms-btn {
-        display: inline-block;
-        text-align: center;
-        width: 100px;
-        height: 38px;
-        margin-right: 10px;
-        line-height: 38px;
-        border: none;
-        border-radius: 5px;
-        color: #fff;
-        background-color: rgb(240, 97, 47);
-      }
-      .sms-btn:hover {
-        border: none;
-        color: #fff;
-        background-color: rgb(240, 97, 47);
-      }
+    .form-address-container,
+    .form-concat-container,
+    .form-checkboxs-container {
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+    .form-basic-container {
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
 
-      .form-address-container label.suffix-label {
-        padding-left: 0;
-        padding-right: 0;
-        width: auto;
-        margin-right: 10px;
-      }
-      .form-address-container label.line {
-        width: 1px;
-        margin-top: 9px;
-        background-color: blue;
-      }
-      .form-address-container .color-blue {
-        cursor: pointer;
-        color: blue;
-      }
+    .w100.layui-input-inline {
+      width: 100px;
+    }
+    .w120.layui-input-inline {
+      width: 120px;
+    }
+    .w150.layui-input-inline {
+      width: 150px;
+    }
+    .w200.layui-input-inline {
+      width: 200px;
+    }
 
-      .form-basic-container p {
-        margin: 10px 0;
-      }
-    </style>
-  </head>
 
-  <body>
-    <div class="order-page layui-row">
-      <h2 class="title">基本设置</h2>
-      <div class="hr-primary"></div>
-      <form class="layui-form" action="">
+    .form-checkboxs-container .layui-inline > * {
+      margin-bottom: 10px;
+    }
+    .form-checkboxs-container .layui-inline .layui-input-inline {
+      width: 120px;
+    }
+    .form-checkboxs-container .layui-inline label {
+      text-align: left;
+      padding-left: 0;
+    }
 
-        <div class="form-basic-container layui-row">
-          <div class="layui-col-md8">
-            <p>
-              <span>公司全称：</span>
-              <span>五十家装修工程有限公司</span>
-              <span>(企业营业执照全称，第一次输入后不可修改)</span>
-            </p>
-            <p>
-              <span>品牌成立日期：</span>
-              <span>2000-10-10</span>
-            </p>
-            <p>
-              <span>合同状态：</span>
-              <span>中止（合同截止日期：2018-10-21）</span>
-            </p>
-            <p>
-              <span>店铺名称：</span>
-              <span>五十家</span>
-              <span>（商家一个月可修改一次）</span>
-              <button class="layui-btn layui-btn-primary layui-btn-sm">
-                <i class="layui-icon">&#xe642;</i>
-                <span>修改</span>
-              </button>
-            </p>
-            <p>
-              <span>店铺资质：</span>
-              <button class="layui-btn layui-btn-primary layui-btn-sm">
-                <i class="layui-icon">&#xe654;</i>
-                <span>上传</span>
-              </button>
-            </p>
-          </div>
+    /* 后缀 label */
+    .form-item .layui-form-label.suffix-label {
+      width: auto;
+      padding-left: 0;
+    }
 
-          <div class="layui-col-md6">
-            <p>品牌LOGO：</p>
-            <div>
-              <button>点击上传</button>
+    /* 发送验证码按钮 */
+    .sms-btn {
+      display: inline-block;
+      text-align: center;
+      width: 100px;
+      height: 38px;
+      margin-right: 10px;
+      line-height: 38px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      background-color: rgb(240, 97, 47);
+    }
+    .sms-btn:hover {
+      border: none;
+      color: #fff;
+      background-color: rgb(240, 97, 47);
+    }
+
+    .form-address-container label.suffix-label {
+      padding-left: 0;
+      padding-right: 0;
+      width: auto;
+      margin-right: 10px;
+    }
+    .form-address-container label.line {
+      width: 1px;
+      margin-top: 9px;
+      background-color: blue;
+    }
+    .form-address-container .color-blue {
+      cursor: pointer;
+      color: blue;
+    }
+
+    .form-basic-container p {
+      margin: 10px 0;
+    }
+
+    /* 上传按钮 */
+    #store-filePicker {
+      position: relative;
+      width: 70px;
+    }
+    #store-filePicker .webuploader-pick {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      color: red;
+      background-color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="order-page layui-row">
+    <h2 class="title">基本设置</h2>
+    <div class="hr-primary"></div>
+    <form class="layui-form" action="">
+
+      <div class="form-basic-container layui-row">
+        <div class="layui-col-md8">
+          <p>
+            <span>公司全称：</span>
+            <span>五十家装修工程有限公司</span>
+            <span>(企业营业执照全称，第一次输入后不可修改)</span>
+          </p>
+          <p>
+            <span>品牌成立日期：</span>
+            <span>2000-10-10</span>
+          </p>
+          <p>
+            <span>合同状态：</span>
+            <span>中止（合同截止日期：2018-10-21）</span>
+          </p>
+          <p>
+            <span>店铺名称：</span>
+            <span>五十家</span>
+            <span>（商家一个月可修改一次）</span>
+            <a style="color: red;" class="layui-btn layui-btn-primary layui-btn-sm">
+              <i class="layui-icon">&#xe642;</i>
+              <span>修改</span>
+            </a>
+          </p>
+          <p>
+            <span>店铺资质：</span>
+            <a id="store-filePicker" style="color: red;" class="layui-btn layui-btn-primary layui-btn-sm">
+              上传
+            </a>
+            
+            <div id="store-fileList" class="uploader-list">
+              <!--用来存放item-->
+            </div>
+          </p>
+        </div>
+
+        <div class="layui-col-md4">
+          <p>品牌LOGO：</p>
+          <div>
+            <div class="dib" style="margin-right: 10px;">
+              <a id="logo-filePicker" style="color: red;" class="layui-btn layui-btn-primary layui-btn-sm">
+                上传
+              </a>
+              
+              <div id="logo-fileList" class="uploader-list">
+                <!--用来存放item-->
+              </div>
+            </div>
+            <div class="dib">
               <p>LOGO 尺寸：200px × 200px</p>
               <p>仅支持 JPG、PNG 图片类型</p>
               <p>文件小于 200KB </p>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- 半包，全包，局部，全案 -->
-        <div class="form-checkboxs-container layui-form-item layui-row">
-          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
-            <input type="checkbox" name="" title="半包" lay-skin="primary" />
-            <textarea
-              name=""
-              required
-              lay-verify="required"
-              placeholder="请输入"
-              class="layui-textarea"
-            ></textarea>
-            <div class="layui-clear">
-              <input
-                type="text"
-                name="price_min"
-                placeholder="￥"
-                autocomplete="off"
-                class="layui-input layui-input-inline"
-              />
-              <label class="layui-form-label layui-input-inline"
-                >元 / m&sup2;</label
-              >
-            </div>
+      <!-- 半包，全包，局部，全案 -->
+      <div class="form-checkboxs-container layui-form-item layui-row">
+        <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
+          <input type="checkbox" name="" title="半包" lay-skin="primary" />
+          <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+          <div class="layui-clear">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
-          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
-            <input type="checkbox" name="" title="全包" lay-skin="primary" />
-            <textarea
-              name=""
-              required
-              lay-verify="required"
-              placeholder="请输入"
-              class="layui-textarea"
-            ></textarea>
-            <div class="layui-clear">
-              <input
-                type="text"
-                name="price_min"
-                placeholder="￥"
-                autocomplete="off"
-                class="layui-input layui-input-inline"
-              />
-              <label class="layui-form-label layui-input-inline"
-                >元 / m&sup2;</label
-              >
-            </div>
+        </div>
+        <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
+          <input type="checkbox" name="" title="全包" lay-skin="primary" />
+          <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+          <div class="layui-clear">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
-          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
-            <input type="checkbox" name="" title="局部" lay-skin="primary" />
-            <textarea
-              name=""
-              required
-              lay-verify="required"
-              placeholder="请输入"
-              class="layui-textarea"
-            ></textarea>
-            <div class="layui-clear">
-              <input
-                type="text"
-                name="price_min"
-                placeholder="￥"
-                autocomplete="off"
-                class="layui-input layui-input-inline"
-              />
-              <label class="layui-form-label layui-input-inline"
-                >元 / m&sup2;</label
-              >
-            </div>
+        </div>
+        <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
+          <input type="checkbox" name="" title="局部" lay-skin="primary" />
+          <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+          <div class="layui-clear">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
-          <div class="layui-inline layui-col-xs6 layui-col-md6 layui-col-sm12">
-            <input type="checkbox" name="" title="全案" lay-skin="primary" />
-            <textarea
-              name=""
-              required
-              lay-verify="required"
-              placeholder="请输入"
-              class="layui-textarea"
-            ></textarea>
-            <div class="layui-clear">
-              <input
-                type="text"
-                name="price_min"
-                placeholder="￥"
-                autocomplete="off"
-                class="layui-input layui-input-inline"
-              />
-              <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
-            </div>
+        </div>
+        <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
+          <input type="checkbox" name="" title="全案" lay-skin="primary" />
+          <textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+          <div class="layui-clear">
+            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 商铺联系人、电话等信息 -->
+      <div class="form-concat-container">
+        <div class="layui-form-item form-item">
+          <label class="layui-form-label">商铺电话：</label>
+          <div class="layui-input-inline w150">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">（接收业主的咨询电话，手机或座机均可，座机号码请注意加区号）</label>
+        </div>
+
+        <div class="layui-form-item form-item">
+          <label class="layui-form-label">联系人：</label>
+          <div class="layui-input-inline w150">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">（即店铺运营人员）</label>
+        </div>
+
+        <div class="layui-form-item form-item">
+          <label class="layui-form-label">联系电话：</label>
+          <div class="layui-input-inline w150">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
+          </div>
+          <a href="javascript:;" class="sms-btn sms-btn-1">发送验证码</a>
+          <div class="layui-input-inline w150 fln">
+            <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
           </div>
         </div>
 
-        <!-- 商铺联系人、电话等信息 -->
-        <div class="form-concat-container">
-          <div class="layui-form-item form-item">
-            <label class="layui-form-label">商铺电话：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">（接收业主的咨询电话，手机或座机均可，座机号码请注意加区号）</label>
+        <div class="layui-form-item form-item">
+          <label class="layui-form-label">负责人：</label>
+          <div class="layui-input-inline w150">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
           </div>
-
-          <div class="layui-form-item form-item">
-            <label class="layui-form-label">联系人：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">（即店铺运营人员）</label>
-          </div>
-
-          <div class="layui-form-item form-item">
-            <label class="layui-form-label">联系电话：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-            <a href="javascript:;" class="sms-btn">发送验证码</a>
-            <div class="layui-input-inline fln" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
-            </div>
-          </div>
-
-          <div class="layui-form-item form-item">
-            <label class="layui-form-label">负责人：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">（即店铺负责人或客户信息对接人，接收短信及事务处理）</label>
-          </div>
-
-          <div class="layui-form-item form-item">
-            <label class="layui-form-label">电话号码：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
-            </div>
-            <a href="javascript:;" class="sms-btn">发送验证码</a>
-            <div class="layui-input-inline fln" style="width: 100px;">
-              <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
-            </div>
-          </div>
+          <label class="suffix-label layui-form-label">（即店铺负责人或客户信息对接人，接收短信及事务处理）</label>
         </div>
 
-        <!-- 店面地址 -->
-        <div class="form-address-container">
-          <div class="layui-form-item">
-            <label class="layui-form-label">店面地址：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">省</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">市</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">区</label>
-
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline" style="width: 200px;">
-              <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">m&sup2;</label>
-            <label class="suffix-label layui-form-label">已定位</label>
-            <label class="suffix-label layui-form-label color-blue line"></label>
-            <label class="suffix-label layui-form-label color-blue">删除该地址</label>
-            <button class="layui-btn">已设为显示地址</button>
+        <div class="layui-form-item form-item">
+          <label class="layui-form-label">电话号码：</label>
+          <div class="layui-input-inline w150">
+            <input type="text" name="price_min" placeholder="" autocomplete="off" class="layui-input">
           </div>
-          <div class="layui-form-item">
-            <label class="layui-form-label">店面地址：</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">省</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">市</label>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">区</label>
-
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline" style="width: 200px;">
-              <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-input-inline" style="width: 100px;">
-              <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
-            </div>
-            <label class="suffix-label layui-form-label">m&sup2;</label>
-            <label class="suffix-label layui-form-label color-blue">地图定位</label>
-            <label class="suffix-label layui-form-label color-blue line"></label>
-            <label class="suffix-label layui-form-label color-blue">删除该地址</label>
-            <button class="layui-btn">已设为显示地址</button>
+          <a href="javascript:;" class="sms-btn sms-btn-2">发送验证码</a>
+          <div class="layui-input-inline w150 fln">
+            <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
           </div>
         </div>
+      </div>
 
-        <!-- 擅长房型、公司简介 -->
-        <div class="desc">
-          <div class="layui-form-item">
-            <label class="layui-form-label">擅长房型：</label>
-            <input type="checkbox" name="" title="局部" lay-skin="primary">
-            <input type="checkbox" name="" title="一居室" lay-skin="primary">
-            <input type="checkbox" name="" title="两居室" lay-skin="primary">
-            <input type="checkbox" name="" title="三居室" lay-skin="primary">
-            <input type="checkbox" name="" title="四居室" lay-skin="primary">
-            <input type="checkbox" name="" title="复式" lay-skin="primary">
-            <input type="checkbox" name="" title="别墅" lay-skin="primary">
-            <input type="checkbox" name="" title="简装" lay-skin="primary">
-            <input type="checkbox" name="" title="工装" lay-skin="primary">
-            <input type="checkbox" name="" title="新房" lay-skin="primary">
-            <input type="checkbox" name="" title="期房" lay-skin="primary">
-          </div>
-          <div class="layui-form-item">
-            <label class="layui-form-label">公司介绍：</label>
-            <textarea name="" style="display: inline-block;width: 50%;" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
-          </div>
-
-        </div>
-
-        <!-- 保存信息按钮 -->
+      <!-- 店面地址 -->
+      <div class="form-address-container">
         <div class="layui-form-item">
-          <div class="layui-input-block">
-            <button
-              class="search-btn layui-btn"
-              lay-submit
-              lay-filter="formDemo"
-            >
-              保存信息
-            </button>
+          <label class="layui-form-label">店面地址：</label>
+          <div class="layui-input-inline w120">
+            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
           </div>
+          <label class="suffix-label layui-form-label">省</label>
+          <div class="layui-input-inline w120">
+            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">市</label>
+          <div class="layui-input-inline w120">
+            <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">区</label>
+
+          <div class="layui-input-inline w150">
+            <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline w200">
+            <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline" style="width: 100px;">
+            <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">m&sup2;</label>
+          <label class="suffix-label layui-form-label">已定位</label>
+          <label class="suffix-label layui-form-label color-blue line"></label>
+          <label class="suffix-label layui-form-label color-blue">删除该地址</label>
+          <button class="layui-btn">已设为显示地址</button>
         </div>
-      </form>
-    </div>
-    <script
-      src="../../lib/layui/layui.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script>
-      //Demo
-      layui.use(["form", "element", "jquery"], function() {
-        var form = layui.form;
-        var element = layui.element;
-        var $ = layui.jquery;
+        <div class="layui-form-item">
+          <label class="layui-form-label">店面地址：</label>
+          <div class="layui-input-inline" style="width: 150px;">
+            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">省</label>
+          <div class="layui-input-inline" style="width: 150px;">
+            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">市</label>
+          <div class="layui-input-inline" style="width: 150px;">
+            <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">区</label>
 
-        form.render();
+          <div class="layui-input-inline" style="width: 150px;">
+            <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline" style="width: 200px;">
+            <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline" style="width: 150px;">
+            <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">m&sup2;</label>
+          <label class="suffix-label layui-form-label color-blue">地图定位</label>
+          <label class="suffix-label layui-form-label color-blue line"></label>
+          <label class="suffix-label layui-form-label color-blue">删除该地址</label>
+          <button class="layui-btn">已设为显示地址</button>
+        </div>
+      </div>
 
-        //监听表单信息提交
-        form.on("submit(formDemo)", function(data) {
-          console.log("表单数据如下：");
-          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-          layer.msg("打开开发者控制台查看保存信息");
-          return false; // 阻止表单跳转
-        });
+      <!-- 擅长房型、公司简介 -->
+      <div class="desc">
+        <div class="layui-form-item">
+          <label class="layui-form-label">擅长房型：</label>
+          <input type="checkbox" name="" title="局部" lay-skin="primary">
+          <input type="checkbox" name="" title="一居室" lay-skin="primary">
+          <input type="checkbox" name="" title="两居室" lay-skin="primary">
+          <input type="checkbox" name="" title="三居室" lay-skin="primary">
+          <input type="checkbox" name="" title="四居室" lay-skin="primary">
+          <input type="checkbox" name="" title="复式" lay-skin="primary">
+          <input type="checkbox" name="" title="别墅" lay-skin="primary">
+          <input type="checkbox" name="" title="简装" lay-skin="primary">
+          <input type="checkbox" name="" title="工装" lay-skin="primary">
+          <input type="checkbox" name="" title="新房" lay-skin="primary">
+          <input type="checkbox" name="" title="期房" lay-skin="primary">
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">公司介绍：</label>
+          <textarea name="" style="display: inline-block;width: 50%;" required lay-verify="required" placeholder="请输入"
+            class="layui-textarea"></textarea>
+        </div>
+
+      </div>
+
+      <!-- 保存信息按钮 -->
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="search-btn layui-btn" lay-submit lay-filter="formDemo">
+            保存信息
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/jquery.min.js"></script>
+  <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+  <script src="../../scripts/uploader.js"></script>
+  <script>
+    //Demo
+    layui.use(["form", "element", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var $ = layui.jquery;
+
+      form.render();
+
+      //监听表单信息提交
+      form.on("submit(formDemo)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看保存信息");
+        return false; // 阻止表单跳转
       });
-    </script>
-  </body>
+
+
+      $('.sms-btn-1').on('click', function () {
+
+        layer.msg("联系电话：");
+      })
+      $('.sms-btn-2').on('click', function () {
+
+        layer.msg("电话号码：");
+      })
+
+
+    });
+  </script>
+</body>
+
 </html>
