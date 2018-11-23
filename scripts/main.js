@@ -126,7 +126,7 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
       children: [
         {
           title: "基本设置",
-          href: "./pages/system.html"
+          href: "./pages/store/basicSetting.html"
         },
         {
           title: "案例设置",
