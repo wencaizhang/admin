@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scaleable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>店铺管理 - 案例管理</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .dib {
+        display: inline-block;
+      }
+      .layui-input:focus,
+      .layui-textarea:focus {
+        border-color: rgb(240, 97, 47) !important;
+      }
+
+      .new-case-btn,
+      .search-btn {
+        color: #fff;
+        background-color: rgb(240, 97, 47) !important;
+      }
+
+      .header {
+        position: relative;
+        background-color: #fff;
+        margin-bottom: 10px;
+        padding-top: 20px;
+      }
+      /* logo */
+      .logo-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 150px;
+        height: 150px;
+        line-height: 150px;
+        background-color: #ccc;
+        text-align: center;
+        vertical-align: top;
+      }
+      .search-form {
+        vertical-align: top;
+        margin-left: 160px;
+      }
+      .search-form .layui-inline {
+        margin-bottom: 10px;
+      }
+
+      /* ======= */
+      .table-meta {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-bottom: 2px solid rgb(240, 97, 47);
+        background-color: #fff;
+      }
+      .table-meta-right {
+        float: right;
+      }
+      .page-btn {
+        display: inline-block;
+        color: rgb(240, 97, 47);
+        border: 1px solid;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 3px;
+      }
+
+      /* 表格下 */
+      .handle-btn {
+        background-color: inherit;
+        color: rgb(240, 97, 47);
+        font-size: 14px;
+        margin-left: 0!important;
+        padding: 0 2px;
+      }
+      .handle-btn:hover {
+        color: rgb(240, 97, 47);
+      }
+      .handle-line {
+        display: inline-block;
+        height: 14px;
+        width: 1px;
+        background-color: rgb(240, 97, 47);
+        vertical-align: middle;
+      }
+
+      th {
+        white-space: nowrap; /* 强制表头不换行*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-container dib"><div class="logo">LOGO</div></div>
+      <form class="layui-form dib search-form layui-row" action="">
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">案例标题：</label>
+          <div class="layui-inline">
+            <input
+              type="text"
+              name="newPwd"
+              placeholder=""
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">设计师：</label>
+          <div class="layui-inline">
+            <input
+              type="text"
+              name="newPwd2"
+              placeholder=""
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">工长：</label>
+          <div class="layui-inline">
+            <input
+              type="text"
+              name="newPwd2"
+              placeholder=""
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">工地ID：</label>
+          <div class="layui-inline">
+            <input
+              type="text"
+              name="newPwd2"
+              placeholder=""
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">审核情况：</label>
+          <div class="layui-inline">
+            <input
+              type="text"
+              name="newPwd2"
+              placeholder=""
+              autocomplete="off"
+              class="layui-input"
+            />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">精选案例：</label>
+          <div class="layui-inline">
+            <input type="checkbox" name="xxx" lay-skin="switch" />
+          </div>
+        </div>
+        <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <div class="layui-input-block" style="margin-left: 110px;">
+            <button
+              class="search-btn layui-btn"
+              lay-submit
+              lay-filter="formDemo"
+            >
+              查询
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="table-meta">
+      <a
+        href="./addCase.html"
+        class="new-case-btn layui-btn layui-btn-sm"
+        style="font-size: 16px;"
+      >
+        <i class="layui-icon">&#xe654;</i> 新增案例
+      </a>
+      <div class="table-meta-right layui-unselect">
+        <span style="margin-right: 10px;">
+          共有 <span class="number">2000</span> 条项目信息
+        </span>
+        <span>
+          <span class="prev-btn page-btn" title="上一页">&lt;</span>
+          <span class="page">
+            <span class="curr-page" style="color: rgb(240, 97, 47);">1</span> /
+            <span class="total-page">36</span>
+          </span>
+          <span class="next-btn page-btn" title="下一页">&gt;</span>
+        </span>
+      </div>
+    </div>
+    <form class="layui-form" style="overflow: auto;">
+      <table class="layui-table" lay-even>
+        <thead>
+          <tr>
+            <th style="min-width: 110px;">操作</th>
+            <th>ID</th>
+            <th>精选推荐</th>
+            <th>封面图</th>
+            <th>案例标题</th>
+            <th>户型</th>
+            <th>风格</th>
+            <th>建筑面积</th>
+            <th>施工阶段</th>
+            <th>设计师</th>
+            <th>工长</th>
+            <th>工地直播ID绑定</th>
+            <th>更新时间</th>
+            <th>装修类型</th>
+            <th>造价（系统计算）</th>
+            <th>包含图片张数</th>
+            <th>审核情况</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+                <input type="checkbox" name="tr[]" value="1" lay-skin="primary">
+                <a href="./addCase.html" class="layui-btn layui-btn-sm handle-btn handle-edit-btn">修改</a>
+                <a class="handle-line"></a>
+                <a class="layui-btn layui-btn-sm handle-btn handle-dele-btn" data-id="1">删除</a>
+            </td>
+            <td>1</td>
+            <td>否</td>
+            <td><img src="" alt=""></td>
+            <td>精选面积132平别墅卧室混搭装</td>
+            <td>小户型</td>
+            <td>地中海</td>
+            <td>90</td>
+            <td>开工交底</td>
+            <td>懿轩</td>
+            <td>懿轩</td>
+            <td>
+              <a class="layui-btn layui-btn-sm handle-btn handle-bind-btn" data-id="1">绑定</a>
+            </td>
+            <td>2002年1月1日 00:00</td>
+            <td>全包</td>
+            <td>66600</td>
+            <td>5</td>
+            <td>待审核</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+      layui.use(["form", "element", "jquery"], function() {
+        var form = layui.form;
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        //监听表单信息提交
+        form.on("submit(formDemo)", function(data) {
+          console.log("表单数据如下：");
+          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+          layer.msg("打开开发者控制台查看表单数据");
+          return false; // 阻止表单跳转
+        });
+
+        // 删除
+        $('.handle-dele-btn').on('click', function () {
+          var id = $(this).attr('data-id'); // 携带的即将删除的数据
+          layer.confirm('确认删除?',
+            {icon: 3, title:'提示', content: '即将删除本条数据，其 id 是：'+ id},
+            function(index){
+              layer.close(index);
+              // 确认删除，do something
+              layer.msg("已删除！");
+            }
+          );
+        })
+
+        // 绑定
+        $('.handle-bind-btn').on('click', function () {
+          var id = $(this).attr('data-id'); // 携带的即将删除的数据
+          layer.confirm('绑定?',
+            { icon: 6, title:'请输入绑定的号码',
+              content: '<input type="text" name="title" placeholder="请输入号码" autocomplete="off" class="layui-input"/>'
+            },
+            function(index, dom){
+              var value = dom.find('input').val(); // 输入框的值
+              layer.close(index);
+              layer.msg("填写的号码为：" + value);
+            }
+          );
+        })
+      });
+    </script>
+  </body>
+</html>

@@ -126,19 +126,19 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
       children: [
         {
           title: "基本设置",
-          href: "./pages/store/basicSetting.html"
+          href: "./pages/store/basicSetting.html",
         },
         {
           title: "案例设置",
-          href: "./pages/system.html"
+          href: "./pages/store/caseManage.html",
         },
         {
           title: "广告管理",
-          href: "./pages/system.html"
+          href: "./pages/store/addCase.html",
         },
         {
           title: "店铺资质",
-          href: "./pages/system.html"
+          href: "./pages/store/certification.html",
         }
       ]
     },
@@ -167,7 +167,7 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
         { title: "设计师", href: "./pages/system.html" }
       ]
     },
-    { title: "账号管理" }
+    { title: "账号管理", href: "./pages/account/modifyPwd.html" }
   ];
 
   initIframeSrc();

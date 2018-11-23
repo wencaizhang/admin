@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scaleable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>店铺管理 - 荣誉证书</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .dib {
+        display: inline-block;
+      }
+      .layui-input:focus,
+      .layui-textarea:focus {
+        border-color: rgb(240, 97, 47) !important;
+      }
+
+      .new-case-btn,
+      .search-btn {
+        color: #fff;
+        background-color: rgb(240, 97, 47) !important;
+      }
+
+      /* ======= */
+      .table-meta {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-bottom: 2px solid rgb(240, 97, 47);
+        background-color: #fff;
+      }
+
+      /* 表格下 */
+      .handle-btn {
+        background-color: inherit;
+        color: rgb(240, 97, 47);
+        font-size: 14px;
+        margin-left: 0 !important;
+        padding: 0 2px;
+      }
+      .handle-btn:hover {
+        color: rgb(240, 97, 47);
+      }
+      .handle-line {
+        display: inline-block;
+        height: 14px;
+        width: 1px;
+        background-color: rgb(240, 97, 47);
+        vertical-align: middle;
+      }
+
+      th {
+        white-space: nowrap; /* 强制表头不换行*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="table-meta">
+      <a
+        class="new-case-btn layui-btn layui-btn-sm"
+        style="font-size: 16px;"
+      >
+        <i class="layui-icon">&#xe654;</i> 添加荣誉证书
+      </a>
+    </div>
+    <form class="layui-form" style="overflow: auto;">
+      <table class="layui-table" lay-even>
+        <thead>
+          <tr>
+            <th style="min-width: 110px;">编辑</th>
+            <th>名称</th>
+            <th>图片</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a class="layui-btn layui-btn-sm handle-btn handle-edit-btn"
+                >修改</a
+              >
+              <a class="handle-line"></a>
+              <a
+                class="layui-btn layui-btn-sm handle-btn handle-dele-btn"
+                data-id="1"
+                >删除</a
+              >
+            </td>
+            <td>文本标签</td>
+            <td><img src="" alt="图片" /></td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+      layui.use(["form", "element", "jquery"], function() {
+        var form = layui.form;
+        var element = layui.element;
+        var $ = layui.jquery;
+
+        // 删除
+        $(".handle-dele-btn").on("click", function() {
+          var id = $(this).attr("data-id"); // 携带的即将删除的数据
+          layer.confirm(
+            "确认删除?",
+            {
+              icon: 3,
+              title: "提示",
+              content: "即将删除本条数据，其 id 是：" + id
+            },
+            function(index) {
+              layer.close(index);
+              // 确认删除，do something
+              layer.msg("已删除！");
+            }
+          );
+        });
+
+        // 绑定
+        $(".handle-edit-btn").on("click", function() {
+          var id = $(this).attr("data-id"); // 携带的即将删除的数据
+          layer.confirm(
+            "绑定?",
+            {
+              icon: 6,
+              title: "请输入绑定的号码",
+              content:
+                '<input type="text" name="title" placeholder="请输入号码" autocomplete="off" class="layui-input"/>'
+            },
+            function(index, dom) {
+              var value = dom.find("input").val(); // 输入框的值
+              layer.close(index);
+              layer.msg("链接：" + value);
+            }
+          );
+        });
+      });
+    </script>
+  </body>
+</html>
