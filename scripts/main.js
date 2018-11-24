@@ -147,24 +147,33 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
       children: [
         {
           title: "投诉管理",
-          href: "./pages/system.html"
+          href: "./pages/service/complain.html"
         },
         {
           title: "问答-待回答",
-          href: "./pages/system.html"
+          href: "./pages/service/answerTodo.html"
         },
         {
           title: "问答-已回答",
-          href: "./pages/system.html"
+          href: "./pages/service/answerDone.html"
         }
       ]
     },
-    { title: "数据中心" },
+    {
+      title: "数据中心",
+      children: [
+        {
+          title: "虚拟币",
+          href: "./pages/data/virtualCurrency.html"
+        },
+      ]
+    },
     {
       title: "角色管理",
       children: [
-        { title: "工长", href: "./pages/system.html" },
-        { title: "设计师", href: "./pages/system.html" }
+        { title: "角色管理", href: "./pages/roles/roleManage.html" },
+        { title: "工长", href: "./pages/roles/supervisor.html" },
+        { title: "设计师", href: "./pages/roles/designer.html" }
       ]
     },
     { title: "账号管理", href: "./pages/account/modifyPwd.html" }

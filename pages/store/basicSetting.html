@@ -204,7 +204,8 @@
             <span>店铺名称：</span>
             <span class="store-name">五十家</span>
             <span class="store-name-input dib hide" style="width: 150px;">
-              <input type="text" name="storeName" placeholder="请输入新的店铺名称" autocomplete="off" class="layui-input layui-input-inline" style="height: 30px; line-height: 30px;">
+              <input type="text" name="storeName" placeholder="请输入新的店铺名称" autocomplete="off" class="layui-input layui-input-inline"
+                style="height: 30px; line-height: 30px;">
             </span>
             <span>（商家一个月可修改一次）</span>
             <a style="color: red;" class="edit-store-name-btn layui-btn layui-btn-primary layui-btn-sm">
@@ -231,7 +232,7 @@
         <div class="layui-col-md4">
           <p>品牌LOGO：</p>
           <div>
-            <div id="logo-container" class="dib" style="margin-right: 10px;     vertical-align: middle;">
+            <div id="logo-container" class="dib" style="margin-right: 10px; vertical-align: middle;">
               <a id="logo-filePicker" style="color: red;" class="layui-btn layui-btn-primary layui-btn-sm">
                 点击上传
               </a>
@@ -398,23 +399,22 @@
       <div class="desc">
         <div class="layui-form-item">
           <label class="layui-form-label" style="padding-bottom: 30px;">擅长房型：</label>
-          <input type="checkbox"  lay-filter="checkboxs" value="1" name="roomType[]" title="局部" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="2" name="roomType[]" title="一居室" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="3" name="roomType[]" title="两居室" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="4" name="roomType[]" title="三居室" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="5" name="roomType[]" title="四居室" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="6" name="roomType[]" title="复式" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="7" name="roomType[]" title="别墅" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="8" name="roomType[]" title="简装" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="9" name="roomType[]" title="工装" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="10" name="roomType[]" title="新房" lay-skin="primary">
-          <input type="checkbox"  lay-filter="checkboxs" value="11" name="roomType[]" title="期房" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="1" name="roomType[]" title="局部" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="2" name="roomType[]" title="一居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="3" name="roomType[]" title="两居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="4" name="roomType[]" title="三居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="5" name="roomType[]" title="四居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="6" name="roomType[]" title="复式" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="7" name="roomType[]" title="别墅" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="8" name="roomType[]" title="简装" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="9" name="roomType[]" title="工装" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="10" name="roomType[]" title="新房" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" value="11" name="roomType[]" title="期房" lay-skin="primary">
           <p style="margin: 10px 0;color: #bbb;">* 最多选择3个</p>
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">公司介绍：</label>
-          <textarea name="" style="display: inline-block;width: 50%;" placeholder="请输入"
-            class="layui-textarea"></textarea>
+          <textarea name="" style="display: inline-block;width: 50%;" placeholder="请输入" class="layui-textarea"></textarea>
         </div>
 
       </div>
@@ -451,7 +451,7 @@
       });
 
       // 房间类型复选框选中事件
-      form.on('checkbox(checkboxs)', function(data){
+      form.on('checkbox(checkboxs)', function (data) {
         console.log('点击的元素：', data.elem); //得到checkbox原始DOM对象
         console.log('是否被选中：', data.elem.checked); //是否被选中，true或者false
         console.log('value值：', data.value); //复选框value值，也可以通过data.elem.value得到

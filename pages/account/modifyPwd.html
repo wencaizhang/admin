@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scaleable=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>修改密码</title>
-    <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
-    <style>
-      body {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scaleable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>修改密码</title>
+  <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+  <style>
+    body {
         padding-right: 20px;
         padding-top: 20px;
         background-color: #fff;
@@ -25,81 +23,55 @@
         background-color: rgb(240, 97, 47)!important;
       }
     </style>
-  </head>
-  <body>
-    <form class="layui-form" action="">
-      <div class="layui-form-item">
-        <label class="layui-form-label">请输入原始密码：</label>
-        <div class="layui-inline " style="float: left;">
-          <input
-            type="text"
-            name="originPwd"
-            required
-            lay-verify="required"
-            placeholder=""
-            autocomplete="off"
-            class="layui-input"
-          />
-        </div>
-        <label class="layui-form-label" style="width: auto;">忘记密码？请使用手机动态码校验</label>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">请输入新密码：</label>
-        <div class="layui-inline">
-          <input
-            type="text"
-            name="newPwd"
-            required
-            lay-verify="required"
-            placeholder=""
-            autocomplete="off"
-            class="layui-input"
-          />
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">请验证新密码：</label>
-        <div class="layui-inline">
-          <input
-            type="text"
-            name="newPwd2"
-            required
-            lay-verify="required"
-            placeholder=""
-            autocomplete="off"
-            class="layui-input"
-          />
-        </div>
-      </div>
-      </div>
-      <div class="layui-form-item">
-        <div class="layui-input-block" style="margin-left: 180px;">
-          <button
-            class="submit-btn layui-btn"
-            lay-submit
-            lay-filter="formDemo"
-          >
-            确定修改
-          </button>
-        </div>
-      </div>
-    </form>
-    <script src="../../lib/layui/layui.js"></script>
-    <script>
+</head>
 
-      layui.use(["form", "element", "jquery"], function() {
-        var form = layui.form;
-        var element = layui.element;
-        var $ = layui.jquery;
+<body>
+  <form class="layui-form" action="">
+    <div class="layui-form-item">
+      <label class="layui-form-label">请输入原始密码：</label>
+      <div class="layui-inline " style="float: left;">
+        <input type="text" name="originPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+      </div>
+      <label class="layui-form-label" style="width: auto;">忘记密码？请使用手机动态码校验</label>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">请输入新密码：</label>
+      <div class="layui-inline">
+        <input type="text" name="newPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">请验证新密码：</label>
+      <div class="layui-inline">
+        <input type="text" name="newPwd2" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+      </div>
+    </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block" style="margin-left: 180px;">
+        <button class="submit-btn layui-btn" lay-submit lay-filter="formDemo">
+          确定修改
+        </button>
+      </div>
+    </div>
+  </form>
+  <script src="../../lib/layui/layui.js"></script>
+  <script>
 
-        //监听表单信息提交
-        form.on("submit(formDemo)", function (data) {
-          console.log("表单数据如下：");
-          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-          layer.msg("打开开发者控制台查看保存信息");
-          return false; // 阻止表单跳转
-        });
-      })
-    </script>
-  </body>
+    layui.use(["form", "element", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var $ = layui.jquery;
+
+      //监听表单信息提交
+      form.on("submit(formDemo)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看保存信息");
+        return false; // 阻止表单跳转
+      });
+    })
+  </script>
+</body>
+
 </html>

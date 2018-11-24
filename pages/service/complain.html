@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>客户服务-投诉管理</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <style>
+
+    .layui-input:focus, .layui-textarea:focus {
+        border-color: rgb(240, 97, 47)!important;
+      }
+      .search-btn {
+        width: 100px;
+        background: rgba(240, 97, 47, 1);
+      }
+      body {
+        padding: 20px;
+      }
+      .page .layui-form-item .layui-inline {
+        margin-right: 0;
+      }
+      .page .high-light-text {
+        color: rgb(240, 97, 47);
+      }
+      .page .not-binding {
+        cursor: pointer;
+      }
+      .page h4 {
+        display: inline-block;
+      }
+      .page .table-meta {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-bottom: 2px solid rgb(240, 97, 47);
+        background-color: #fff;
+      }
+      .page .layui-table {
+        margin-top: 0;
+      }
+      .page .layui-table th,
+      .page .layui-table td {
+        text-align: center;
+      }
+      .page .layui-table tr th:first-child,
+      .page .layui-table tr td:first-child {
+        text-align: left;
+      }
+      .page .table-meta-right {
+        float: right;
+      }
+
+      .layui-form-label {
+        width: 120px;
+      }
+      .layui-input-block {
+        margin-left: 150px;
+      }
+
+      .page-btn {
+        display: inline-block;
+        color: rgb(240, 97, 47);
+        border: 1px solid;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 3px;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="page layui-row">
+    <form class="layui-form" action="">
+      <div class="layui-form-item layui-row">
+        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
+          <label class="layui-form-label">投诉人姓名：</label>
+          <div class="layui-input-block">
+            <input type="text" name="投诉人姓名" required placeholder="" autocomplete="off" class="layui-input" />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
+          <label class="layui-form-label">联系方式：</label>
+          <div class="layui-input-block">
+            <input type="text" name="联系方式" placeholder="" autocomplete="off" class="layui-input" />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
+          <label class="layui-form-label">处理状态：</label>
+          <div class="layui-input-block">
+            <select name="处理状态">
+              <option value="0">北京</option>
+              <option value="1">上海</option>
+              <option value="2">广州</option>
+              <option value="3">深圳</option>
+              <option value="4">杭州</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
+          <label class="layui-form-label">反馈结果：</label>
+          <div class="layui-input-block">
+            <input type="text" name="反馈结果" required placeholder="" autocomplete="off" class="layui-input" />
+          </div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="search-btn layui-btn" lay-submit lay-filter="formDemo">
+            查询
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="table-meta">
+      <h4 class="layui-inline" style="font-size: 18px;">投诉管理</h4>
+      <div class="table-meta-right layui-unselect">
+        <span style="margin-right: 10px;">
+          共有 <span class="number">2000</span> 条项目信息
+        </span>
+        <span>
+          <span class="prev-btn page-btn" title="上一页">&lt;</span>
+          <span class="page">
+            <span class="curr-page" style="color: rgb(240, 97, 47);">1</span>
+            / <span class="total-page">36</span>
+          </span>
+          <span class="next-btn page-btn" title="下一页">&gt;</span>
+        </span>
+      </div>
+    </div>
+    <table class="layui-table" lay-even>
+      <thead>
+        <tr>
+          <th>订单号</th>
+          <th>客户姓名</th>
+          <th>建筑面积</th>
+          <th>接单时间</th>
+          <th>设计师</th>
+          <th>更新时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td class="not-binding high-light-text">未绑定</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td>设计师</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td>设计师</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    //Demo
+    layui.use(["form", "element", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var laydate = layui.laydate;
+      var $ = layui.jquery;
+
+      form.render();
+
+      //监听表单信息提交
+      form.on("submit(formDemo)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看表单数据");
+        return false; // 阻止表单跳转
+      });
+
+    });
+  </script>
+</body>
+
+</html>

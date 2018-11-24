@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>工长个人信息设置</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <link rel="stylesheet" href="../../lib/webuploader/webuploader.css">
+  <style>
+    .layui-input:focus, .layui-textarea:focus {
+      border-color: rgb(240, 97, 47)!important;
+    }
+    body {
+      background-color: #fff;
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+    .hide {
+      display: none!important;
+    }
+    .layui-form-item .layui-input-inline.fln {
+      float: none;
+    }
+    .dib {
+      display: inline-block;
+    }
+    .w80.layui-input-inline {
+      width: 80px;
+    }
+    .w100.layui-input-inline {
+      width: 100px;
+    }
+    .w120.layui-input-inline {
+      width: 120px;
+    }
+    .w150.layui-input-inline {
+      width: 150px;
+    }
+    .w200.layui-input-inline {
+      width: 200px;
+    }
+    .color-red {
+      color: red;
+    }
+    /* 水平线 */
+    .hr-primary {
+      height: 2px;
+      background-color: rgb(240, 97, 47);
+    }
+
+    h2.title {
+      height: 50px;
+      line-height: 50px;
+    }
+
+    a.layui-btn:hover {
+      border-color: rgb(240, 97, 47);
+    }
+
+    .high-light-text {
+      font-weight: bold;
+      color: rgb(240, 97, 47)!important;
+    }
+
+    /* 按钮样式 */
+    .primary-btn {
+      color: #fff;
+      background-color: rgb(240, 97, 47) !important;
+    }
+    .plain-btn {
+      background-color: #fff;
+      color: rgb(240, 97, 47) !important;
+      border: 1px solid rgb(240, 97, 47) !important;
+    }
+
+
+    /* ============== */
+    .layui-form {
+      margin-top: 20px;
+    }
+    .layui-form-label {
+      width: 120px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="order-page layui-row">
+    <h2 class="title">工长个人信息设置</h2>
+    <div class="hr-primary"></div>
+    <form class="layui-form" action="">
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">姓名：</label>
+        <div class="layui-input-inline w150">
+          <input type="text" name="姓名" required lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux high-light-text">工长专属ID：GZ20181113001</div>
+      </div>
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">联系人手机：</label>
+        <div class="layui-input-inline w150">
+          <input type="text" name="请输入姓名" required lay-verify="required" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">绑定手机号默认平台后台不可修改，可在商户后台校验后修改</div>
+      </div>
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">合同状态：</label>
+        <div class="layui-input-inline w150">
+          <select name="合同状态" required lay-verify="required">
+            <option value="010">合作</option>
+            <option value="021">中止</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">角色排序：</label>
+        <div class="layui-input-inline w150">
+          <select name="角色排序" required lay-verify="required">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">头像：</label>
+        <div class="layui-input-block upload-container">
+          <a id="picker1" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+          <div id="fileList1"></div>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">生活照：</label>
+        <div class="layui-input-block upload-container">
+          <a id="picker2" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+          <div id="fileList2" class="file-list"></div>
+        </div>
+      </div>
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">从业时间：</label>
+        <div class="layui-input-inline w150">
+          <input type="text" required lay-verify="required" placeholder="请选择日期" class="layui-input" id="work-time">
+        </div>
+        <div class="layui-form-mid layui-word-aux">系统将自动计算从业年限</div>
+      </div>
+
+      <div class="layui-form-item form-item">
+        <label class="layui-form-label">个人简介：</label>
+        <div class="layui-input-inline" style="width: 50%;">
+          <textarea name="" required lay-verify="required" placeholder="最多1000字符" class="layui-textarea"></textarea>
+        </div>
+      </div>
+
+      <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">证书/锦旗/荣誉：</label>
+        <div class="layui-input-block upload-container">
+          <a id="picker3" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+          <div id="fileList3" class="file-list"></div>
+        </div>
+      </div>
+
+      <!-- 保存信息按钮 -->
+      <div class="layui-form-item">
+        <div class="layui-input-block" style="margin-left: 150px;">
+          <button class="search-btn primary-btn layui-btn" lay-submit lay-filter="submit">
+            保存信息
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/jquery.min.js"></script>
+  <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+  <script src="../../scripts/picUploader.js"></script>
+  <script>
+    //Demo
+    layui.use(["form", "element", "laydate", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var $ = layui.jquery;
+      var laydate = layui.laydate;
+
+      //执行一个时间选择器laydate实例（从业时间）
+      laydate.render({
+        elem: '#work-time' //指定元素
+      });
+
+      form.render();
+
+      //监听表单信息提交
+      form.on("submit(submit)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看保存信息");
+        return false; // 阻止表单跳转
+      });
+
+
+      var uploader = singlePicUploader({
+        $fileList: $("#fileList1"),
+        server: "",  // 文件上传地址
+        pick: "#picker1",
+      })
+
+      var uploader = multiPicUploader({
+        $fileList: $("#fileList3"),
+        server: "",  // 文件上传地址
+        pick: "#picker3",
+        success: function () {
+
+        },
+        registerDeleteHandler: function (uploader) {
+          // $space.find('.file-list-container').on('click', '.dele-pic-btn', function () {
+          //   var $item = $(this).parents('.file-item')
+          //   var fid = $item.attr('id')
+          //   $item.remove();
+
+          //   if (!$("#fileList3").find('.file-item').length) {
+          //     $("#fileList3").find('.empty-text').removeClass('hide')
+          //   }
+
+          //   uploader.removeFile(fid, true)
+          // })
+        }
+      })
+
+    });
+  </script>
+</body>
+
+</html>

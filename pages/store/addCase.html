@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scaleable=no"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>店铺管理 - 新增案例</title>
-    <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
-    <style>
-      body {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scaleable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>店铺管理 - 新增案例</title>
+  <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+  <style>
+    body {
         padding: 20px;
         background-color: #fff;
+      }
+
+      .hide {
+        display: none!important;
       }
       .layui-input:focus,
       .layui-textarea:focus {
@@ -21,7 +23,9 @@
       .layui-form-label {
         width: 120px;
       }
-
+      .layui-input-block {
+        margin-left: 150px;
+      }
 
       .room-info-form .box > .layui-row {
         margin-bottom: 10px;
@@ -37,11 +41,6 @@
         margin: 10px 0;
         display: block;
       }
-      .next-step-btn {
-        color: #fff;
-        background-color: rgb(240, 97, 47) !important;
-      }
-
       /* 步骤 div */
       .step-item .content {
         padding: 8px;
@@ -73,185 +72,533 @@
       .current-step-item .content {
         background-color: rgb(240, 97, 47);
       }
+
+
+      /* 装修实景图，图片上传样式代码 */
+      .file-list-container {
+        padding: 10px 150px;
+        min-height: 190px;
+      }
+      .file-list-container * {
+        vertical-align: bottom;
+      }
+      .file-list-container .empty-text {
+        line-height: 100px;
+      }
+      .file-list-container .file-item {
+        display: inline-block;
+      }
+      .file-list-container .dele-pic-btn {
+        float: right;
+        color: rgb(240, 97, 47);
+        margin: 6px 10px 0 0;
+      }
+      .file-list-container .dele-pic-btn .webuploader-pick {
+        padding: 0 18px;
+      }
+
+      .file-list-container .content {
+        position: relative;
+        padding-left: 120px;
+      }
+      .file-list-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .file-list-container .layui-form-radio>i:hover, .file-list-container .layui-form-radioed>i {
+        color: rgb(240, 97, 47);
+      }
+      
+
+      /* 按钮样式 */
+      .primary-btn {
+        color: #fff;
+        background-color: rgb(240, 97, 47) !important;
+      }
+      .plain-btn {
+        background-color: #fff;
+        color: rgb(240, 97, 47) !important;
+        border: 1px solid rgb(240, 97, 47) !important;
+      }
+
+      /* 上传按钮 */
+      .picker-btn {
+        padding: 0;
+      }
+      .picker-btn .webuploader-pick {
+        padding: 0 18px;
+      }
+
+
+
+      .room-info-form {
+        display: none; 
+      }
+      .room-info-form.current-form {
+        display: block; 
+      }
+
+
+      /* 第二步骤中的上传图片相关样式 */
+      .step2-upload-container {
+        position: relative;
+        min-height: 120px;
+      }
+      .step2-upload-container .picker-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        background-color: transparent;
+      }
+      .step2-upload-container .file-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 99;
+      }
     </style>
-  </head>
-  <body>
-    <div class="steps-container">
-      <ul class="layui-row layui-col-space10">
-        <li
-          class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4 current-step-item"
-        >
-          <div class="content">
-            <span class="step-number">1</span>
-            <span class="step-text">维护案例基本信息</span>
-            <i class="layui-icon layui-icon-right"></i>
+</head>
+
+<body>
+  <div class="steps-container">
+    <ul class="layui-row layui-col-space10">
+      <li class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4 current-step-item">
+        <div class="content">
+          <span class="step-number">1</span>
+          <span class="step-text">维护案例基本信息</span>
+          <i class="layui-icon layui-icon-right"></i>
+        </div>
+      </li>
+      <li class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4">
+        <div class="content">
+          <span class="step-number">2</span>
+          <span class="step-text">上传户型图</span>
+          <i class="layui-icon layui-icon-right"></i>
+        </div>
+      </li>
+      <li class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4">
+        <div class="content">
+          <span class="step-number">3</span>
+          <span class="step-text">上传装修后实景图或效果</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 1 维护案例基本信息 -->
+  <form class="layui-form dib room-info-form current-form layui-row">
+    <div class="box layui-clear">
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 120px;">*案例标题：</label>
+        <div class="layui-inline">
+          <input type="text" name="newPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 120px;">*工地直播ID绑定：</label>
+        <div class="layui-inline">
+          <input type="radio" name="idBind" value="no" title="否" lay-filter="id-bind" required lay-verify="required">
+          <input type="radio" name="idBind" value="yes" title="是" lay-filter="id-bind" required lay-verify="required">
+        </div>
+        <div class="layui-inline id-bind-input-container">
+
+        </div>
+      </div>
+    </div>
+    <div class="box layui-clear">
+      <label class="layui-row sub-title">绑定案例支持人员</label>
+      <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+        <label class="layui-form-label">*设计师：</label>
+        <div class="layui-inline">
+          <select name="city" required lay-verify="required">
+            <option value="xxx">小户型</option>
+            <option value="010">小户型</option>
+            <option value="021">上海</option>
+            <option value="0571">杭州</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+        <label class="layui-form-label">*工长：</label>
+        <div class="layui-inline">
+          <select name="city" required lay-verify="required">
+            <option value="xxx">全包</option>
+            <option value="010">小户型</option>
+            <option value="021">上海</option>
+            <option value="0571">杭州</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="box layui-clear no-border">
+      <label class="layui-row sub-title">案例所属房屋信息</label>
+      <div class="layui-row">
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">*所属小区名称：</label>
+          <div class="layui-inline">
+            <input type="text" name="" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
           </div>
-        </li>
-        <li class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4">
-          <div class="content">
-            <span class="step-number">2</span>
-            <span class="step-text">上传户型图</span>
-            <i class="layui-icon layui-icon-right"></i>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">*户型：</label>
+          <div class="layui-inline">
+            <select name="city" required lay-verify="required">
+              <option value="xxx">小户型</option>
+              <option value="010">小户型</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
           </div>
-        </li>
-        <li class="step-item layui-col-xs4 layui-col-sm4 layui-col-md4">
-          <div class="content">
-            <span class="step-number">3</span>
-            <span class="step-text">上传装修后实景图或效果</span>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">*建筑面积：</label>
+          <div class="layui-inline">
+            <input type="text" required lay-verify="number" name="" placeholder="" autocomplete="off" class="layui-input" />
           </div>
-        </li>
-      </ul>
+          <span>m&sup2;</span>
+        </div>
+      </div>
+      <div class="layui-row">
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">*装修类型：</label>
+          <div class="layui-inline">
+            <select name="city" required lay-verify="required">
+              <option value="xxx">全包</option>
+              <option value="010">小户型</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
+          <label class="layui-form-label">*装修风格：</label>
+          <div class="layui-inline">
+            <select name="city" required lay-verify="required">
+              <option value="xxx">地中海</option>
+              <option value="010">小户型</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">
+      <div class="layui-input-block" style="margin-left: 150px;">
+        <button class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep1">
+          下一步
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  <!-- 2 上传户型图 -->
+  <form class="layui-form dib room-info-form layui-row">
+    <div class="form-header" style="padding: 10px 0; margin-left: 80px;">
+      <span>案例ID：</span>
+      <span style="margin-left: 10px;">20181118001</span>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">户型图：</label>
+      <div class="layui-input-block step2-upload-container">
+        <a id="step2-picker1" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+        <div id="step2-fileList-1"></div>
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">平面布局方案：</label>
+      <div class="layui-input-block step2-upload-container">
+        <a id="step2-picker2" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+        <div id="step2-fileList-2" class="file-list"></div>
+      </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">户型描述：</label>
+      <div class="layui-input-block">
+        <textarea name="" required lay-verify="required" placeholder="不少于10个字符，不超过400个字符&#10;描述方向可包含以下几点：&#10;1.业主装修诉求&#10;2.户型优缺点分析----采光、动线、通风等&#10;3.设计师方案/调整说明&#10;4.户型改造点（未调整户型可忽略此点）&#10;5.业主对设计的评价&#10;"
+          class="layui-textarea" style="display: inline-block; min-height: 160px;"></textarea>
+      </div>
+    </div>
+    <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">
+      <div class="layui-input-block" style="margin-left: 150px;">
+        <button class="prev-step-btn plain-btn layui-btn" lay-filter="">
+          上一步
+        </button>
+        <button class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep2">
+          下一步
+        </button>
+      </div>
+    </div>
+  </form>
+
+
+  <!-- 3 上传装修后实景图或效果 -->
+  <form class="layui-form dib room-info-form space-form layui-row">
+    <div class="form-header" style="padding: 10px 0;">
+      <span>案例ID：20181118001</span>
+      <a class="add-space-btn plain-btn layui-btn">新增空间</a>
     </div>
 
-    <form class="layui-form dib room-info-form layui-row">
-      <div class="box layui-clear">
+    <div class="space-template hide">
+      <!-- 新建空间的 html 模板 -->
+      <div class="sub-header" style="background-color: #eee;" lay-verify="space">
         <div class="layui-form-item">
-          <label class="layui-form-label" style="width: 120px;">*案例标题：</label>
-          <div class="layui-inline">
-            <input
-              type="text"
-              name="newPwd"
-              placeholder=""
-              autocomplete="off"
-              class="layui-input"
-            />
-          </div>
-        </div>
-        <div class="layui-form-item">
-          <label class="layui-form-label" style="width: 120px;">*工地直播ID绑定：</label>
-          <div class="layui-inline">
-            <input type="radio" name="idBind" value="no" title="否">
-            <input type="radio" name="idBind" value="yes" title="是">
-          </div>
-          <div class="layui-inline">
-            <input
-              type="text"
-              name="newPwd2"
-              placeholder=""
-              autocomplete="off"
-              class="layui-input"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="box layui-clear">
-        <label class="layui-row sub-title">绑定案例支持人员</label>
-        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-          <label class="layui-form-label">*设计师：</label>
-          <div class="layui-inline">
-            <select name="city" lay-verify="">
-              <option value="">小户型</option>
-              <option value="010">小户型</option>
+          <label class="layui-form-label">*空间<span class="space-number">1</span> ：</label>
+          <div class="layui-input-inline">
+            <select name="city">
+              <option value="">请选择一个城市</option>
+              <option value="010">北京</option>
               <option value="021">上海</option>
               <option value="0571">杭州</option>
             </select>
           </div>
-        </div>
-        <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-          <label class="layui-form-label">*工长：</label>
-          <div class="layui-inline">
-            <select name="city" lay-verify="">
-              <option value="">全包</option>
-              <option value="010">小户型</option>
-              <option value="021">上海</option>
-              <option value="0571">杭州</option>
-            </select>
+          <div class="right-box" style="float: right;">
+            <span>已上传 <span class="pic-count">0</span> 张图片</span>
+            <a id="" class="picker-btn primary-btn layui-btn">上传图片</a>
           </div>
         </div>
       </div>
-      <div class="box layui-clear no-border">
-        <label class="layui-row sub-title">案例所属房屋信息</label>
-        <div class="layui-row">
-          <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-            <label class="layui-form-label">*所属小区名称：</label>
-            <div class="layui-inline">
-              <input
-                type="text"
-                name=""
-                placeholder=""
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-            <label class="layui-form-label">*户型：</label>
-            <div class="layui-inline">
-              <select name="" lay-verify="">
-                <option value="">小户型</option>
-                <option value="010">小户型</option>
-                <option value="021">上海</option>
-                <option value="0571">杭州</option>
-              </select>
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-            <label class="layui-form-label">*建筑面积：</label>
-            <div class="layui-inline">
-              <input
-                type="text"
-                name=""
-                placeholder=""
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-            <span>m&sup2;</span>
-          </div>
-        </div>
-        <div class="layui-row">
-          <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-            <label class="layui-form-label">*装修类型：</label>
-            <div class="layui-inline">
-              <select name="" lay-verify="">
-                <option value="">全包</option>
-                <option value="010">小户型</option>
-                <option value="021">上海</option>
-                <option value="0571">杭州</option>
-              </select>
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
-            <label class="layui-form-label">*装修风格：</label>
-            <div class="layui-inline">
-              <select name="" lay-verify="">
-                <option value="">地中海</option>
-                <option value="010">小户型</option>
-                <option value="021">上海</option>
-                <option value="0571">杭州</option>
-              </select>
-            </div>
-          </div>
-        </div>
+      <div id="" class="picker-fileList layui-row file-list-container layui-col-space20">
+        <p class='empty-text'>暂无文件</p>
       </div>
-      <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">
-        <div class="layui-input-block" style="margin-left: 110px;">
-          <button
-            class="next-step-btn layui-btn"
-            lay-submit
-            lay-filter="formDemo"
-          >
-            下一步
-          </button>
-        </div>
-      </div>
-    </form>
+    </div>
 
-    <script src="../../lib/layui/layui.js"></script>
-    <script>
-      layui.use(["form", "element", "jquery"], function() {
-        var form = layui.form;
-        var element = layui.element;
-        var $ = layui.jquery;
+    <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">
+      <div class="layui-input-block" style="margin-left: 150px;">
+        <button class="preview-btn plain-btn layui-btn" lay-filter="">
+          预览
+        </button>
+        <button class="prev-step-btn plain-btn layui-btn" lay-filter="">
+          上一步
+        </button>
+        <button class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep3">
+          下一步
+        </button>
+      </div>
+    </div>
 
-        //监听表单信息提交
-        form.on("submit(formDemo)", function(data) {
-          console.log("表单数据如下：");
-          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-          layer.msg("打开开发者控制台查看保存信息");
-          return false; // 阻止表单跳转
-        });
+  </form>
+
+  <script src="../../lib/layui/layui.js"></script>
+  <script src="../../lib/jquery.min.js"></script>
+  <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+  <script src="../../scripts/picUploader.js"></script>
+  <script>
+    layui.use(["form", "element", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var $ = layui.jquery;
+      var formData = [];  // 储存三个步骤中的表单数据
+      window.formData = formData;
+
+      /**
+       * 步骤一：维护案例基本信息
+       */
+
+      // 工地直播ID绑定 radio
+      form.on('radio(id-bind)', function (data) {
+        console.log(data.elem); //得到radio原始DOM对象
+        console.log(data.value); //被点击的radio的value值
+        layer.msg("工地直播ID绑定:" + data.value);
+
+        // 展示或者移除 绑定 id 的输入框
+        if (data.value == 'yes') {
+          $('.id-bind-input-container').html('<input type="text" name="newPwd2" required lay-verify="required" lay-filter="id-bind-input" placeholder="" autocomplete="off" class="layui-input id-bind-input" />')
+          $('.id-bind-input').focus();
+        } else {
+          $('.id-bind-input-container').html('')
+        }
       });
-    </script>
-  </body>
+
+
+      $('.prev-step-btn').on('click', function () {
+        prevStep();
+      })
+
+      //监听表单信息提交，第一步
+      form.on("submit(formSubmitStep1)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+
+        if (typeof data.field.idBind == 'undefined') {
+          layer.msg('请选择是否进行工地直播ID绑定', { icon: 5 });
+          return false;
+        }
+
+        layer.msg("打开开发者控制台查看保存信息");
+
+        formData.push(data.field)
+        nextStep();
+        return false; // 阻止表单跳转
+      });
+
+      /**
+       * 上一步和下一步的处理函数
+       */
+
+      window.nextStep = nextStep
+      window.prevStep = prevStep
+      function nextStep() {
+        var $items = $('.steps-container .step-item');
+        var $forms = $('.room-info-form');
+        var classStepName = 'current-step-item';
+        var classFormName = 'current-form';
+
+        $items.each(function (index, ele) {
+          if ($(ele).hasClass(classStepName)) {
+            if (index >= $items.length - 1) { return false; }
+
+            $(ele).removeClass(classStepName)
+            $forms.eq(index).removeClass(classFormName)
+
+            $forms.eq(index + 1).addClass(classFormName)
+            $items.eq(index + 1).addClass(classStepName)
+
+            // 文件上传实例在元素 display: none; 时创建无效
+            // 必须在创建时已经显示出来
+            if (index === 0) {
+              step2uploader();
+            }
+            if (index == 1) {
+              createSpace();
+            }
+
+            return false; // 跳出循环！
+          }
+        })
+      }
+      function prevStep() {
+        var $items = $('.steps-container .step-item');
+        var $forms = $('.room-info-form');
+        var classStepName = 'current-step-item'
+        var classFormName = 'current-form'
+
+        $items.each(function (index, ele) {
+          if ($(ele).hasClass(classStepName)) {
+            if (index <= 0) { return false; }
+
+            $(ele).removeClass(classStepName)
+            $forms.eq(index).removeClass(classFormName)
+
+            $forms.eq(index - 1).addClass(classFormName)
+            $items.eq(index - 1).addClass(classStepName)
+            return false; // 跳出循环！
+          }
+        })
+      }
+
+
+      /**
+       * 步骤二：上传户型图
+       */
+
+      //监听表单信息提交，第二步
+      form.on("submit(formSubmitStep2)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看保存信息");
+
+        formData.push(data.field)
+        nextStep();
+        return false; // 阻止表单跳转
+      });
+
+      step2uploader();
+      window.step2uploader = step2uploader;
+      function step2uploader() {
+        console.log('step2uploader')
+        var uploader = singlePicUploader({
+          $fileList: $("#step2-fileList-1"),
+          server: "",  // 文件上传地址
+          pick: "#step2-picker1",
+        })
+        var uploader = singlePicUploader({
+          $fileList: $("#step2-fileList-2"),
+          server: "",  // 文件上传地址
+          pick: "#step2-picker2",
+        })
+      }
+
+
+      /**
+       * 步骤三：上传装修后实景图或效果
+       */
+
+      //监听表单信息提交，第三步
+      form.on("submit(formSubmitStep3)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看保存信息");
+
+        formData.push(data.field)
+        nextStep();
+        return false; // 阻止表单跳转
+      });
+
+      // 新建空间按钮点击
+      $('.add-space-btn').on('click', function () {
+        createSpace();
+      })
+      // 初次加载，自动新建空间
+
+      // createSpace();
+      window.createSpace = createSpace
+      // 新建空间处理函数
+      function createSpace() {
+        var $space = $('.space-template').eq(0).clone(true)
+        var len = $('.space-item').length;
+        var pickerId = 'picker' + len;
+        var fileListId = 'fileList' + len
+
+        $space.find('.space-number').text(len + 1)
+
+        var layid = $space.find('.sub-header').attr('lay-verify')
+        $space.find('.picker-btn').attr('id', pickerId)
+        $space.find('.picker-fileList').attr('id', fileListId)
+
+        $('.space-template, .space-item').last().after($space);
+        $space.removeClass('hide space-template').addClass('space-item')
+        form.render('select');
+
+        var uploader = multiPicUploader({
+          $fileList: $("#" + fileListId),
+          server: "",  // 文件上传地址
+          pick: "#" + pickerId,
+          renderCallback: function () {
+            // 渲染缩略图时重新 render radio
+            form.render('radio')
+          },
+          success: function (count) {
+            $space.find('.pic-count').text(count || $('.pic-count').text())
+          },
+          registerDeleteHandler: function (uploader) {
+            $space.find('.file-list-container').on('click', '.dele-pic-btn', function () {
+              var $item = $(this).parents('.file-item')
+              var fid = $item.attr('id')
+              $item.remove();
+
+              if (!$("#" + fileListId).find('.file-item').length) {
+                $("#" + fileListId).find('.empty-text').removeClass('hide')
+              }
+
+              uploader.removeFile(fid, true)
+            })
+          }
+        })
+
+        if (window.uploaders && window.uploaders.length) {
+          window.uploaders.push(uploader)
+        } else {
+          window.uploaders = [uploader]
+        }
+
+      }
+
+    });
+  </script>
+</body>
+
 </html>

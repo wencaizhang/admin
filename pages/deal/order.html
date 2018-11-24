@@ -1,30 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta
-      name="viewport"
-      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-    />
-    <title>首页</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../../lib/layui/css/layui.css"
-    />
-    <style>
-      
-      .layui-input:focus, .layui-textarea:focus {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css" />
+  <style>
+
+    .layui-input:focus, .layui-textarea:focus {
         border-color: rgb(240, 97, 47)!important;
       }
       .search-btn {
         width: 100px;
         background: rgba(240, 97, 47, 1);
-      }
-      .reset-btn {
-        width: 100px;
       }
       body {
         padding-right: 20px;
@@ -90,230 +81,191 @@
         margin: 0 3px;
       }
     </style>
-  </head>
+</head>
 
-  <body>
-    <div class="order-page layui-row">
-      <form class="layui-form" action="">
-        <div class="layui-form-item layui-row">
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <label class="layui-form-label">订单号</label>
-            <div class="layui-input-block">
-              <input
-                type="text"
-                name="orderId"
-                required
-                placeholder=""
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <div class="layui-inline">
-              <label class="layui-form-label">接单时间</label>
-              <div class="layui-input-inline" style="width: 100px;">
-                <input
-                  id="time-from"
-                  type="text"
-                  name="time_from"
-                  placeholder=""
-                  autocomplete="off"
-                  class="layui-input"
-                />
-              </div>
-              <div class="layui-form-mid">-</div>
-              <div class="layui-input-inline" style="width: 100px;">
-                <input
-                  id="time-to"
-                  type="text"
-                  name="time_to"
-                  placeholder=""
-                  autocomplete="off"
-                  class="layui-input"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <label class="layui-form-label">订单状态</label>
-            <div class="layui-input-block">
-              <select name="order_status">
-                <option value="all" selected>全部</option>
-                <option value="0">北京</option>
-                <option value="1">上海</option>
-                <option value="2">广州</option>
-                <option value="3">深圳</option>
-                <option value="4">杭州</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="layui-form-item layui-row">
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <label class="layui-form-label">业主电话</label>
-            <div class="layui-input-block">
-              <input
-                type="text"
-                name="phone"
-                required
-                placeholder=""
-                autocomplete="off"
-                class="layui-input"
-              />
-            </div>
-          </div>
-          <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
-            <label class="layui-form-label">设计师</label>
-            <div class="layui-input-block">
-              <select name="designer">
-                <option value="all" selected>全部</option>
-                <option value="0">设计师1</option>
-                <option value="1">设计师2</option>
-                <option value="2">设计师3</option>
-                <option value="3">设计师4</option>
-                <option value="4">设计师5</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="layui-form-item">
+<body>
+  <div class="order-page layui-row">
+    <form class="layui-form" action="">
+      <div class="layui-form-item layui-row">
+        <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
+          <label class="layui-form-label">订单号</label>
           <div class="layui-input-block">
-            <button
-              class="search-btn layui-btn"
-              lay-submit
-              lay-filter="formDemo"
-            >
-              查询
-            </button>
-            <button type="reset" class="reset-btn layui-btn layui-btn-primary">
-              重置
-            </button>
+            <input type="text" name="orderId" required placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
-      </form>
-      <div class="table-meta">
-        <h4 class="layui-inline" style="font-size: 18px;">查询结果</h4>
-        <div class="table-meta-right layui-unselect">
-          <span style="margin-right: 10px;">
-            共有 <span class="number">2000</span> 条项目信息
-          </span>
-          <span>
-            <span class="prev-btn page-btn" title="上一页">&lt;</span>
-            <span class="page">
-              <span class="curr-page" style="color: rgb(240, 97, 47);">1</span>
-              / <span class="total-page">36</span>
-            </span>
-            <span class="next-btn page-btn" title="下一页">&gt;</span>
-          </span>
+        <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
+          <div class="layui-inline">
+            <label class="layui-form-label">接单时间</label>
+            <div class="layui-input-inline" style="width: 100px;">
+              <input id="time-from" type="text" name="time_from" placeholder="" autocomplete="off" class="layui-input" />
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+              <input id="time-to" type="text" name="time_to" placeholder="" autocomplete="off" class="layui-input" />
+            </div>
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
+          <label class="layui-form-label">订单状态</label>
+          <div class="layui-input-block">
+            <select name="order_status">
+              <option value="all" selected>全部</option>
+              <option value="0">北京</option>
+              <option value="1">上海</option>
+              <option value="2">广州</option>
+              <option value="3">深圳</option>
+              <option value="4">杭州</option>
+            </select>
+          </div>
         </div>
       </div>
-      <table class="layui-table" lay-even>
-        <thead>
-          <tr>
-            <th>订单号</th>
-            <th>客户姓名</th>
-            <th>建筑面积</th>
-            <th>接单时间</th>
-            <th>设计师</th>
-            <th>更新时间</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="high-light-text">2018101060110</td>
-            <td>李青</td>
-            <td>90m&sup2;</td>
-            <td>2016-11-28 13:19</td>
-            <td class="not-binding high-light-text">未绑定</td>
-            <td>2016-11-28 13:19</td>
-          </tr>
-          <tr>
-            <td class="high-light-text">2018101060110</td>
-            <td>李青</td>
-            <td>90m&sup2;</td>
-            <td>2016-11-28 13:19</td>
-            <td>设计师</td>
-            <td>2016-11-28 13:19</td>
-          </tr>
-          <tr>
-            <td class="high-light-text">2018101060110</td>
-            <td>李青</td>
-            <td>90m&sup2;</td>
-            <td>2016-11-28 13:19</td>
-            <td>设计师</td>
-            <td>2016-11-28 13:19</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="layui-form-item layui-row">
+        <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
+          <label class="layui-form-label">业主电话</label>
+          <div class="layui-input-block">
+            <input type="text" name="phone" required placeholder="" autocomplete="off" class="layui-input" />
+          </div>
+        </div>
+        <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
+          <label class="layui-form-label">设计师</label>
+          <div class="layui-input-block">
+            <select name="designer">
+              <option value="all" selected>全部</option>
+              <option value="0">设计师1</option>
+              <option value="1">设计师2</option>
+              <option value="2">设计师3</option>
+              <option value="3">设计师4</option>
+              <option value="4">设计师5</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="search-btn layui-btn" lay-submit lay-filter="formDemo">
+            查询
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="table-meta">
+      <h4 class="layui-inline" style="font-size: 18px;">查询结果</h4>
+      <div class="table-meta-right layui-unselect">
+        <span style="margin-right: 10px;">
+          共有 <span class="number">2000</span> 条项目信息
+        </span>
+        <span>
+          <span class="prev-btn page-btn" title="上一页">&lt;</span>
+          <span class="page">
+            <span class="curr-page" style="color: rgb(240, 97, 47);">1</span>
+            / <span class="total-page">36</span>
+          </span>
+          <span class="next-btn page-btn" title="下一页">&gt;</span>
+        </span>
+      </div>
     </div>
-    <script
-      src="../../lib/layui/layui.js"
-      type="text/javascript"
-      charset="utf-8"
-    ></script>
-    <script>
-      //Demo
-      layui.use(["form", "element", "laydate", "jquery"], function() {
-        var form = layui.form;
-        var element = layui.element;
-        var laydate = layui.laydate;
-        var $ = layui.jquery;
+    <table class="layui-table" lay-even>
+      <thead>
+        <tr>
+          <th>订单号</th>
+          <th>客户姓名</th>
+          <th>建筑面积</th>
+          <th>接单时间</th>
+          <th>设计师</th>
+          <th>更新时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td class="not-binding high-light-text">未绑定</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td>设计师</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+        <tr>
+          <td class="high-light-text">2018101060110</td>
+          <td>李青</td>
+          <td>90m&sup2;</td>
+          <td>2016-11-28 13:19</td>
+          <td>设计师</td>
+          <td>2016-11-28 13:19</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script>
+    //Demo
+    layui.use(["form", "element", "laydate", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var laydate = layui.laydate;
+      var $ = layui.jquery;
 
-        // 时间选择器，执行一个laydate实例
-        laydate.render({
-          elem: "#time-from" //指定元素
+      // 时间选择器，执行一个laydate实例
+      laydate.render({
+        elem: "#time-from" //指定元素
+      });
+      laydate.render({
+        elem: "#time-to" //指定元素
+      });
+
+      form.render();
+
+      //监听表单信息提交
+      form.on("submit(formDemo)", function (data) {
+        console.log("表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看表单数据");
+        return false; // 阻止表单跳转
+      });
+
+      $(".not-binding").on("click", function () {
+        var name = "设计师姓名";
+        var imgsrc =
+          "https://avatars1.githubusercontent.com/u/34718241?s=460&v=4";
+        alertTips({
+          name: name,
+          imgsrc: imgsrc
         });
-        laydate.render({
-          elem: "#time-to" //指定元素
+        form.render("select"); // 动态生成的 select 需要 render
+        form.on("select(designer)", function (data) {
+          layer.msg("打开开发者控制台查看选择的值");
+          console.log(data.value); //得到被选中的值
         });
+      });
 
-        form.render();
-
-        //监听表单信息提交
-        form.on("submit(formDemo)", function(data) {
-          console.log("表单数据如下：");
-          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-          layer.msg("打开开发者控制台查看表单数据");
-          return false; // 阻止表单跳转
-        });
-
-        $(".not-binding").on("click", function() {
-          var name = "设计师姓名";
-          var imgsrc =
-            "https://avatars1.githubusercontent.com/u/34718241?s=460&v=4";
-          alertTips({
-            name: name,
-            imgsrc: imgsrc
-          });
-          form.render("select"); // 动态生成的 select 需要 render
-          form.on("select(designer)", function(data) {
-            layer.msg("打开开发者控制台查看选择的值");
-            console.log(data.value); //得到被选中的值
-          });
-        });
-
-        function alertTips(options, callback) {
-          var options = options || {};
-          var name = options.name || "设计师姓名";
-          var imgsrc = options.imgsrc || "";
-          // 示范一个公告层
-          layer.open({
-            type: 1,
-            title: [
-              "绑定设计师",
-              "padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;"
-            ], //不显示标题栏
-            closeBtn: 1,
-            area: "300px;",
-            shade: 0.4,
-            id: "LAY_layuipro", //设定一个id，防止重复弹出
-            resize: false,
-            btn: ["确认"],
-            btnAlign: "c",
-            moveType: 1, //拖拽模式，0或者1
-            content:
-              '<form class="layui-form">\
+      function alertTips(options, callback) {
+        var options = options || {};
+        var name = options.name || "设计师姓名";
+        var imgsrc = options.imgsrc || "";
+        // 示范一个公告层
+        layer.open({
+          type: 1,
+          title: [
+            "绑定设计师",
+            "padding: 0;color: rgb(240, 97, 47); font-size: 20px; font-weight: bold;"
+          ], //不显示标题栏
+          closeBtn: 1,
+          area: "300px;",
+          shade: 0.4,
+          id: "LAY_layuipro", //设定一个id，防止重复弹出
+          resize: false,
+          btn: ["确认"],
+          btnAlign: "c",
+          moveType: 1, //拖拽模式，0或者1
+          content:
+            '<form class="layui-form">\
                 <select name="bind-designer" lay-filter="designer">\
                   <option value="">请选择一个设计师</option>\
                   <option value="010">设计师A</option>\
@@ -322,18 +274,19 @@
                 </select>\
               </form>\
               <img class="img" src="' +
-              imgsrc +
-              '" alt="' +
-              name +
-              '" />',
-            yes: function(index, layero) {
-              //如果设定了yes回调，需进行手工关闭
-              layer.close(index);
-              typeof callback === "function" && callback();
-            }
-          });
-        }
-      });
-    </script>
-  </body>
+            imgsrc +
+            '" alt="' +
+            name +
+            '" />',
+          yes: function (index, layero) {
+            //如果设定了yes回调，需进行手工关闭
+            layer.close(index);
+            typeof callback === "function" && callback();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+
 </html>
