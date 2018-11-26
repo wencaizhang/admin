@@ -138,7 +138,7 @@
         <div class="layui-form-item layui-col-xs4 layui-col-sm4 layui-col-md4">
           <label class="layui-form-label">关键字：</label>
           <div class="layui-input-block">
-            <input type="text" name="关键字：" lay-verify="test" placeholder="请输入关键字搜索" autocomplete="off" class="layui-input" />
+            <input type="text" name="关键字：" lay-verify="symbol|length_4_20" placeholder="请输入关键字搜索" autocomplete="off" class="layui-input" />
           </div>
         </div>
       </div>
@@ -196,8 +196,7 @@
       var laydate = layui.laydate;
       var $ = layui.jquery;
       form.render();
-
-      customVerify(form);
+      form.verify(getCustomVerifyObj());
 
       //监听表单信息提交
       form.on("submit(formSearch)", function (data) {

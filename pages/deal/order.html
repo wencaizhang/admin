@@ -90,7 +90,7 @@
         <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
           <label class="layui-form-label">订单号</label>
           <div class="layui-input-block">
-            <input type="text" name="orderId" required placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="orderId" lay-verify="space|zh|symbol|length_17" required placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
@@ -123,7 +123,7 @@
         <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
           <label class="layui-form-label">业主电话</label>
           <div class="layui-input-block">
-            <input type="text" name="phone" required placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="phone" lay-verify="myphone" placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs4 layui-col-sm4 layui-col-md4">
@@ -204,6 +204,7 @@
     </table>
   </div>
   <script src="../../lib/layui/layui.js"></script>
+  <script src="../../scripts/custom-verify.js"></script>
   <script>
     //Demo
     layui.use(["form", "element", "laydate", "jquery"], function () {
@@ -211,6 +212,7 @@
       var element = layui.element;
       var laydate = layui.laydate;
       var $ = layui.jquery;
+      form.verify(getCustomVerifyObj());
 
       // 时间选择器，执行一个laydate实例
       laydate.render({

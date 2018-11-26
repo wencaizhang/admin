@@ -11,7 +11,7 @@ function getCustomVerifyObj() {
 		},
 		zh: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /[^\u4e00-\u9fa5]/;
+			var reg = /[\u4e00-\u9fa5]/;
 			if (reg.test(value)) {
 				return '不能包含中文';
 			}
@@ -42,6 +42,13 @@ function getCustomVerifyObj() {
 			var reg = /^.{6,30}$/;
 			if (!reg.test(value)) {
 				return '请输入 6 -30 个字符';
+			}
+		},
+		length_17: function (value, dom) {
+			if (value == '') { return false; }
+			var reg = /^.{17}$/;
+			if (!reg.test(value)) {
+				return '请输入 17 个字符';
 			}
 		},
 		myphone: function (value, dom) {
