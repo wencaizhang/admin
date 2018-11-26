@@ -12,7 +12,16 @@
 
     .layui-input:focus, .layui-textarea:focus {
         border-color: rgb(240, 97, 47)!important;
-      }
+      }    /* 按钮样式 */
+    .primary-btn {
+      color: #fff;
+      background-color: rgb(240, 97, 47) !important;
+    }
+    .plain-btn {
+      background-color: #fff;
+      color: rgb(240, 97, 47) !important;
+      border: 1px solid rgb(240, 97, 47) !important;
+    }
       .search-btn {
         width: 100px;
         background: rgba(240, 97, 47, 1);
@@ -83,7 +92,7 @@
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">姓名：</label>
           <div class="layui-input-block">
-            <input type="text" name="投诉人姓名" required placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="姓名：" placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
@@ -95,19 +104,22 @@
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">角色类型：</label>
           <div class="layui-input-block">
-            <select name="处理状态">
-              <option value="0">北京</option>
-              <option value="1">上海</option>
-              <option value="2">广州</option>
-              <option value="3">深圳</option>
-              <option value="4">杭州</option>
+            <select name="角色类型：">
+              <option value="0">设计师</option>
+              <option value="1">工长</option>
             </select>
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">合作状态：</label>
           <div class="layui-input-block">
-            <input type="text" name="反馈结果" required placeholder="" autocomplete="off" class="layui-input" />
+            <select name="角色类型：">
+              <option value="全部">全部</option>
+              <option value="合作申请中">合作申请中</option>
+              <option value="合作中">合作中</option>
+              <option value="解除合作申请中">解除合作申请中</option>
+              <option value="解除合作">解除合作</option>
+            </select>
           </div>
         </div>
       </div>
@@ -120,7 +132,7 @@
       </div>
     </form>
     <div class="table-meta">
-      <button class="layui-btn layui-btn-primary">新建角色</button>
+      <button class="layui-btn layui-btn-sm primary-btn">新建角色</button>
       <div class="table-meta-right layui-unselect">
         <span style="margin-right: 10px;">
           共有 <span class="number">2000</span> 条项目信息
@@ -155,7 +167,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>ID</td>
+          <td>123</td>
           <td>姓名</td>
           <td>手机号</td>
           <td>角色类型</td>
@@ -167,7 +179,10 @@
           <td>精品推荐</td>
           <td>审核情况</td>
           <td>审核备注</td>
-          <td>操作</td>
+          <td>
+            <span class="high-light-text edit-btn">修改</span>
+            <span>/</span>
+            <span class="high-light-text edit-btn">推荐</span>
         </tr>
       </tbody>
     </table>
