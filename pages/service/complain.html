@@ -13,6 +13,9 @@
     .layui-input:focus, .layui-textarea:focus {
         border-color: rgb(240, 97, 47)!important;
       }
+      .cursor-pointer {
+        cursor: pointer;
+      }
       .search-btn {
         width: 100px;
         background: rgba(240, 97, 47, 1);
@@ -96,18 +99,20 @@
           <label class="layui-form-label">处理状态：</label>
           <div class="layui-input-block">
             <select name="处理状态">
-              <option value="0">北京</option>
-              <option value="1">上海</option>
-              <option value="2">广州</option>
-              <option value="3">深圳</option>
-              <option value="4">杭州</option>
+              <option value="待处理">待处理</option>
+              <option value="处理中">处理中</option>
+              <option value="已提交">已提交</option>
+              <option value="已完成">已完成</option>
             </select>
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">反馈结果：</label>
           <div class="layui-input-block">
-            <input type="text" name="反馈结果" required placeholder="" autocomplete="off" class="layui-input" />
+            <select name="处理状态">
+              <option value="通过">通过</option>
+              <option value="未通过">未通过</option>
+            </select>
           </div>
         </div>
       </div>
@@ -138,38 +143,26 @@
     <table class="layui-table" lay-even>
       <thead>
         <tr>
-          <th>订单号</th>
-          <th>客户姓名</th>
-          <th>建筑面积</th>
-          <th>接单时间</th>
-          <th>设计师</th>
+          <th>投诉编号</th>
+          <th>投诉时间</th>
+          <th>投诉人姓名</th>
+          <th>联系方式</th>
+          <th>处理状态</th>
+          <th>反馈结果</th>
           <th>更新时间</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="high-light-text">2018101060110</td>
-          <td>李青</td>
-          <td>90m&sup2;</td>
-          <td>2016-11-28 13:19</td>
-          <td class="not-binding high-light-text">未绑定</td>
-          <td>2016-11-28 13:19</td>
-        </tr>
-        <tr>
-          <td class="high-light-text">2018101060110</td>
-          <td>李青</td>
-          <td>90m&sup2;</td>
-          <td>2016-11-28 13:19</td>
-          <td>设计师</td>
-          <td>2016-11-28 13:19</td>
-        </tr>
-        <tr>
-          <td class="high-light-text">2018101060110</td>
-          <td>李青</td>
-          <td>90m&sup2;</td>
-          <td>2016-11-28 13:19</td>
-          <td>设计师</td>
-          <td>2016-11-28 13:19</td>
+          <td>投诉编号</td>
+          <td>投诉时间</td>
+          <td>投诉人姓名</td>
+          <td>联系方式</td>
+          <td>处理状态</td>
+          <td>反馈结果</td>
+          <td>更新时间</td>
+          <td><span class="delete-btn cursor-pointer">删除</span></td>
         </tr>
       </tbody>
     </table>
@@ -193,6 +186,21 @@
         return false; // 阻止表单跳转
       });
 
+      // 删除
+      $('.delete-btn').on('click', function () {
+        layer.confirm('确认删除？', 
+          {icon: 3, title:'提示'}, 
+          function(index){
+            // 确认
+            layer.close(index);
+            layer.msg("已经删除");
+          },
+          function(index){
+            // 取消
+            // layer.msg("取消");
+          },
+        );
+      })
     });
   </script>
 </body>
