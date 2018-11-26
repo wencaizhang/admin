@@ -92,13 +92,14 @@
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">姓名：</label>
           <div class="layui-input-block">
-            <input type="text" name="姓名：" placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="姓名：" lay-verify="space|zh|symbol|length_4_10" placeholder="" autocomplete="off"
+              class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">联系方式：</label>
           <div class="layui-input-block">
-            <input type="text" name="联系方式" placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="联系方式" lay-verify="number" placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
@@ -187,7 +188,8 @@
       </tbody>
     </table>
   </div>
-  <script src="../../lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../../lib/layui/layui.js"></script>
+  <script src="../../scripts/custom-verify.js"></script>
   <script>
     //Demo
     layui.use(["form", "element", "jquery"], function () {
@@ -197,6 +199,7 @@
       var $ = layui.jquery;
 
       form.render();
+      form.verify(getCustomVerifyObj());
 
       //监听表单信息提交
       form.on("submit(formDemo)", function (data) {

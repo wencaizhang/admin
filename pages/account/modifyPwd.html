@@ -30,20 +30,20 @@
     <div class="layui-form-item">
       <label class="layui-form-label">请输入原始密码：</label>
       <div class="layui-inline " style="float: left;">
-        <input type="password" name="originPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+        <input type="password" name="originPwd" required lay-verify="required|space|zh|symbol|length_6_30" placeholder="" autocomplete="off" class="layui-input" autofocus/>
       </div>
       <label class="layui-form-label" style="width: auto;">忘记密码？请使用手机动态码校验</label>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">请输入新密码：</label>
       <div class="layui-inline">
-        <input type="password" name="newPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+        <input type="password" name="newPwd" required lay-verify="required|space|zh|symbol|length_6_30" placeholder="" autocomplete="off" class="layui-input" />
       </div>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">请验证新密码：</label>
       <div class="layui-inline">
-        <input type="password" name="newPwd2" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+        <input type="password" name="newPwd2" required lay-verify="required|space|zh|symbol|length_6_30" placeholder="" autocomplete="off" class="layui-input" />
       </div>
     </div>
     </div>
@@ -56,6 +56,7 @@
     </div>
   </form>
   <script src="../../lib/layui/layui.js"></script>
+  <script src="../../scripts/custom-verify.js"></script>
   <script>
 
     layui.use(["form", "element", "jquery"], function () {
@@ -63,11 +64,19 @@
       var element = layui.element;
       var $ = layui.jquery;
 
+      form.verify(getCustomVerifyObj());
+
       //监听表单信息提交
       form.on("submit(formDemo)", function (data) {
         console.log("表单数据如下：");
         console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-        layer.msg("打开开发者控制台查看保存信息");
+        if (data.field.newPwd === data.field.newPwd2) {
+          layer.msg("打开开发者控制台查看保存信息");
+
+        } else {
+          layer.msg("两次输入新密码不一致", {icon: 5});
+
+        }
         return false; // 阻止表单跳转
       });
     })
