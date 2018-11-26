@@ -23,6 +23,13 @@ function getCustomVerifyObj() {
 				return '不能包含特殊字符、标点符号';
 			}
 		},
+		length_2_6: function (value, dom) {
+			if (value == '') { return false; }
+			var reg = /^.{2,6}$/;
+			if (!reg.test(value)) {
+				return '请输入 4 -10 个字符';
+			}
+		},
 		length_4_10: function (value, dom) {
 			if (value == '') { return false; }
 			var reg = /^.{4,10}$/;
@@ -44,11 +51,25 @@ function getCustomVerifyObj() {
 				return '请输入 6 -30 个字符';
 			}
 		},
+		length_8_50: function (value, dom) {
+			if (value == '') { return false; }
+			var reg = /^.{8,50}$/;
+			if (!reg.test(value)) {
+				return '请输入 8 - 50 个字符';
+			}
+		},
 		length_17: function (value, dom) {
 			if (value == '') { return false; }
 			var reg = /^.{17}$/;
 			if (!reg.test(value)) {
 				return '请输入 17 个字符';
+			}
+		},
+		length_max_1000: function (value, dom) {
+			if (value == '') { return false; }
+			var reg = /^.{0,1000}$/;
+			if (!reg.test(value)) {
+				return '最多填写 1000 个字符';
 			}
 		},
 		myphone: function (value, dom) {

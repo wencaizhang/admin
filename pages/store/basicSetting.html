@@ -18,6 +18,16 @@
       padding-right: 20px;
       padding-left: 20px;
     }
+    /* 按钮样式 */
+    .primary-btn {
+      color: #fff;
+      background-color: rgb(240, 97, 47) !important;
+    }
+    .plain-btn {
+      background-color: #fff;
+      color: rgb(240, 97, 47) !important;
+      border: 1px solid rgb(240, 97, 47) !important;
+    }
     .hide {
       display: none!important;
     }
@@ -172,9 +182,13 @@
     }
 
     /* 设置显示地址按钮 */
-    .set-address-btn.disabled {
+    .set-address-btn.current {
       background-color: #ccc;
       cursor: default;
+    }
+
+    .form-address-container-template {
+      display: none;
     }
   </style>
 </head>
@@ -249,34 +263,34 @@
       <!-- 半包，全包，局部，全案 -->
       <div class="form-checkboxs-container layui-form-item layui-row">
         <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
-          <input type="checkbox" name="" title="半包" lay-skin="primary" />
-          <textarea name="" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
+          <input type="checkbox" value="half" name="checkboxs[]" title="半包" lay-skin="primary" />
+          <textarea name="textarea_half" lay-verify="length_max_1000" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
           <div class="layui-clear">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <input type="text" name="input_half" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
             <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
         </div>
         <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
-          <input type="checkbox" name="" title="全包" lay-skin="primary" />
-          <textarea name="" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
+          <input type="checkbox" value="all" name="checkboxs[]" title="全包" lay-skin="primary" />
+          <textarea name="textarea_all" lay-verify="length_max_1000" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
           <div class="layui-clear">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <input type="text" name="input_all" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
             <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
         </div>
         <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
-          <input type="checkbox" name="" title="局部" lay-skin="primary" />
-          <textarea name="" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
+          <input type="checkbox" value="part" name="checkboxs[]" title="局部" lay-skin="primary" />
+          <textarea name="textarea_part" lay-verify="length_max_1000" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
           <div class="layui-clear">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <input type="text" name="input_part" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
             <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
         </div>
         <div class="layui-inline layui-col-xs5 layui-col-md5 layui-col-sm12">
-          <input type="checkbox" name="" title="全案" lay-skin="primary" />
-          <textarea name="" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
+          <input type="checkbox" value="whole" name="checkboxs[]" title="全案" lay-skin="primary" />
+          <textarea name="textarea_whole" lay-verify="length_max_1000" placeholder="请输入包含项目说明" class="layui-textarea"></textarea>
           <div class="layui-clear">
-            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
+            <input type="text" name="input_whole" placeholder="￥" autocomplete="off" class="layui-input layui-input-inline" />
             <label class="layui-form-label layui-input-inline">元 / m&sup2;</label>
           </div>
         </div>
@@ -287,7 +301,7 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">商铺电话：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="price_min" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="telephone"  lay-verify="required|storePhone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">（接收业主的咨询电话，手机或座机均可，座机号码请注意加区号）</label>
         </div>
@@ -295,7 +309,7 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">联系人：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="price_min" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+            <input type="text" name="contacts1" lay-verify="required|space|symbol|length_4_10" placeholder="请输入姓名" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">（即店铺运营人员）</label>
         </div>
@@ -303,18 +317,18 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">联系电话：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="price_min" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="phone1"  lay-verify="required|number|myphone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
           </div>
           <a href="javascript:;" class="sms-btn sms-btn-1">发送验证码</a>
           <div class="layui-input-inline w150 fln">
-            <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
+            <input type="text" name="code1" lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input">
           </div>
         </div>
 
         <div class="layui-form-item form-item">
           <label class="layui-form-label">负责人：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="price_min" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+            <input type="text" name="contacts2" lay-verify="required|space|symbol|length_4_10" placeholder="请输入姓名" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">（即店铺负责人或客户信息对接人，接收短信及事务处理）</label>
         </div>
@@ -322,76 +336,50 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">电话号码：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="price_min" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="phone2" lay-verify="required|phone|myphone" placeholder="请输入手机号码" autocomplete="off"
+              class="layui-input">
           </div>
           <a href="javascript:;" class="sms-btn sms-btn-2">发送验证码</a>
           <div class="layui-input-inline w150 fln">
-            <input type="text" name="price_min" placeholder="验证码" autocomplete="off" class="layui-input">
+            <input type="text" name="code2" lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input">
           </div>
         </div>
       </div>
 
       <!-- 店面地址 -->
       <div class="form-address-container">
-        <div class="layui-form-item">
+        <input type="hidden" id="current_address_index" name="current_address_index">
+        <div class="layui-form-item form-address-container-template">
           <label class="layui-form-label">店面地址：</label>
           <div class="layui-input-inline w100">
-            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
+            <input type="text" name="province[]" placeholder="北京" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">省</label>
           <div class="layui-input-inline w120">
-            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
+            <input type="text" name="city[]" placeholder="北京" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">市</label>
           <div class="layui-input-inline w80">
-            <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
+            <input type="text" name="country[]" placeholder="朝阳" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">区</label>
 
           <div class="layui-input-inline w150">
-            <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
+            <input type="text" name="region[]" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-input-inline w200">
-            <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
+            <input type="text" name="address[]" placeholder="北四环……" autocomplete="off" class="layui-input">
           </div>
           <div class="layui-input-inline" style="width: 50px;">
-            <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
+            <input type="text" name="area[]" placeholder="2000" autocomplete="off" class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">m&sup2;</label>
           <label class="suffix-label layui-form-label color-blue">地图定位</label>
           <label class="suffix-label layui-form-label color-blue line"></label>
-          <label class="suffix-label layui-form-label color-blue">删除该地址</label>
-          <a class="set-address-btn layui-btn">已设为显示地址</a>
-        </div>
-        <div class="layui-form-item">
-          <label class="layui-form-label">店面地址：</label>
-          <div class="layui-input-inline w100">
-            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-          </div>
-          <label class="suffix-label layui-form-label">省</label>
-          <div class="layui-input-inline w120">
-            <input type="text" name="" placeholder="北京" autocomplete="off" class="layui-input">
-          </div>
-          <label class="suffix-label layui-form-label">市</label>
-          <div class="layui-input-inline w80">
-            <input type="text" name="" placeholder="朝阳" autocomplete="off" class="layui-input">
-          </div>
-          <label class="suffix-label layui-form-label">区</label>
-
-          <div class="layui-input-inline w150">
-            <input type="text" name="" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
-          </div>
-          <div class="layui-input-inline w200">
-            <input type="text" name="" placeholder="北四环……" autocomplete="off" class="layui-input">
-          </div>
-          <div class="layui-input-inline" style="width: 50px;">
-            <input type="text" name="" placeholder="2000" autocomplete="off" class="layui-input">
-          </div>
-          <label class="suffix-label layui-form-label">m&sup2;</label>
-          <label class="suffix-label layui-form-label">已定位</label>
+          <label class="suffix-label layui-form-label color-blue delete-address-btn">删除该地址</label>
           <label class="suffix-label layui-form-label color-blue line"></label>
-          <label class="suffix-label layui-form-label color-blue">删除该地址</label>
-          <a class="set-address-btn disabled layui-btn">已设为显示地址</a>
+          <label class="suffix-label layui-form-label color-blue add-address-btn">添加新分店</label>
+          <a class="set-address-btn layui-btn">设为显示地址</a>
         </div>
       </div>
 
@@ -414,7 +402,8 @@
         </div>
         <div class="layui-form-item">
           <label class="layui-form-label">公司介绍：</label>
-          <textarea name="" style="display: inline-block;width: 50%;" placeholder="请输入" class="layui-textarea"></textarea>
+          <textarea name="desc" style="display: inline-block;width: 50%;" lay-verify="required|length_max_1000" placeholder="请输入"
+            class="layui-textarea"></textarea>
         </div>
 
       </div>
@@ -422,7 +411,7 @@
       <!-- 保存信息按钮 -->
       <div class="layui-form-item">
         <div class="layui-input-block">
-          <button class="search-btn layui-btn" lay-submit lay-filter="formDemo">
+          <button class="search-btn primary-btn layui-btn" lay-submit lay-filter="formDemo">
             保存信息
           </button>
         </div>
@@ -431,6 +420,7 @@
   </div>
   <script src="../../lib/layui/layui.js"></script>
   <script src="../../lib/jquery.min.js"></script>
+  <script src="../../scripts/custom-verify.js"></script>
   <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
   <script src="../../scripts/uploader.js"></script>
   <script>
@@ -441,20 +431,70 @@
       var $ = layui.jquery;
 
       form.render();
+      var verifyObj = getCustomVerifyObj();
+      verifyObj.storePhone = function (value, dom) {
+        var reg = /^\d{4}(-)\d{6}$/
+        if (reg.test(value)) {
+
+        } else {
+          return verifyObj.myphone(value, dom)
+        }
+      }
+      form.verify(verifyObj);
 
       //监听表单信息提交
       form.on("submit(formDemo)", function (data) {
+        var data = data.field;
         console.log("表单数据如下：");
-        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        console.log(data); //当前容器的全部表单字段，名值对形式：{name: value}
+
+        var dataList = $("form").serializeArray();
+        // 半包，全包，局部，全案
+        for (var i = 0; i < dataList.length; i++) {
+          var item = dataList[i];
+          if (item.name === 'checkboxs[]') {
+            var value = item.value
+            if (!value) {
+              layer.msg("请选择半包全包解决方案", { icon: 5 });
+              return false;
+            }
+            if (!data['textarea_' + value]) {
+              layer.msg("请填写对应的项目说明", { icon: 5 });
+              $("[name='textarea_" + value + "']").focus();
+              return false;
+            }
+            if (!data['input_' + value]) {
+              layer.msg("请填写对应的价格", { icon: 5 });
+              $("[name='input_" + value + "']").focus();
+              return false;
+            }
+          }
+        }
+
+        // 擅长房型
+        var dataList = $("form").serializeArray();
+        var roomTypeFilter = dataList.filter(function (item) {
+          return item.name === 'roomType[]'
+        });
+        if (!roomTypeFilter.length) {
+          layer.msg("擅长房型至少选择一个", { icon: 5 });
+          return false;
+        }
+
         layer.msg("打开开发者控制台查看保存信息");
         return false; // 阻止表单跳转
       });
 
       // 房间类型复选框选中事件
       form.on('checkbox(checkboxs)', function (data) {
-        console.log('点击的元素：', data.elem); //得到checkbox原始DOM对象
-        console.log('是否被选中：', data.elem.checked); //是否被选中，true或者false
-        console.log('value值：', data.value); //复选框value值，也可以通过data.elem.value得到
+        var dataList = $("form").serializeArray();
+        var filter = dataList.filter(function (item) {
+          return item.name === 'roomType[]'
+        });
+        if (filter.length > 3) {
+          layer.msg("擅长房型最多选择3个", { icon: 5 });
+          $(data.elem).next().trigger('click');
+        }
       });
 
       // 发送验证码
@@ -467,12 +507,47 @@
         layer.msg("电话号码：");
       })
 
-      $('.set-address-btn').on('click', function () {
-        if ($(this).hasClass('disabled')) { return false; }
+      // 已设为显示地址
+      $('body').on('click', '.set-address-btn', function () {
+        if ($(this).hasClass('current')) { return false; }
 
-        layer.msg("clicked: 已设为显示地址");
+        var $btns = $('.form-address-container .layui-form-item').not('.form-address-container-template').find('.set-address-btn')
+        $btns.removeClass('current');
+        $btns.each(function() {
+          $(this).text('设为显示地址')
+        })
+        $(this).addClass('current').text('已设为显示地址');
 
+        $btns.each(function(index) {
+          if ($(this).hasClass('current')) {
+            $('#current_address_index').val(index);
+            var order = index + 1;
+            layer.msg("已将第" + order + "项设为显示地址");
+          }
+        })
       })
+
+      // 删除
+      $('body').on('click', '.delete-address-btn', function () {
+        if ($('.form-address-container .layui-form-item').length <= 2) {
+          layer.msg("当前只剩一个分店，无法删除", { icon: 5 });
+          return false;
+        }
+        $(this).parents('.layui-form-item').remove();
+        layer.msg("已删除");
+      })
+
+      // 添加新分店
+      createNewAddress();
+      $('body').on('click', '.add-address-btn', function () {
+        createNewAddress();
+      })
+      function createNewAddress () {
+        var $clone = $('.form-address-container-template').clone()
+        $clone.removeClass('form-address-container-template');
+        $('.form-address-container > div').last().after($clone)
+        form.render();
+      }
 
       // 修改店铺名字
       $('.edit-store-name-btn, .cancel-edit-store-name-btn').on('click', function () {

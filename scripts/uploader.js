@@ -25,11 +25,12 @@ jQuery(function() {
     // 选择文件的按钮。可选。
     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
     pick: "#store-filePicker",
+    fileSingleSizeLimit:200*1024,
 
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "gif,jpg,jpeg,bmp,png",
+      extensions: "jpg,jpeg,png",
       mimeTypes: "image/*"
     }
   });
@@ -39,7 +40,7 @@ jQuery(function() {
     var $li = $(
         '<div id="' +
           file.id +
-          '" class="file-item thumbnail">' +
+          '" class="file-item thumbnail" style="display: inline-block;">' +
           "<img>" +
           '<div class="info">' +
           file.name +
@@ -122,7 +123,7 @@ jQuery(function() {
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "gif,jpg,jpeg,bmp,png",
+      extensions: "jpg,jpeg,png",
       mimeTypes: "image/*"
     }
   });

@@ -53,7 +53,7 @@ function singlePicUploader(options) {
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "gif,jpg,jpeg,bmp,png",
+      extensions: "jpg,jpeg,png",
       mimeTypes: "image/*"
     },
 
@@ -202,7 +202,7 @@ function multiPicUploader(options) {
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "gif,jpg,jpeg,bmp,png",
+      extensions: "jpg,jpeg,png",
       mimeTypes: "image/*"
     },
 
