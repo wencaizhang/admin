@@ -78,36 +78,33 @@
 
 <body>
   <div class="page layui-row">
+    <div class="layui-row" style="">
+      <p class="layui-input-block" style="display: inline-block;">
+        <span>虚拟币余额：</span>
+        <span class="high-light-text">******</span>
+        <span>元</span>
+        <span class="high-light-text">充值虚拟币</span>
+      </p>
+      <br />
+      <p class="layui-input-block" style="display: inline-block;">
+        <span>虚拟币不足提醒：</span>
+        <span>关闭</span>
+        <span>（阈值：10000）</span>
+        <span class="high-light-text edit-alert-btn">修改</span>
+      </p>
+    </div>
     <form class="layui-form" action="">
       <div class="layui-form-item layui-row">
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
-          <label class="layui-form-label">姓名：</label>
+          <label class="layui-form-label">类型：</label>
           <div class="layui-input-block">
-            <input type="text" name="投诉人姓名" required placeholder="" autocomplete="off" class="layui-input" />
-          </div>
-        </div>
-        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
-          <label class="layui-form-label">联系方式：</label>
-          <div class="layui-input-block">
-            <input type="text" name="联系方式" placeholder="" autocomplete="off" class="layui-input" />
-          </div>
-        </div>
-        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
-          <label class="layui-form-label">角色类型：</label>
-          <div class="layui-input-block">
-            <select name="处理状态">
+            <select name="类型">
               <option value="0">北京</option>
               <option value="1">上海</option>
               <option value="2">广州</option>
               <option value="3">深圳</option>
               <option value="4">杭州</option>
             </select>
-          </div>
-        </div>
-        <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
-          <label class="layui-form-label">合作状态：</label>
-          <div class="layui-input-block">
-            <input type="text" name="反馈结果" required placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
       </div>
@@ -120,7 +117,7 @@
       </div>
     </form>
     <div class="table-meta">
-      <button class="layui-btn layui-btn-primary">虚拟币明细</button>
+      <h4 class="title">虚拟币明细</h4>
       <div class="table-meta-right layui-unselect">
         <span style="margin-right: 10px;">
           共有 <span class="number">2000</span> 条项目信息
@@ -138,36 +135,20 @@
     <table class="layui-table" lay-even>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>姓名</th>
-          <th>手机号</th>
-          <th>角色类型</th>
-          <th>合作关系</th>
-          <th>案例总数</th>
-          <th>工地总数</th>
-          <th>店铺排序</th>
-          <th>更新时间</th>
-          <th>精品推荐</th>
-          <th>审核情况</th>
-          <th>审核备注</th>
-          <th>操作</th>
+          <th>交易号</th>
+          <th>交易时间</th>
+          <th>交易金额</th>
+          <th>类型</th>
+          <th>备注</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>ID</td>
-          <td>姓名</td>
-          <td>手机号</td>
-          <td>角色类型</td>
-          <td>合作关系</td>
-          <td>案例总数</td>
-          <td>工地总数</td>
-          <td>店铺排序</td>
-          <td>更新时间</td>
-          <td>精品推荐</td>
-          <td>审核情况</td>
-          <td>审核备注</td>
-          <td>操作</td>
+          <td>JY20181118005</td>
+          <td>2018/11/18 18:28</td>
+          <td>-5000</td>
+          <td>消费</td>
+          <td>合同编号：******</td>
         </tr>
       </tbody>
     </table>
@@ -191,6 +172,48 @@
         return false; // 阻止表单跳转
       });
 
+      //监听表单信息提交
+      form.on("submit(formAlertSetting)", function (data) {
+        console.log("formAlertSetting表单数据如下：");
+        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        layer.msg("打开开发者控制台查看表单数据");
+        return false; // 阻止表单跳转
+      });
+
+      // 修改提醒
+      $('.edit-alert-btn').on('click', function () {
+        layerId = layer.open({
+          title: '虚拟币提醒设置：',
+          type: 1,
+          area: ['500px', '240px'],
+          content: '<div id="alert">\
+            <form class="layui-form">\
+              <div class="layui-form-item">\
+                <label class="layui-form-label">虚拟币不足提醒：</label>\
+                <div class="layui-input-block">\
+                  <input type="radio" name="alert" value="open" title="开启">\
+                  <input type="radio" name="alert" value="close" title="关闭" checked>\
+                </div>\
+              </div>\
+              <div class="layui-form-item">\
+                <label class="layui-form-label">阈值：</label>\
+                <div class="layui-input-inline">\
+                  <input type="text" name="title" required lay-verify="required" placeholder="1000" autocomplete="off" class="layui-input">\
+                </div>\
+                <div class="layui-form-mid layui-word-aux">* 低于阈值时微信提醒</div>\
+              </div>\
+              <div class="layui-form-item">\
+                <div class="layui-input-block">\
+                  <button class="search-btn layui-btn" lay-submit lay-filter="formAlertSetting">\
+                    确定\
+                  </button>\
+                </div>\
+              </div>\
+            </form>\
+          </div>',
+        });
+        form.render();
+      })
     });
   </script>
 </body>
