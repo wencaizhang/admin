@@ -18,22 +18,29 @@ function getCustomVerifyObj() {
 		},
 		symbol: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /^\w+$/;
+			var reg = /^\W+$/;
 			if (reg.test(value)) {
 				return '不能包含特殊字符、标点符号';
 			}
 		},
 		length_4_10: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /.{5,11}/;
-			if (reg.test(value)) {
+			var reg = /^.{4,10}$/;
+			if (!reg.test(value)) {
 				return '请输入 4 -10 个字符';
+			}
+		},
+		length_4_20: function (value, dom) {
+			if (value == '') { return false; }
+			var reg = /^.{4,20}$/;
+			if (!reg.test(value)) {
+				return '请输入 4 -20 个字符';
 			}
 		},
 		length_6_30: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /.{7,31}/;
-			if (reg.test(value)) {
+			var reg = /^.{6,30}$/;
+			if (!reg.test(value)) {
 				return '请输入 6 -30 个字符';
 			}
 		},
