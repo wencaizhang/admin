@@ -86,13 +86,13 @@
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">投诉人姓名：</label>
           <div class="layui-input-block">
-            <input type="text" name="投诉人姓名" required placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="投诉人姓名"  lay-verify="space|symbol|length_4_10" placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
           <label class="layui-form-label">联系方式：</label>
           <div class="layui-input-block">
-            <input type="text" name="联系方式" placeholder="" autocomplete="off" class="layui-input" />
+            <input type="text" name="联系方式" lay-verify="myphone" placeholder="" autocomplete="off" class="layui-input" />
           </div>
         </div>
         <div class="layui-inline layui-col-xs6 layui-col-sm6 layui-col-md6">
