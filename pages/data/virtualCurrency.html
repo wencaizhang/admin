@@ -158,6 +158,7 @@
       var element = layui.element;
       var laydate = layui.laydate;
       var $ = layui.jquery;
+      var layerId;
 
       form.render();
 
@@ -171,9 +172,14 @@
 
       //监听表单信息提交
       form.on("submit(formAlertSetting)", function (data) {
-        console.log("formAlertSetting表单数据如下：");
-        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-        layer.msg("打开开发者控制台查看表单数据");
+        if(data.field.alert === 'open') {
+          var value = data.field.number
+          if (value == '' || (parseInt(value) + '').length !== value.length) {
+            layer.msg("请填写阈值", { icon: 5 });
+            return false;
+          }
+        }
+        layer.close(layerId)
         return false; // 阻止表单跳转
       });
 
@@ -195,7 +201,7 @@
               <div class="layui-form-item">\
                 <label class="layui-form-label">阈值：</label>\
                 <div class="layui-input-inline">\
-                  <input type="text" name="title" required lay-verify="number" placeholder="1000" autocomplete="off" class="layui-input">\
+                  <input type="text" value="1000" name="number" placeholder="1000" autocomplete="off" class="layui-input">\
                 </div>\
                 <div class="layui-form-mid layui-word-aux">* 低于阈值时微信提醒</div>\
               </div>\
