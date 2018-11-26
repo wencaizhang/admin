@@ -84,6 +84,43 @@
     .layui-form-label {
       width: 120px;
     }
+
+
+    /*  */
+    .upload-container-multi,
+    .upload-container {
+      position: relative;
+      min-height: 120px;
+      margin-left: 150px;
+    }
+    .upload-container-multi .picker-btn {
+      padding: 0;
+      background-color: transparent;
+    }
+    .upload-container .picker-btn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0;
+      z-index: 100;
+      background-color: transparent;
+    }
+    .upload-container-multi .picker-btn .webuploader-pick,
+    .upload-container .picker-btn .webuploader-pick {
+      width: 100%;
+      height: 100%;
+      padding: 0 18px;
+      background-color: transparent;
+      box-sizing: border-box;
+      color: rgb(240, 97, 47);
+    }
+    .upload-container .file-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0;
+      z-index: 99;
+    }
   </style>
 </head>
 
@@ -133,7 +170,7 @@
         <label class="layui-form-label">头像：</label>
         <div class="layui-input-block upload-container">
           <a id="picker1" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
-          <div id="fileList1"></div>
+          <div id="fileList1" class="file-list"></div>
         </div>
       </div>
 
@@ -162,9 +199,9 @@
 
       <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">证书/锦旗/荣誉：</label>
-        <div class="layui-input-block upload-container">
+        <div class="layui-input-block upload-container-multi">
           <a id="picker3" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
-          <div id="fileList3" class="file-list"></div>
+          <div id="fileList3" class="file-list dib" style="vertical-align: top;"></div>
         </div>
       </div>
 
@@ -206,10 +243,15 @@
       });
 
 
-      var uploader = singlePicUploader({
+      var uploader1 = singlePicUploader({
         $fileList: $("#fileList1"),
         server: "",  // 文件上传地址
         pick: "#picker1",
+      })
+      var uploader2 = singlePicUploader({
+        $fileList: $("#fileList2"),
+        server: "",  // 文件上传地址
+        pick: "#picker2",
       })
 
       var uploader = multiPicUploader({
@@ -220,17 +262,12 @@
 
         },
         registerDeleteHandler: function (uploader) {
-          // $space.find('.file-list-container').on('click', '.dele-pic-btn', function () {
-          //   var $item = $(this).parents('.file-item')
-          //   var fid = $item.attr('id')
-          //   $item.remove();
-
-          //   if (!$("#fileList3").find('.file-item').length) {
-          //     $("#fileList3").find('.empty-text').removeClass('hide')
-          //   }
-
-          //   uploader.removeFile(fid, true)
-          // })
+          $('.upload-container-multi').on('click', '.dele-pic-btn', function () {
+            var $item = $(this).parents('.file-item')
+            var fid = $item.attr('id')
+            $item.remove();
+            uploader.removeFile(fid, true)
+          })
         }
       })
 
