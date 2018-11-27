@@ -109,19 +109,35 @@
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
         <label class="layui-form-label">案例标题：</label>
         <div class="layui-inline">
-          <input type="text" name="newPwd" placeholder="" autocomplete="off" class="layui-input" />
+          <input type="text" name="案例标题" lay-verify="symbol" placeholder="" autocomplete="off" class="layui-input" />
         </div>
       </div>
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
         <label class="layui-form-label">设计师：</label>
         <div class="layui-inline">
-          <input type="text" name="newPwd2" placeholder="" autocomplete="off" class="layui-input" />
+          <select name="check" lay-verify="required">
+            <option value="该店铺所属设计师姓名1">该店铺所属设计师姓名1</option>
+            <option value="该店铺所属设计师姓名2">该店铺所属设计师姓名2</option>
+            <option value="该店铺所属设计师姓名3">该店铺所属设计师姓名3</option>
+            <option value="该店铺所属设计师姓名4">该店铺所属设计师姓名4</option>
+            <option value="该店铺所属设计师姓名5">该店铺所属设计师姓名5</option>
+            <option value="该店铺所属设计师姓名6">该店铺所属设计师姓名6</option>
+            <option value="该店铺所属设计师姓名7">该店铺所属设计师姓名7</option>
+          </select>
         </div>
       </div>
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
         <label class="layui-form-label">工长：</label>
         <div class="layui-inline">
-          <input type="text" name="newPwd2" placeholder="" autocomplete="off" class="layui-input" />
+          <select name="工长：" lay-verify="required">
+            <option value="最多6个">最多6个</option>
+            <option value="该店铺所属工长姓名1">该店铺所属工长姓名1</option>
+            <option value="该店铺所属工长姓名2">该店铺所属工长姓名2</option>
+            <option value="该店铺所属工长姓名3">该店铺所属工长姓名3</option>
+            <option value="该店铺所属工长姓名4">该店铺所属工长姓名4</option>
+            <option value="该店铺所属工长姓名5">该店铺所属工长姓名5</option>
+            <option value="该店铺所属工长姓名6">该店铺所属工长姓名6</option>
+          </select>
         </div>
       </div>
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
@@ -133,13 +149,17 @@
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
         <label class="layui-form-label">审核情况：</label>
         <div class="layui-inline">
-          <input type="text" name="newPwd2" placeholder="" autocomplete="off" class="layui-input" />
+          <select name="审核情况：" lay-verify="required">
+            <option value="待审核">待审核</option>
+            <option value="审核已通过">审核已通过</option>
+            <option value="审核不通过">审核不通过</option>
+          </select>
         </div>
       </div>
       <div class="layui-inline layui-col-xs4 layui-col-sm6 layui-col-md4">
         <label class="layui-form-label">精选案例：</label>
         <div class="layui-inline">
-          <input type="checkbox" name="xxx" lay-skin="switch" />
+          <input type="checkbox" name="精选案例" lay-skin="switch" />
         </div>
       </div>
       <div class="layui-form-item layui-col-xs4 layui-col-sm6 layui-col-md4">

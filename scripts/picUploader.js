@@ -349,7 +349,7 @@ function designerMultiPicUploader(options) {
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "png",
+      extensions: "jpg,png",
       mimeTypes: "image/*"
     },
 

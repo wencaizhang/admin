@@ -134,7 +134,7 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
         },
         {
           title: "广告管理",
-          href: "./pages/store/addCase.html",
+          href: "./pages/store/adManage.html",
         },
         {
           title: "店铺资质",
