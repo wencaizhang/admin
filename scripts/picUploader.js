@@ -50,6 +50,7 @@ function singlePicUploader(options) {
     // 内部根据当前运行是创建，可能是input元素，也可能是flash.
     pick: options.pick,
 
+    fileSingleSizeLimit: 500 * 1024,
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
@@ -65,7 +66,7 @@ function singlePicUploader(options) {
   // 当有文件添加进来的时候
   uploader.on("fileQueued", function (file) {
     var fileList = uploader.getFiles()
-    fileList.forEach(function(item) {
+    fileList.forEach(function (item) {
       if (item.id !== file.id) {
         uploader.removeFile(item, true)
       }
@@ -73,14 +74,14 @@ function singlePicUploader(options) {
 
     var $li = $(
       '<div id="' +
-        file.id +
-        '" class="file-item thumbnail">' +
-        "<img>" +
-        "</div>"
+      file.id +
+      '" class="file-item thumbnail">' +
+      "<img>" +
+      "</div>"
     ),
-    $img = $li.find("img");
+      $img = $li.find("img");
 
-    
+
     $fileList.find('.thumbnail').remove()
     $fileList.append($li);
     options.renderCallback && options.renderCallback();
@@ -294,7 +295,7 @@ function multiPicUploader(options) {
   return uploader;
 }
 
-function multiPicUploader(options) {
+function designerMultiPicUploader(options) {
 
   /**
    * 
@@ -348,7 +349,7 @@ function multiPicUploader(options) {
     // 只允许选择文件，可选。
     accept: {
       title: "Images",
-      extensions: "jpg,jpeg,png",
+      extensions: "png",
       mimeTypes: "image/*"
     },
 
@@ -360,7 +361,7 @@ function multiPicUploader(options) {
   // 当有文件添加进来的时候
   uploader.on("fileQueued", function (file) {
     var $li = $(
-      '<div id="' + file.id + '" class="file-item thumbnail dib" style="margin-right: 10px;">\
+      '<div id="' + file.id + '" class="file-item thumbnail dib" style="margin-right: 20px;">\
         <div class="content">\
           <img>\
         </div>\
