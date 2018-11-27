@@ -264,7 +264,7 @@ function multiPicUploader(options) {
   });
 
   // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-  uploader.on("uploadSuccess", function (file) {
+  uploader.on("uploadSuccess", function (file, response) {
     $("#" + file.id).addClass("upload-state-done");
 
     // 页面需要显示成功上传文件的个数
@@ -408,7 +408,7 @@ function designerMultiPicUploader(options) {
   });
 
   // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-  uploader.on("uploadSuccess", function (file) {
+  uploader.on("uploadSuccess", function (file, response) {
     $("#" + file.id).addClass("upload-state-done");
 
     // 页面需要显示成功上传文件的个数
