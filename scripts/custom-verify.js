@@ -18,8 +18,8 @@ function getCustomVerifyObj() {
 		},
 		symbol: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /^\W+$/;
-			if (reg.test(value)) {
+			var reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
+			if (!reg.test(value)) {
 				return '不能包含特殊字符、标点符号';
 			}
 		},
