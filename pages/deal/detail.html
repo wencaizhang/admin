@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scaleable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>订单管理 - 订单详情</title>
+  <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    .dib {
+      display: inline-block;
+    }
+    p {
+      margin: 5px 0;
+    }
+    .hide {
+      display: none !important;
+    }
+
+    .layui-input:focus,
+    .layui-textarea:focus {
+      border-color: rgb(240, 97, 47) !important;
+    }
+
+    .layui-form-label {
+      width: 120px;
+    }
+
+    .layui-input-block {
+      margin-left: 150px;
+    }
+
+    /* 按钮样式 */
+    .primary-btn {
+      color: #fff;
+      background-color: rgb(240, 97, 47) !important;
+    }
+
+    .plain-btn {
+      background-color: #fff;
+      color: rgb(240, 97, 47) !important;
+      border: 1px solid rgb(240, 97, 47) !important;
+    }
+
+    /* 步骤 div */
+    .steps-container {
+      margin-bottom: 10px;
+    }
+    .step-item {
+      width: 19%;
+      display: inline-block;
+    }
+
+    .step-item .content {
+      padding: 8px;
+      background-color: rgb(204, 204, 204);
+    }
+
+    .step-item .step-number {
+      display: inline-block;
+      background-color: #fff;
+      color: rgb(240, 97, 47);
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    .step-item .layui-icon,
+    .step-item .step-text {
+      color: #fff;
+    }
+
+    .step-item .layui-icon {
+      float: right;
+      width: 24px;
+      height: 24px;
+      text-align: center;
+      line-height: 24px;
+    }
+
+    .current-step-item .content {
+      background-color: rgb(240, 97, 47);
+    }
+
+    .status {
+      margin: 5px 0;
+    }
+    .tips {
+      margin: 5px 0;
+      color: #ccc;
+    }
+
+    /* 标签 */
+    .tags {
+      margin: 5px 0;
+    }
+    .tags .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .tags .tag.done {
+      color: #fff;
+      background-color: rgb(240, 97, 47);
+      border-color: rgb(240, 97, 47);
+    }
+    
+    .manage {
+      background-color: #fff;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="steps-container">
+    <ul class="layui-row layui-col-space10">
+      <li class="step-item current-step-item">
+        <div class="content">
+          <span class="step-number">1</span>
+          <span class="step-text">抢单成功</span>
+          <i class="layui-icon layui-icon-right"></i>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="content">
+          <span class="step-number">2</span>
+          <span class="step-text">未量房</span>
+          <i class="layui-icon layui-icon-right"></i>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="content">
+          <span class="step-number">3</span>
+          <span class="step-text">已量房</span>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="content">
+          <span class="step-number">4</span>
+          <span class="step-text">已签单</span>
+        </div>
+      </li>
+      <li class="step-item">
+        <div class="content">
+          <span class="step-number">5</span>
+          <span class="step-text">跟单结束</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <form class="step1 layui-form" action=""></form>
+  <p class="status">当前订单状态：已抢单成功，请尽快联系业主沟通装修吧</p>
+  <p class="tips">别忘了尽快和业主预约量房时间哦，小心被其他公司抢先！</p>
+  <p class="tags">
+    <span class="tag done">完善用户信息</span>
+    <span class="tag">设置预约的量房时间</span>
+    <span class="tag">已量房</span>
+    <span class="tag">已签单</span>
+  </p>
+  <div class="basic-info" style="    background-color: #fff;
+  padding: 10px; margin-bottom: 10px;">
+    <p>
+      <span>订单号：</span><span>201811060010</span>
+      <span>分配时间：</span><span>2018-11-21</span>
+      <span>设计师：</span> <span>未绑定</span>
+    </p>
+    <p class="sub-title">
+      用户基础信息
+    </p>
+    <p>
+      <span>北京</span>
+      <span>石景山区</span>
+      <span>王五（先生）</span>
+      <span>90㎡</span>
+      <span>远洋山水（小区）</span>
+      <span>老房改造</span>
+      <span>二居室</span>
+      <span>半包</span>
+      <span>8-10万</span>
+    </p>
+  </div>
+  <div class="info" style="background-color: #fff;
+    padding: 10px; margin-bottom: 10px;">
+    <p class="sub-title">
+      补充信息
+    </p>
+    <p>
+      <p><span>装修具体地址：</span><span>***********************</span></p>
+      <p><span>是否交房：</span><span>是</span></p>
+      <p><span>交房时间：</span><span>2018-11-06</span></p>
+      <p><span>预约量房时间：</span></p>
+    </p>
+  </div>
+  <div class="manage" style="margin-bottom: 10px;">
+    <div class="layui-clear" style="margin-bottom: 10px;">
+      <span class="dib" style="float: left; line-height: 38px;">客情管理</span>
+      <span class="layui-btn primary-btn" style="float: right;">添加记录</span>
+    </div>
+    <table class="layui-table">
+      <tr>
+        <td><span class="desc">客户于2018年11月7日量房，沟通户型结构规划，我司已回访客户，客户对设计师比较满意，计划约11月10日到访沟通设计方案</span></td>
+        <td><span>商家客服丨宋六</span></td>
+        <td><span>2018-11-07 11:22</span></td>
+      </tr>
+    </table>
+    <div style="margin: 40px;"></div>
+  </div>
+  <div class="layui-form-item layui-form-text">
+    <div class="" style="margin-bottom: 10px;">
+      <a class="layui-btn primary-btn">+上传定金 或 合同照片</a>
+      <span style="color: gray;">请上传合同关键页，如合同单号、业主姓名电话、合同金额页面必传</span>
+    </div>
+    <div class=" upload-container-multi">
+      <a id="picker3" class="plain-btn picker-btn layui-btn" style="margin-right: 20px;width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
+      <div id="fileList3" class="file-list dib" style="vertical-align: top;"></div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">定金金额：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="定金金额" required lay-verify="required" placeholder="请输入定金金额" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元</div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">合同金额：</label>
+    <div class="layui-input-inline">
+      <input type="text" name="合同金额" required lay-verify="required" placeholder="请输入合同金额" autocomplete="off" class="layui-input">
+    </div>
+    <div class="layui-form-mid layui-word-aux">元</div>
+  </div>
+  </form>
+  <script src="../../lib/layui/layui.js"></script>
+  <script src="../../lib/jquery.min.js"></script>
+  <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+  <script src="../../scripts/picUploader.js"></script>
+  <script>
+    layui.use(["form", "element", "jquery"], function () {
+      var form = layui.form;
+      var element = layui.element;
+      var $ = layui.jquery;
+      var formData = [];  // 储存三个步骤中的表单数据
+      window.formData = formData;
+
+      var uploader = designerMultiPicUploader({
+        $fileList: $("#fileList3"),
+        server: "",  // 文件上传地址
+        pick: "#picker3",
+        success: function () {
+
+        },
+        registerDeleteHandler: function (uploader) {
+          $('.upload-container-multi').on('click', '.dele-pic-btn', function () {
+            var $item = $(this).parents('.file-item')
+            var fid = $item.attr('id')
+            $item.remove();
+            uploader.removeFile(fid, true)
+          })
+        }
+      })
+    });
+  </script>
+</body>
+
+</html>

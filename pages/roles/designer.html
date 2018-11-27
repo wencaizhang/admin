@@ -157,6 +157,18 @@
       </div>
 
       <div class="layui-form-item form-item">
+        <label class="layui-form-label">抬头：</label>
+        <div class="layui-input-inline w150">
+          <select name="角色排序" required lay-verify="required">
+            <option value="优秀设计师">优秀设计师</option>
+            <option value="精英设计师">精英设计师</option>
+            <option value="知名设计师">知名设计师</option>
+            <option value="首席设计师">首席设计师</option>
+            <option value="设计师大师 V">设计师大师 V</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item form-item">
         <label class="layui-form-label">角色排序：</label>
         <div class="layui-input-inline w150">
           <select name="角色排序" required lay-verify="required">
@@ -278,7 +290,7 @@
         // 擅长风格
         var dataList = $("form").serializeArray();
         var roomTypeFilter = dataList.filter(function (item) {
-          return item.name === 'roomType[]'
+          return item.name.indexOf('roomType') !== -1
         });
         if (!roomTypeFilter.length) {
           layer.msg("擅长风格至少选择一个", { icon: 5 });
