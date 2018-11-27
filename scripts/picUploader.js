@@ -2,7 +2,7 @@
 function singlePicUploader(options) {
 
   /**
-   * 
+   *
     options: {
       $fileList: $("#store-fileList"),
       server: "",
