@@ -12,6 +12,16 @@
       padding: 20px;
     }
 
+    /* 按钮样式 */
+    .primary-btn {
+      color: #fff;
+      background-color: rgb(240, 97, 47) !important;
+    }
+    .plain-btn {
+      background-color: #fff;
+      color: rgb(240, 97, 47) !important;
+      border: 1px solid rgb(240, 97, 47) !important;
+    }
     .dib {
       display: inline-block;
     }
@@ -95,7 +105,7 @@
             <option value="010">审核不通过</option>
           </select>
         </div>
-        <button class="next-step-btn layui-btn" lay-submit lay-filter="formDemo">
+        <button class="next-step-btn layui-btn layui-btn-sm primary-btn" lay-submit lay-filter="formDemo">
           确定搜索
         </button>
       </form>
