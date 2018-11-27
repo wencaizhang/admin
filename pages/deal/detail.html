@@ -214,7 +214,7 @@
         <p><span>装修具体地址：</span><span>***********************</span></p>
         <p><span>是否交房：</span><span>是</span></p>
         <p><span>交房时间：</span><span>2018-11-06</span></p>
-        <p><span>预约量房时间：</span></p>
+        <p><span>预约量房时间：</span><input class="Wdate" type="text" lay-verify="required" onClick="WdatePicker({el:this,dateFmt:'yyyy-MM-dd HH', minDate:'%y-%M-{%d}'})"></p>
       </p>
     </div>
     <div class="manage" style="margin-bottom: 10px;">
@@ -234,7 +234,7 @@
     <div class="layui-form-item form-item">
       <label class="layui-form-label">跟单结束 提交后确认</label>
       <div class="layui-input-inline">
-        <select>
+        <select lay-verify="required">
           <option value="已签单">已签单</option>
           <option value="已交定">已交定</option>
           <option value="客户不在本店铺装修了">客户不在本店铺装修了</option>
@@ -276,6 +276,7 @@
   <script src="../../lib/layui/layui.js"></script>
   <script src="../../lib/jquery.min.js"></script>
   <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+  <script src="../../lib/My97DatePicker/WdatePicker.js"></script>
   <script src="../../scripts/picUploader.js"></script>
   <script>
     layui.use(["form", "element", "jquery"], function () {
