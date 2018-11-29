@@ -121,6 +121,10 @@
       padding: 0;
       z-index: 99;
     }
+    .file-item.thumbnail img {
+      width: 100px;
+      height: 100px;
+    }
   </style>
 </head>
 
@@ -128,12 +132,12 @@
   <div class="order-page layui-row">
     <h2 class="title">设计师个人信息设置</h2>
     <div class="hr-primary"></div>
-    <form class="layui-form" action="">
+    <form class="layui-form" action="" lay-filter="form">
 
       <div class="layui-form-item form-item">
         <label class="layui-form-label">姓名：</label>
         <div class="layui-input-inline w150">
-          <input type="text" name="姓名" required lay-verify="required|space|symbol|zh|length_4_10" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+          <input type="text" name="username" required lay-verify="required|space|symbol|zh|length_4_10" placeholder="请输入姓名" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux high-light-text">设计师专属ID：GZ20181113001</div>
       </div>
@@ -141,7 +145,7 @@
       <div class="layui-form-item form-item">
         <label class="layui-form-label">联系人手机：</label>
         <div class="layui-input-inline w150">
-          <input type="text" name="联系人手机：" lay-verify="required|phone|myphone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
+          <input type="text" name="phone" lay-verify="required|phone|myphone" placeholder="请输入手机号" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">绑定手机号默认平台后台不可修改，可在商户后台校验后修改</div>
       </div>
@@ -159,7 +163,7 @@
       <div class="layui-form-item form-item">
         <label class="layui-form-label">抬头：</label>
         <div class="layui-input-inline w150">
-          <select name="角色排序" required lay-verify="required">
+          <select name="抬头" required lay-verify="required">
             <option value="优秀设计师">优秀设计师</option>
             <option value="精英设计师">精英设计师</option>
             <option value="知名设计师">知名设计师</option>
@@ -182,7 +186,10 @@
         <label class="layui-form-label">头像：</label>
         <div class="layui-input-block upload-container">
           <a id="picker1" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>
-          <div id="fileList1" class="file-list"></div>
+          <div id="fileList1" class="file-list">
+            <!-- 图片 -->
+            <div class="file-item thumbnail"><img src=""></div>
+          </div>
           <div class="layui-form-mid layui-word-aux" style="margin-left: 120px;">
             <p>上传尺寸：200×200像素，仅支持JPG、PNG图片文件，</p>
             <p></p>文件小于2M（尽可能保持面部清晰，便于业主辨识，增强信任度）</p>
@@ -205,7 +212,7 @@
       <div class="layui-form-item form-item">
         <label class="layui-form-label">从业时间：</label>
         <div class="layui-input-inline w150">
-          <input type="text" required lay-verify="required" placeholder="请选择日期" class="layui-input" id="work-time">
+          <input type="text" name="time" required lay-verify="required" placeholder="请选择日期" class="layui-input" id="work-time">
         </div>
         <div class="layui-form-mid layui-word-aux">系统将自动计算从业年限</div>
       </div>
@@ -213,17 +220,17 @@
       <div class="layui-form-item form-item">
         <label class="layui-form-label">擅长风格：</label>
         <div class="layui-input-inline" style="width: auto;">
-          <input type="checkbox" lay-filter="checkboxs" value="1" name="roomType[]" title="局部" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="2" name="roomType[]" title="一居室" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="3" name="roomType[]" title="两居室" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="4" name="roomType[]" title="三居室" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="5" name="roomType[]" title="四居室" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="6" name="roomType[]" title="复式" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="7" name="roomType[]" title="别墅" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="8" name="roomType[]" title="简装" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="9" name="roomType[]" title="工装" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="10" name="roomType[]" title="新房" lay-skin="primary">
-          <input type="checkbox" lay-filter="checkboxs" value="11" name="roomType[]" title="期房" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[1]" title="局部" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[2]" title="一居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[3]" title="两居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[4]" title="三居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[5]" title="四居室" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[6]" title="复式" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[7]" title="别墅" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[8]" title="简装" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[9]" title="工装" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[10]" title="新房" lay-skin="primary">
+          <input type="checkbox" lay-filter="checkboxs" name="roomType[11]" title="期房" lay-skin="primary">
           <p style="margin: 10px 0;color: #bbb;">* 最多选择3个</p>
         </div>
       </div>
@@ -239,7 +246,7 @@
       <div class="layui-form-item form-item">
         <label class="layui-form-label">个人简介：</label>
         <div class="layui-input-inline" style="width: 50%;">
-          <textarea name="" required lay-verify="required" placeholder="最多1000字符" class="layui-textarea"></textarea>
+          <textarea name="个人简介" required lay-verify="required" placeholder="最多1000字符" class="layui-textarea"></textarea>
         </div>
       </div>
 
@@ -298,7 +305,7 @@
         }
 
         layer.msg("打开开发者控制台查看保存信息");
-        return false; // 阻止表单跳转
+        // return false; // 阻止表单跳转
       });
       // 复选框选中事件
       form.on('checkbox(checkboxs)', function (data) {
@@ -340,6 +347,48 @@
         }
       })
 
+
+      initFormValue()
+
+      function initFormValue () {
+        var qs = location.search.split('?')[1];
+        var json = {}
+        if (!qs) { return false; }
+        qs.split('&').forEach(function(item) {
+          var temp = item.split('=');
+          var key = decodeURI(temp[0]);
+          var value = decodeURI(temp[1]);
+          if (key.indexOf('room') !== -1) {
+            
+            json[key] = value;
+            // if (json['room[]']) {
+            //   json['room[]'].push(value);
+            // }
+            // json['room[]'] = [value];
+          } else if (key.indexOf('honor_path') !== -1) {
+            if (typeof json['honor_path[]']) {
+              json['honor_path[]'].push(value);
+            }
+            json['honor_path[]'] = [value];
+          }else {
+            json[key] = value;
+          }
+        })
+        console.log('表单数据是：', json);
+        form.val("form", json);
+
+        // 头像图片和生活照
+        var src = 'http://www.ruanyifeng.com/blogimg/asset/2015/bg2015071010.png'
+        $("#fileList1").append('<div class="file-item thumbnail"><img src="' + src + '"></div>')
+        $("#fileList2").append('<div class="file-item thumbnail"><img src="' + src + '"></div>')
+
+        // 证书/锦旗/荣誉
+        if (json['honor_path[]'] && json['honor_path[]'].length) {
+          json['honor_path[]'].forEach(function(src) {
+            $("#fileList3").append('<div class="file-item thumbnail"><img src="' + src + '"></div>')
+          });
+        }
+      }
     });
   </script>
 </body>
