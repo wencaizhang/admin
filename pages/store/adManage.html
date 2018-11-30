@@ -88,12 +88,47 @@
       white-space: nowrap;
       /* 强制表头不换行*/
     }
+
+
+    /* 文件上传部分 */
+    
+    .upload-container {
+      position: relative;
+      min-height: 120px;
+    }
+    .upload-container .picker-btn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0;
+      z-index: 100;
+      background-color: transparent;
+    }
+    .upload-container .picker-btn .webuploader-pick {
+      width: 100%;
+      height: 100%;
+      padding: 0 18px;
+      background-color: transparent;
+      box-sizing: border-box;
+      color: rgb(240, 97, 47);
+    }
+    .upload-container .file-list {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0;
+      z-index: 99;
+    }
+    .file-item.thumbnail img {
+      width: 100px;
+      height: 100px;
+    }
   </style>
 </head>
 
 <body>
   <div class="table-meta">
-    <a href="./addCase.html" class="new-case-btn layui-btn layui-btn-sm" style="font-size: 16px;">
+    <a href="javascript:;" class="new-case-btn layui-btn layui-btn-sm" style="font-size: 16px;">
       <i class="layui-icon">&#xe654;</i> 新增广告
     </a>
     <div class="table-meta-right layui-unselect" style="position: relative; top: -4px;">
@@ -190,29 +225,39 @@
         var id = $(this).attr("data-id"); // 携带的即将删除的数据
 
         layer.open({
-          title: '回答问题：',
+          title: '编辑广告：',
           type: 1,
-          area: ['600px', '400px'],
-          content: '<form class="layui-form">\
+          area: ['600px', '420px'],
+          content: '<form class="layui-form" style="padding-right: 20px;padding-top: 20px;">\
             <div class="layui-form-item layui-form-text">\
               <label class="layui-form-label">广告图：</label>\
               <div class="layui-input-block upload-container">\
                 <a id="picker1" class="plain-btn picker-btn layui-btn" style="width: 100px; height: 100px; line-height: 100px; text-align: center;">上传图片</a>\
                 <div id="fileList1" class="file-list">\
                 </div>\
-                <div class="layui-form-mid layui-word-aux" style="margin-left: 120px;">\
-                  <p>图片尺寸</p>\
-                </div>\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label"></label>\
+              <div class="layui-input-block" style="color: gray;">\
+                <p>图片尺寸：750 × 140，文件大小：50kb 以内</p>\
               </div>\
             </div>\
             <div class="layui-form-item">\
               <label class="layui-form-label">链接：</label>\
               <div class="layui-input-block">\
-                <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">\
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入合法链接" autocomplete="off" class="layui-input">\
               </div>\
             </div>\
             <div class="layui-form-item">\
-              <div class="layui-input-block" style="margin-left: 150px;">\
+              <label class="layui-form-label"></label>\
+              <div class="layui-input-block" style="color: gray;">\
+                <p>* 这个链接是用户点击图片后跳转的页面地址</p>\
+                <p>链接是手机端的，必须是 http://m.jia.com 开头的链接</p>\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <div class="layui-input-block" style="margin-left: 110px;">\
                 <button class="search-btn primary-btn layui-btn" lay-submit lay-filter="submit">\
                   保存信息\
                 </button>\
