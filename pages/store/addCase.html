@@ -348,11 +348,16 @@
         <div class="layui-form-item">
           <label class="layui-form-label">*空间<span class="space-number">1</span> ：</label>
           <div class="layui-input-inline">
-            <select name="city">
+            <select name="provance" class="provance" lay-filter="select1">
               <option value="">请选择一个城市</option>
               <option value="010">北京</option>
               <option value="021">上海</option>
               <option value="0571">杭州</option>
+            </select>
+          </div>
+          <div class="layui-input-inline">
+            <select name="city" class="city" lay-filter="select2">
+              <option value="">暂时无值</option>
             </select>
           </div>
           <div class="right-box" style="float: right;">
@@ -393,6 +398,19 @@
       var $ = layui.jquery;
       var formData = [];  // 储存三个步骤中的表单数据
       window.formData = formData;
+
+      form.on("select", function (data) {
+        var html = '\
+          <option value="010">AAA</option>\
+          <option value="021">BBB</option>\
+          <option value="0571">CCC</option>\
+        '
+
+        var $dom = $(data.elem).parents('.layui-form-item').find('.city');
+
+        $dom.parents('.layui-input-inline').hide()
+        form.render('select')
+      })
 
       /**
        * 步骤一：维护案例基本信息
