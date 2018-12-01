@@ -474,7 +474,7 @@
         // 擅长房型
         var dataList = $("form").serializeArray();
         var roomTypeFilter = dataList.filter(function (item) {
-          return item.name === 'roomType[]'
+          return item.name.indexOf('roomType') !== -1;
         });
         if (!roomTypeFilter.length) {
           layer.msg("擅长房型至少选择一个", { icon: 5 });
@@ -489,7 +489,7 @@
       form.on('checkbox(checkboxs)', function (data) {
         var dataList = $("form").serializeArray();
         var filter = dataList.filter(function (item) {
-          return item.name === 'roomType[]'
+          return item.name.indexOf('roomType') !== -1;
         });
         if (filter.length > 3) {
           layer.msg("擅长房型最多选择3个", { icon: 5 });
