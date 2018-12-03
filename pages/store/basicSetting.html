@@ -351,16 +351,31 @@
         <input type="hidden" id="current_address_index" name="current_address_index">
         <div class="layui-form-item form-address-container-template">
           <label class="layui-form-label">店面地址：</label>
-          <div class="layui-input-inline w100">
-            <input type="text" name="province[]" placeholder="北京" autocomplete="off" class="layui-input">
+          <div class="select-box select-province layui-input-inline w100">
+            <select name="province[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">北京</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
           </div>
           <label class="suffix-label layui-form-label">省</label>
-          <div class="layui-input-inline w120">
-            <input type="text" name="city[]" placeholder="北京" autocomplete="off" class="layui-input">
+          <div class="select-box select-city layui-input-inline w120">
+            <select name="city[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">北京</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
           </div>
           <label class="suffix-label layui-form-label">市</label>
-          <div class="layui-input-inline w80">
-            <input type="text" name="country[]" placeholder="朝阳" autocomplete="off" class="layui-input">
+          <div class="select-box select-country layui-input-inline w80">
+            <select name="country[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">朝阳</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
           </div>
           <label class="suffix-label layui-form-label">区</label>
 
@@ -441,6 +456,50 @@
         }
       }
       form.verify(verifyObj);
+
+      form.on("select", function (data) {
+        console.log(data)
+        var name = data.elem.name; // name 属性
+        var value = data.value;  //当前选择的值
+        var $nextSelect;
+        var data;  // ajax 参数
+        if (/province/.test(name)) {
+          // 当前选择的是省份
+          $nextSelect = $(data.elem).parents('.select-box').siblings('.select-city').find('select');
+          data = {
+            province: value
+          }
+        }
+        if (/city/.test(name)) {
+          $nextSelect = $(data.elem).parents('.select-box').siblings('.select-country').find('select');
+          data = {
+            city: value
+          }
+
+        }
+        if ($nextSelect && $nextSelect.length) {
+          // 效果测试代码
+          var html = '<option value="010">拼接1</option>\
+                <option value="021">拼接2</option>\
+                <option value="0571">拼接3</option>'
+          $nextSelect.html(html);
+          form.render('select');
+
+          // ajax 请求数据
+          // $.ajax({
+          //   type: '',
+          //   url: '',
+          //   data: data,
+          //   success: function (resp) {
+          //     var html = '<option value="010">拼接1</option>\
+          //           <option value="021">拼接2</option>\
+          //           <option value="0571">拼接3</option>'
+          //     $nextSelect.html(html);
+          //     form.render('select');
+          //   }
+          // })
+        }
+      })
 
       //监听表单信息提交
       form.on("submit(formDemo)", function (data) {
