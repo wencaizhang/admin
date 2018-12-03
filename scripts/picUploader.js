@@ -118,12 +118,12 @@ function singlePicUploader(options) {
   });
 
   // 文件上传成功，给item添加成功class, 用样式标记上传成功。
-  uploader.on("uploadSuccess", function (file, response) {
+  uploader.on("uploadSuccess", function (file, resp) {
     $("#" + file.id).addClass("upload-state-done");
 
     // 页面需要显示成功上传文件的个数
     uploader.options.uploadedFilesCount++
-    options.success && options.success(uploader.options.uploadedFilesCount, response)
+    options.success && options.success(uploader.options.uploadedFilesCount, resp)
   });
 
   // 文件上传失败，现实上传出错。
@@ -217,12 +217,12 @@ function multiPicUploader(options) {
     var $li = $(
       '<div id="' + file.id + '" class="file-item thumbnail layui-col-xs6 layui-col-sm6 layui-col-md6">\
         <div class="handle">\
-          <input type="radio" name="sex" value="nan" title="已设为封面">\
+          <input type="radio" lay-verify="required" value="' + file.id + '" name="' + options.space + '_cover" value="nan" title="已设为封面">\
           <a href="javascript:;" class="dele-pic-btn">删除</a>\
         </div>\
         <div class="content">\
           <img>\
-          <textarea name="" required lay-verify="required" placeholder="  图片描述不少于10个字符，不超过400个字符描述内容包括但不限于（采光、动线、收纳、配色、主题、氛围营造、功能、选材、个性化项目、细节等）；也可以从设计师和业主角度出发，多维度展示案例设计过程" class="layui-textarea" style="display: inline-block;"></textarea>\
+          <textarea name="' + options.space + '_' + file.id +'_desc" required lay-verify="required" placeholder="  图片描述不少于10个字符，不超过400个字符描述内容包括但不限于（采光、动线、收纳、配色、主题、氛围营造、功能、选材、个性化项目、细节等）；也可以从设计师和业主角度出发，多维度展示案例设计过程" class="layui-textarea" style="display: inline-block;"></textarea>\
         </div>\
       </div>'
     ),
@@ -265,7 +265,7 @@ function multiPicUploader(options) {
 
   // 文件上传成功，给item添加成功class, 用样式标记上传成功。
   uploader.on("uploadSuccess", function (file, response) {
-    $("#" + file.id).addClass("upload-state-done");
+    $("#" + file.id).addClass("upload-state-done").attr('data-url', resp.data);
 
     // 页面需要显示成功上传文件的个数
     uploader.options.uploadedFilesCount++
@@ -274,6 +274,7 @@ function multiPicUploader(options) {
 
   // 文件上传失败，现实上传出错。
   uploader.on("uploadError", function (file) {
+    $("#" + file.id).addClass("upload-state-done");
     var $li = $("#" + file.id),
       $error = $li.find("div.error");
 

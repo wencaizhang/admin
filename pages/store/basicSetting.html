@@ -206,10 +206,12 @@
             <span>五十家装修工程有限公司</span>
             <span>(企业营业执照全称，第一次输入后不可修改)</span>
           </p>
-          <p>
+          <div>
             <span>品牌成立日期：</span>
-            <span>2000-10-10</span>
-          </p>
+            <div class="layui-inline">
+              <input type="text" name="品牌成立日期" lay-verify="required" class="layui-input" id="date">
+            </div>
+          </div>
           <p>
             <span>合同状态：</span>
             <span class="color-red">中止（合同截止日期：2018-10-21）</span>
@@ -439,12 +441,15 @@
   <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
   <script src="../../scripts/uploader.js"></script>
   <script>
-    //Demo
-    layui.use(["form", "element", "jquery"], function () {
+    layui.use(["laydate", "form","element", "layer", "jquery"], function () {
       var form = layui.form;
       var element = layui.element;
+      var laydate = layui.laydate;
+      var layer = layui.layer;
       var $ = layui.jquery;
-
+      laydate.render({
+        elem: '#date' // 指定日期元素
+      });
       form.render();
       var verifyObj = getCustomVerifyObj();
       verifyObj.storePhone = function (value, dom) {
@@ -500,6 +505,34 @@
           // })
         }
       })
+      var uploader1 = singlePicUploader({
+        $fileList: $("#store-fileList"),
+        server: "",  // 文件上传地址
+        pick: "#store-filePicker",
+        success: function (resp) {
+          console.log(resp)
+        }
+      })
+      var uploader2 = singlePicUploader({
+        $fileList: $("#logo-container"),
+        server: "",  // 文件上传地址
+        pick: "#logo-filePicker",
+        success: function (resp) {
+          console.log(resp)
+        }
+      })
+
+      // 查看店铺资质图片
+      $('#store-fileList').on('click', '.file-item', function () {
+        var url = $(this).attr('data-url');
+        var url = 'http://pic1.win4000.com/wallpaper/7/539f9c9ce2764.jpg';
+        var index = layer.open({
+          title: '店铺资质',
+          offset: '100px',
+          area: '500px',
+          content: '<img style="max-width: 400px;display: block;margin: 0 auto;" src="' + url + '" />'
+        });
+      })
 
       //监听表单信息提交
       form.on("submit(formDemo)", function (data) {
@@ -533,7 +566,7 @@
         // 擅长房型
         var dataList = $("form").serializeArray();
         var roomTypeFilter = dataList.filter(function (item) {
-          return item.name === 'roomType[]'
+          return item.name.indexOf('roomType') !== -1;
         });
         if (!roomTypeFilter.length) {
           layer.msg("擅长房型至少选择一个", { icon: 5 });
@@ -548,7 +581,7 @@
       form.on('checkbox(checkboxs)', function (data) {
         var dataList = $("form").serializeArray();
         var filter = dataList.filter(function (item) {
-          return item.name === 'roomType[]'
+          return item.name.indexOf('roomType') !== -1;
         });
         if (filter.length > 3) {
           layer.msg("擅长房型最多选择3个", { icon: 5 });

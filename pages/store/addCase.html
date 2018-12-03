@@ -336,42 +336,37 @@
 
 
   <!-- 3 上传装修后实景图或效果 -->
+  <div class="space-template hide">
+    <!-- 新建空间的 html 模板 -->
+    <div class="sub-header" style="background-color: #eee;">
+      <div class="layui-form-item">
+        <label class="layui-form-label">*空间<span class="space-number">1</span> ：</label>
+        <div class="layui-input-inline">
+          <select name="provance" class="provance" lay-verify="required" lay-filter="select1">
+            <option value="">请选择一个城市</option>
+            <option value="010">北京</option>
+            <option value="021">上海</option>
+            <option value="0571">杭州</option>
+          </select>
+        </div>
+        <div class="right-box" style="float: right;">
+          <span>已上传 <span class="pic-count">0</span> 张图片</span>
+          <a id="" class="picker-btn primary-btn layui-btn">上传图片</a>
+        </div>
+      </div>
+    </div>
+    <div id="" class="picker-fileList layui-row file-list-container layui-col-space20">
+      <p class='empty-text'>暂无文件</p>
+    </div>
+  </div>
+
   <form class="layui-form dib room-info-form space-form layui-row">
     <div class="form-header" style="padding: 10px 0;">
       <span>案例ID：20181118001</span>
       <a class="add-space-btn plain-btn layui-btn">新增空间</a>
     </div>
 
-    <div class="space-template hide">
-      <!-- 新建空间的 html 模板 -->
-      <div class="sub-header" style="background-color: #eee;" lay-verify="space">
-        <div class="layui-form-item">
-          <label class="layui-form-label">*空间<span class="space-number">1</span> ：</label>
-          <div class="layui-input-inline">
-            <select name="provance" class="provance" lay-filter="select1">
-              <option value="">请选择一个城市</option>
-              <option value="010">北京</option>
-              <option value="021">上海</option>
-              <option value="0571">杭州</option>
-            </select>
-          </div>
-          <div class="layui-input-inline">
-            <select name="city" class="city" lay-filter="select2">
-              <option value="">暂时无值</option>
-            </select>
-          </div>
-          <div class="right-box" style="float: right;">
-            <span>已上传 <span class="pic-count">0</span> 张图片</span>
-            <a id="" class="picker-btn primary-btn layui-btn">上传图片</a>
-          </div>
-        </div>
-      </div>
-      <div id="" class="picker-fileList layui-row file-list-container layui-col-space20">
-        <p class='empty-text'>暂无文件</p>
-      </div>
-    </div>
-
-    <div class="layui-form-item">
+    <div class="layui-form-item layui-form-btns">
       <div class="layui-input-block" style="margin-left: 150px;">
         <button class="preview-btn plain-btn layui-btn" lay-filter="">
           预览
@@ -547,11 +542,51 @@
 
       //监听表单信息提交，第三步
       form.on("submit(formSubmitStep3)", function (data) {
+        var data = data.field;
+        // 删除空模板中 select 的值
+        var name = $('.space-template').find('select').attr('name')
+        delete data[name]
+
         console.log("表单数据如下：");
-        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+        console.log(data); //当前容器的全部表单字段，名值对形式：{name: value}
         layer.msg("打开开发者控制台查看保存信息");
 
-        formData.push(data.field)
+        var newFormData = {}
+        $('.space-item').each(function () {
+          var self = $(this);
+
+          var id = self.attr('id');  // 空间 id
+          var obj = {}
+          for (prop in data) {
+            var value = data[prop]
+            if (prop.indexOf(id) !== -1) {  // 过滤出当前空间的数据
+
+              var str = prop.replace(id + '_', '')
+              obj[str] = value
+            }
+          }
+
+          self.find('.file-item').each(function () {
+            var id = $(this).attr('id');  // 文件 id
+            var fileObj = {}
+            
+            var url = $(this).attr('data-url'); // 图片路径
+            var desc = obj[id + '_desc']; // 图片描述
+            fileObj = {
+              url: url,
+              desc: desc
+            };
+            delete obj[id + '_desc'];
+            obj[id] = fileObj;
+          })
+
+          newFormData[id] = obj
+        })
+
+
+        console.log('处理结果：', newFormData)
+        
+        formData.push(data)
         nextStep();
         return false; // 阻止表单跳转
       });
@@ -570,6 +605,7 @@
         var len = $('.space-item').length;
         var pickerId = 'picker' + len;
         var fileListId = 'fileList' + len
+        var space = 'space_' + len;
 
         $space.find('.space-number').text(len + 1)
 
@@ -577,19 +613,25 @@
         $space.find('.picker-btn').attr('id', pickerId)
         $space.find('.picker-fileList').attr('id', fileListId)
 
-        $('.space-template, .space-item').last().after($space);
-        $space.removeClass('hide space-template').addClass('space-item')
+
+        $('.space-form .layui-form-btns').before($space);
+        $space.removeClass('hide space-template').addClass('space-item').attr('id', space);
+        $space.find('select').each(function () {
+          var name = $(this).attr('name')
+          $(this).attr('name', space + '_' + name);
+        })
         form.render('select');
 
         var uploader = multiPicUploader({
           $fileList: $("#" + fileListId),
           server: "",  // 文件上传地址
           pick: "#" + pickerId,
+          space: 'space_' + len,
           renderCallback: function () {
             // 渲染缩略图时重新 render radio
             form.render('radio')
           },
-          success: function (count) {
+          success: function (count, resp) {
             $space.find('.pic-count').text(count || $('.pic-count').text())
           },
           registerDeleteHandler: function (uploader) {
