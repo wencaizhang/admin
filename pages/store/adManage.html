@@ -1,234 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scaleable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>店铺管理 - 广告管理</title>
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scaleable=no" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>店铺管理 - 广告管理</title>
-  <link rel="stylesheet" href="../../lib/layui/css/layui.css" />
-  <style>
-    body {
-      padding: 20px;
-    }
+      /* 按钮样式 */
+      .primary-btn {
+        color: #fff;
+        background-color: rgb(240, 97, 47) !important;
+      }
+      .plain-btn {
+        background-color: #fff;
+        color: rgb(240, 97, 47) !important;
+        border: 1px solid rgb(240, 97, 47) !important;
+      }
+      .dib {
+        display: inline-block;
+      }
 
-    /* 按钮样式 */
-    .primary-btn {
-      color: #fff;
-      background-color: rgb(240, 97, 47) !important;
-    }
-    .plain-btn {
-      background-color: #fff;
-      color: rgb(240, 97, 47) !important;
-      border: 1px solid rgb(240, 97, 47) !important;
-    }
-    .dib {
-      display: inline-block;
-    }
+      .layui-input:focus,
+      .layui-textarea:focus {
+        border-color: rgb(240, 97, 47) !important;
+      }
 
-    .layui-input:focus,
-    .layui-textarea:focus {
-      border-color: rgb(240, 97, 47) !important;
-    }
+      .new-case-btn,
+      .search-btn {
+        color: #fff;
+        background-color: rgb(240, 97, 47) !important;
+      }
 
-    .new-case-btn,
-    .search-btn {
-      color: #fff;
-      background-color: rgb(240, 97, 47) !important;
-    }
+      /* ======= */
+      .table-meta {
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        border-bottom: 2px solid rgb(240, 97, 47);
+        background-color: #fff;
+      }
 
-    /* ======= */
-    .table-meta {
-      height: 40px;
-      line-height: 40px;
-      padding: 0 20px;
-      border-bottom: 2px solid rgb(240, 97, 47);
-      background-color: #fff;
-    }
+      .table-meta-right {
+        float: right;
+      }
 
-    .table-meta-right {
-      float: right;
-    }
+      .page-btn {
+        display: inline-block;
+        color: rgb(240, 97, 47);
+        border: 1px solid;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        text-align: center;
+        border-radius: 50%;
+        cursor: pointer;
+        margin: 0 3px;
+      }
 
-    .page-btn {
-      display: inline-block;
-      color: rgb(240, 97, 47);
-      border: 1px solid;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
-      text-align: center;
-      border-radius: 50%;
-      cursor: pointer;
-      margin: 0 3px;
-    }
+      /* 表格下 */
+      .handle-btn {
+        background-color: inherit;
+        color: rgb(240, 97, 47);
+        font-size: 14px;
+        margin-left: 0 !important;
+        padding: 0 2px;
+      }
 
-    /* 表格下 */
-    .handle-btn {
-      background-color: inherit;
-      color: rgb(240, 97, 47);
-      font-size: 14px;
-      margin-left: 0 !important;
-      padding: 0 2px;
-    }
+      .handle-btn:hover {
+        color: rgb(240, 97, 47);
+      }
 
-    .handle-btn:hover {
-      color: rgb(240, 97, 47);
-    }
+      .handle-line {
+        display: inline-block;
+        height: 14px;
+        width: 1px;
+        background-color: rgb(240, 97, 47);
+        vertical-align: middle;
+      }
 
-    .handle-line {
-      display: inline-block;
-      height: 14px;
-      width: 1px;
-      background-color: rgb(240, 97, 47);
-      vertical-align: middle;
-    }
+      th {
+        white-space: nowrap;
+        /* 强制表头不换行*/
+      }
 
-    th {
-      white-space: nowrap;
-      /* 强制表头不换行*/
-    }
+      /* 文件上传部分 */
 
+      .upload-container {
+        position: relative;
+        min-height: 120px;
+      }
+      .upload-container .picker-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        z-index: 100;
+        background-color: transparent;
+      }
+      .upload-container .picker-btn .webuploader-pick {
+        width: 100%;
+        height: 100%;
+        padding: 0 18px;
+        background-color: transparent;
+        box-sizing: border-box;
+        color: rgb(240, 97, 47);
+      }
+      .upload-container .file-list {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        z-index: 99;
+      }
+      .file-item.thumbnail img {
+        width: 100px;
+        height: 100px;
+      }
 
-    /* 文件上传部分 */
-    
-    .upload-container {
-      position: relative;
-      min-height: 120px;
-    }
-    .upload-container .picker-btn {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 0;
-      z-index: 100;
-      background-color: transparent;
-    }
-    .upload-container .picker-btn .webuploader-pick {
-      width: 100%;
-      height: 100%;
-      padding: 0 18px;
-      background-color: transparent;
-      box-sizing: border-box;
-      color: rgb(240, 97, 47);
-    }
-    .upload-container .file-list {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 0;
-      z-index: 99;
-    }
-    .file-item.thumbnail img {
-      width: 100px;
-      height: 100px;
-    }
-  </style>
-</head>
+      /* 弹出层 */
+      .alert-form .layui-form-label {
+        width: 100px;
+      }
+      .alert-form .layui-input-block {
+        margin-left: 130px;
+      }
+    </style>
+  </head>
 
-<body>
-  <div class="table-meta">
-    <a href="javascript:;" class="new-case-btn layui-btn layui-btn-sm" style="font-size: 16px;">
-      <i class="layui-icon">&#xe654;</i> 新增广告
-    </a>
-    <div class="table-meta-right layui-unselect" style="position: relative; top: -4px;">
-      <form class="layui-form layui-inline">
-        <div class="layui-input-inline">
-          <select name="check" lay-verify="required">
-            <option value="000">待审核</option>
-            <option value="010">审核通过</option>
-            <option value="010">审核不通过</option>
-          </select>
-        </div>
-        <button class="next-step-btn layui-btn layui-btn-sm primary-btn" lay-submit lay-filter="formDemo">
-          确定搜索
-        </button>
-      </form>
+  <body>
+    <div class="table-meta">
+      <a
+        href="javascript:;"
+        class="new-case-btn layui-btn layui-btn-sm"
+        style="font-size: 16px;"
+      >
+        <i class="layui-icon">&#xe654;</i> 新增广告
+      </a>
+      <div
+        class="table-meta-right layui-unselect"
+        style="position: relative; top: -4px;"
+      >
+        <form class="layui-form layui-inline">
+          <div class="layui-input-inline">
+            <select name="check" lay-verify="required">
+              <option value="000">待审核</option>
+              <option value="010">审核通过</option>
+              <option value="010">审核不通过</option>
+            </select>
+          </div>
+          <button
+            class="next-step-btn layui-btn layui-btn-sm primary-btn"
+            lay-submit
+            lay-filter="formDemo"
+          >
+            确定搜索
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-  <form class="layui-form" style="overflow: auto;">
-    <table class="layui-table" lay-even>
-      <thead>
-        <tr>
-          <th style="min-width: 110px;">操作</th>
-          <th>ID（与平台ID号一致）</th>
-          <th>广告位置</th>
-          <th>广告名称</th>
-          <th>广告链接</th>
-          <th>广告图片</th>
-          <th>广告内容标题</th>
-          <th>广告优惠描述</th>
-          <th>广告结束时间</th>
-          <th>审核结果</th>
-          <th>审核备注</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <a class="layui-btn layui-btn-sm handle-btn handle-edit-btn">修改</a>
-            <a class="handle-line"></a>
-            <a class="layui-btn layui-btn-sm handle-btn handle-dele-btn" data-id="1">删除</a>
-          </td>
-          <td>1</td>
-          <td>文本标签</td>
-          <td>文本标签</td>
-          <td>文本标签</td>
-          <td><img src="" alt="广告图片" /></td>
-          <td>标题</td>
-          <td>优惠描述</td>
-          <td>2002年1月1日 00:00</td>
-          <td>待审核</td>
-          <td>营业执照照片不清晰</td>
-        </tr>
-      </tbody>
-    </table>
-  </form>
-  <script src="../../lib/layui/layui.js"></script>
-  <script src="../../lib/jquery.min.js"></script>
-  <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
-  <script src="../../scripts/picUploader.js"></script>
-  <script>
-    layui.use(["form", "element", "jquery"], function () {
-      var form = layui.form;
-      var element = layui.element;
-      var $ = layui.jquery;
+    <form class="layui-form" style="overflow: auto;">
+      <table class="layui-table" lay-even>
+        <thead>
+          <tr>
+            <th style="min-width: 110px;">操作</th>
+            <th>ID（与平台ID号一致）</th>
+            <th>广告位置</th>
+            <th>广告名称</th>
+            <th>广告链接</th>
+            <th>广告图片</th>
+            <th>广告内容标题</th>
+            <th>广告优惠描述</th>
+            <th>广告结束时间</th>
+            <th>审核结果</th>
+            <th>审核备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a class="layui-btn layui-btn-sm handle-btn handle-edit-btn"
+                >修改</a
+              >
+              <a class="handle-line"></a>
+              <a
+                class="layui-btn layui-btn-sm handle-btn handle-dele-btn"
+                data-id="1"
+                >删除</a
+              >
+            </td>
+            <td>1</td>
+            <td>文本标签</td>
+            <td>文本标签</td>
+            <td>文本标签</td>
+            <td><img src="" alt="广告图片" /></td>
+            <td>标题</td>
+            <td>优惠描述</td>
+            <td>2002年1月1日 00:00</td>
+            <td>待审核</td>
+            <td>营业执照照片不清晰</td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+    <script src="../../lib/layui/layui.js"></script>
+    <script src="../../lib/jquery.min.js"></script>
+    <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
+    <script src="../../scripts/picUploader.js"></script>
+    <script>
+      layui.use(["form", "laydate", "element", "jquery"], function() {
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var element = layui.element;
+        var $ = layui.jquery;
 
-      //监听表单信息提交
-      form.on("submit(formDemo)", function (data) {
-        console.log("表单数据如下：");
-        console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
-        layer.msg("开始搜索");
-        return false; // 阻止表单跳转
-      });
+        //监听表单信息提交
+        form.on("submit(formDemo)", function(data) {
+          console.log("表单数据如下：");
+          console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+          layer.msg("开始搜索");
+          return false; // 阻止表单跳转
+        });
 
-      // 删除
-      $(".handle-dele-btn").on("click", function () {
-        var id = $(this).attr("data-id"); // 携带的即将删除的数据
-        layer.confirm(
-          "确认删除?",
-          {
-            icon: 3,
-            title: "提示",
-            content: "即将删除本条数据，其 id 是：" + id
-          },
-          function (index) {
-            layer.close(index);
-            // 确认删除，do something
-            layer.msg("已删除！");
-          }
-        );
-      });
+        // 删除
+        $(".handle-dele-btn").on("click", function() {
+          var id = $(this).attr("data-id"); // 携带的即将删除的数据
+          layer.confirm(
+            "确认删除?",
+            {
+              icon: 3,
+              title: "提示",
+              content: "即将删除本条数据，其 id 是：" + id
+            },
+            function(index) {
+              layer.close(index);
+              // 确认删除，do something
+              layer.msg("已删除！");
+            }
+          );
+        });
 
-      // 绑定
-      $(".handle-edit-btn").on("click", function () {
-        var id = $(this).attr("data-id"); // 携带的即将删除的数据
+        // 绑定
+        $(".new-case-btn").on("click", function() {
+          var id = $(this).attr("data-id"); // 携带的即将删除的数据
 
-        layer.open({
-          title: '编辑广告：',
-          type: 1,
-          area: ['600px', '420px'],
-          content: '<form class="layui-form" style="padding-right: 20px;padding-top: 20px;">\
+          layer.open({
+            title: "编辑广告：",
+            type: 1,
+            area: ["600px", "600px"],
+            content:
+              '<form class="alert-form layui-form" style="padding-right: 20px;padding-top: 20px;">\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告位置：</label>\
+              <div class="layui-input-block">\
+                <select name="city" lay-verify="">\
+                  <option value="">请选择一个城市</option>\
+                  <option value="010">北京</option>\
+                  <option value="021">上海</option>\
+                  <option value="0571">杭州</option>\
+                </select> \
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告名称：</label>\
+              <div class="layui-input-block">\
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入广告名称" autocomplete="off" class="layui-input">\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告链接：</label>\
+              <div class="layui-input-block">\
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入合法链接" autocomplete="off" class="layui-input">\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label"></label>\
+              <div class="layui-input-block" style="color: gray;">\
+                <p>* 这个链接是用户点击图片后跳转的页面地址</p>\
+                <p>链接是手机端的，必须是 http://m.jia.com 开头的链接</p>\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告内容标题：</label>\
+              <div class="layui-input-block">\
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入广告内容标题" autocomplete="off" class="layui-input">\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告优惠描述：</label>\
+              <div class="layui-input-block">\
+                <input type="text" name="title" required  lay-verify="required" placeholder="请输入广告优惠描述" autocomplete="off" class="layui-input">\
+              </div>\
+            </div>\
+            <div class="layui-form-item">\
+              <label class="layui-form-label">广告结束时间：</label>\
+              <div class="layui-input-block">\
+                <input type="text" id="date" name="title" required  lay-verify="required" placeholder="请输入广告结束时间" autocomplete="off" class="layui-input">\
+              </div>\
+            </div>\
             <div class="layui-form-item layui-form-text">\
               <label class="layui-form-label">广告图：</label>\
               <div class="layui-input-block upload-container">\
@@ -244,37 +320,33 @@
               </div>\
             </div>\
             <div class="layui-form-item">\
-              <label class="layui-form-label">链接：</label>\
               <div class="layui-input-block">\
-                <input type="text" name="title" required  lay-verify="required" placeholder="请输入合法链接" autocomplete="off" class="layui-input">\
-              </div>\
-            </div>\
-            <div class="layui-form-item">\
-              <label class="layui-form-label"></label>\
-              <div class="layui-input-block" style="color: gray;">\
-                <p>* 这个链接是用户点击图片后跳转的页面地址</p>\
-                <p>链接是手机端的，必须是 http://m.jia.com 开头的链接</p>\
-              </div>\
-            </div>\
-            <div class="layui-form-item">\
-              <div class="layui-input-block" style="margin-left: 110px;">\
-                <button class="search-btn primary-btn layui-btn" lay-submit lay-filter="submit">\
+                <button class="search-btn primary-btn layui-btn" lay-submit lay-filter="alertSubmit">\
                   保存信息\
                 </button>\
               </div>\
             </div>\
-          </form>',
+          </form>'
+          });
+
+          form.render();
+          laydate.render({ 
+            elem: '#date'
+          });
+          singlePicUploader({
+            $fileList: $("#fileList1"),
+            server: "", // 文件上传地址
+            pick: "#picker1"
+          });
+          form.on("submit(alertSubmit)", function(data) {
+            console.log("表单数据如下：");
+            console.log(data.field); //当前容器的全部表单字段，名值对形式：{name: value}
+            layer.msg("开始搜索");
+            return false; // 阻止表单跳转
+          });
+
         });
-
-        var uploader1 = singlePicUploader({
-          $fileList: $("#fileList1"),
-          server: "",  // 文件上传地址
-          pick: "#picker1",
-        })
       });
-    });
-
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>

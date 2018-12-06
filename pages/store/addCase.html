@@ -193,7 +193,7 @@
       <div class="layui-form-item">
         <label class="layui-form-label" style="width: 120px;">*案例标题：</label>
         <div class="layui-inline">
-          <input type="text" name="newPwd" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
+          <input type="text" name="newPwd" value="anli" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" />
         </div>
       </div>
       <div class="layui-form-item">
@@ -327,7 +327,7 @@
         <button class="prev-step-btn plain-btn layui-btn" lay-filter="">
           上一步
         </button>
-        <button class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep2">
+        <button id='test' class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep2">
           下一步
         </button>
       </div>
@@ -368,12 +368,12 @@
 
     <div class="layui-form-item layui-form-btns">
       <div class="layui-input-block" style="margin-left: 150px;">
-        <button class="preview-btn plain-btn layui-btn" lay-filter="">
+        <a class="preview-btn plain-btn layui-btn" lay-filter="">
           预览
-        </button>
-        <button class="prev-step-btn plain-btn layui-btn" lay-filter="">
+        </a>
+        <a class="prev-step-btn plain-btn layui-btn" >
           上一步
-        </button>
+        </a>
         <button class="next-step-btn primary-btn layui-btn" lay-submit lay-filter="formSubmitStep3">
           下一步
         </button>
@@ -492,7 +492,8 @@
         $items.each(function (index, ele) {
           if ($(ele).hasClass(classStepName)) {
             if (index <= 0) { return false; }
-
+console.log(index);
+console.log($items.eq(index - 1))
             $(ele).removeClass(classStepName)
             $forms.eq(index).removeClass(classFormName)
 
@@ -569,7 +570,7 @@
           self.find('.file-item').each(function () {
             var id = $(this).attr('id');  // 文件 id
             var fileObj = {}
-            
+
             var url = $(this).attr('data-url'); // 图片路径
             var desc = obj[id + '_desc']; // 图片描述
             fileObj = {
@@ -585,17 +586,59 @@
 
 
         console.log('处理结果：', newFormData)
-        
-        formData.push(data)
+
+        formData.push(newFormData)
+        submitFormData();
         nextStep();
         return false; // 阻止表单跳转
       });
+
+      function submitFormData () {
+        var data = {}
+        formData.forEach(function (item) {
+          $.extend(data, item)
+        })
+
+
+        $.ajax({
+          url: '',
+          data: data,
+        })
+      }
 
       // 新建空间按钮点击
       $('.add-space-btn').on('click', function () {
         createSpace();
       })
       // 初次加载，自动新建空间
+
+        var uploader = multiPicUploader({
+          $fileList: $("#" + 'fileListId'),
+          server: "xxxxx",  // 文件上传地址
+          pick: "#" + 'test',
+          // space: 'space_' + 'len',
+          renderCallback: function () {
+            // 渲染缩略图时重新 render radio
+            form.render('radio')
+          },
+          success: function (count, resp) {
+            // $space.find('.pic-count').text(count || $('.pic-count').text())
+          },
+          registerDeleteHandler: function (uploader) {
+            // $space.find('.file-list-container').on('click', '.dele-pic-btn', function () {
+            //   var $item = $(this).parents('.file-item')
+            //   var fid = $item.attr('id')
+            //   $item.remove();
+
+            //   if (!$("#" + fileListId).find('.file-item').length) {
+            //     $("#" + fileListId).find('.empty-text').removeClass('hide')
+            //   }
+
+            //   uploader.removeFile(fid, true)
+            // })
+          }
+        })
+
 
       // createSpace();
       window.createSpace = createSpace
@@ -621,6 +664,7 @@
           $(this).attr('name', space + '_' + name);
         })
         form.render('select');
+
 
         var uploader = multiPicUploader({
           $fileList: $("#" + fileListId),

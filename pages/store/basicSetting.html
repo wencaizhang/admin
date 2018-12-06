@@ -398,6 +398,53 @@
           <label class="suffix-label layui-form-label color-blue add-address-btn">添加新分店</label>
           <a class="set-address-btn layui-btn">设为显示地址</a>
         </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">店面地址：</label>
+          <div class="select-box select-province layui-input-inline w100">
+            <select name="province[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">北京</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
+          </div>
+          <label class="suffix-label layui-form-label">省</label>
+          <div class="select-box select-city layui-input-inline w120">
+            <select name="city[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">北京</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
+          </div>
+          <label class="suffix-label layui-form-label">市</label>
+          <div class="select-box select-country layui-input-inline w80">
+            <select name="country[]" lay-verify="">
+              <option value="">请选择一个城市</option>
+              <option value="010">朝阳</option>
+              <option value="021">上海</option>
+              <option value="0571">杭州</option>
+            </select>
+          </div>
+          <label class="suffix-label layui-form-label">区</label>
+
+          <div class="layui-input-inline w150">
+            <input type="text" name="region[]" placeholder="太阳宫地区" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline w200">
+            <input type="text" name="address[]" placeholder="北四环……" autocomplete="off" class="layui-input">
+          </div>
+          <div class="layui-input-inline" style="width: 50px;">
+            <input type="text" name="area[]" placeholder="2000" autocomplete="off" class="layui-input">
+          </div>
+          <label class="suffix-label layui-form-label">m&sup2;</label>
+          <label class="suffix-label layui-form-label color-blue">地图定位</label>
+          <label class="suffix-label layui-form-label color-blue line"></label>
+          <label class="suffix-label layui-form-label color-blue delete-address-btn">删除该地址</label>
+          <label class="suffix-label layui-form-label color-blue line"></label>
+          <label class="suffix-label layui-form-label color-blue add-address-btn">添加新分店</label>
+          <a class="set-address-btn layui-btn">设为显示地址</a>
+        </div>
       </div>
 
       <!-- 擅长房型、公司简介 -->
