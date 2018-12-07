@@ -27,7 +27,7 @@ function getCustomVerifyObj() {
 			if (value == '') { return false; }
 			var reg = /^.{2,6}$/;
 			if (!reg.test(value)) {
-				return '请输入 4 -10 个字符';
+				return '请输入 2 -6 个字符';
 			}
 		},
 		length_4_10: function (value, dom) {
