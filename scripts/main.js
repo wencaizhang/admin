@@ -1,6 +1,10 @@
 layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
   var element = layui.element;
   var $ = layui.jquery;
+  
+  $('#logout-btn').on('click', function () {
+
+  })
 
   //监听导航点击
   element.on("nav(leftNav)", function(elem) {
