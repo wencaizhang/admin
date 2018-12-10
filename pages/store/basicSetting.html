@@ -497,6 +497,13 @@
       laydate.render({
         elem: '#date' // 指定日期元素
       });
+
+
+      $('textarea[name="desc"]').on('input', function () {
+        var $this = $(this);
+        console.log($this.val())
+      })
+
       form.render();
       var verifyObj = getCustomVerifyObj();
       verifyObj.storePhone = function (value, dom) {

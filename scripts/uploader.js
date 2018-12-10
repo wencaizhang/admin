@@ -74,7 +74,7 @@ function singlePicUploader(options) {
     var $li = $(
       '<div id="' +
       file.id +
-      '" class="file-item thumbnail">' +
+      '" class="file-item thumbnail" style="display: inline-block;">' +
       "<img>" +
       "</div>"
     ),
