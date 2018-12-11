@@ -74,11 +74,9 @@ function getCustomVerifyObj() {
 		},
 		myphone: function (value, dom) {
 			if (value == '') { return false; }
-			var reg = /^(13[0-9]|14[579]|15[012356789]|17[135678]|18[0-9])[0-9]{8}$/;
-			if (!reg.test(value)) {
+			if (value.length != 11) {
 				return '请输入正确的手机号';
 			}
-
 			var phoneBlankList = [
 				'01234567891',
 				'12345678910',
