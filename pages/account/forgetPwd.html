@@ -22,6 +22,10 @@
     .submit-btn {
       background-color: rgb(240, 97, 47)!important;
     }
+
+    .send-btn.disabled {
+      background-color: #ccc;
+    }
   </style>
 </head>
 
@@ -30,7 +34,7 @@
     <div class="layui-form-item">
       <label class="layui-form-label">手机号：</label>
       <div class="layui-inline " style="float: left;">
-        <input type="password" name="originPwd" required lay-verify="required|myphone" placeholder="" autocomplete="off" class="layui-input" autofocus/>
+        <input id="phone" type="password" name="originPwd" required lay-verify="required|myphone" placeholder="" autocomplete="off" class="layui-input" autofocus/>
       </div>
     </div>
     <div class="layui-form-item">
@@ -38,7 +42,7 @@
       <div class="layui-inline " style="float: left;">
         <input type="password" name="originPwd" required lay-verify="required|space|symbol" placeholder="" autocomplete="off" class="layui-input" autofocus/>
       </div>
-      <a class="layui-form-label layui-btn layui-btn-primary" style="width: auto;">发送验证码</a>
+      <a class="send-btn layui-form-label layui-btn layui-btn-primary" style="width: auto;">发送验证码</a>
     </div>
     <div class="layui-form-item">
       <label class="layui-form-label">请输入新密码：</label>
@@ -56,7 +60,7 @@
     <div class="layui-form-item">
       <div class="layui-input-block" style="margin-left: 180px;">
         <button class="submit-btn layui-btn" lay-submit lay-filter="formDemo">
-          重置
+          确定
         </button>
       </div>
     </div>
@@ -65,8 +69,9 @@
   <script src="../../scripts/custom-verify.js"></script>
   <script>
 
-    layui.use(["form", "element", "jquery"], function () {
+    layui.use(["form", "element", "jquery", "layer"], function () {
       var form = layui.form;
+      var layer = layui.layer;
       var element = layui.element;
       var $ = layui.jquery;
 
@@ -85,6 +90,52 @@
         }
         return false; // 阻止表单跳转
       });
+
+      // 发送验证码
+      $('.send-btn').on('click', function () {
+        if ($(this).hasClass('disabled')) {
+          return false;
+        }
+        var phone = $('#phone').val();
+
+        if (phone == '') {
+          layer.msg('请输入手机号', {icon: 5});
+          return false;
+        }
+
+        var myphone = getCustomVerifyObj().myphone;
+        var result = myphone(phone);
+        
+        if (!result) {
+          sendSm(phone);
+        } else {
+          layer.msg(result, {icon: 5});
+        }
+      });
+
+      function sendSm (phone) {
+        $.ajax({
+          type: '',
+          url: '',
+          data: {},
+          success: function (resp) {
+            countTime()
+          }
+        })
+      }
+
+      // 倒计时
+      function countTime () {
+        var time = 61;
+        var timer = setInterval(() => {
+          time--;
+          $('.send-btn').text(time + '秒').addClass('disabled')
+          if (time <= 0) {
+            clearInterval(timer);
+            $('.send-btn').text('发送验证码').removeClass('disabled')
+          }
+        }, 1000);
+      }
     })
   </script>
 </body>
