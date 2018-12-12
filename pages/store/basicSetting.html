@@ -315,7 +315,8 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">商铺电话：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="telephone"  lay-verify="required|storePhone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="telephone" lay-verify="required|storePhone" placeholder="请输入手机号码" autocomplete="off"
+              class="layui-input">
           </div>
           <label class="suffix-label layui-form-label">（接收业主的咨询电话，手机或座机均可，座机号码请注意加区号）</label>
         </div>
@@ -331,7 +332,8 @@
         <div class="layui-form-item form-item">
           <label class="layui-form-label">联系电话：</label>
           <div class="layui-input-inline w150">
-            <input type="text" name="phone1"  lay-verify="required|number|myphone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+            <input type="text" name="phone1" lay-verify="required|number|myphone" placeholder="请输入手机号码" autocomplete="off"
+              class="layui-input">
           </div>
           <a href="javascript:;" class="sms-btn sms-btn-1">发送验证码</a>
           <div class="layui-input-inline w150 fln">
@@ -477,9 +479,13 @@
           <p style="margin: 10px 0;color: #bbb;">* 最多选择3个</p>
         </div>
         <div class="layui-form-item">
-          <label class="layui-form-label">公司介绍：</label>
-          <textarea name="desc" style="display: inline-block;width: 50%;" lay-verify="required|length_max_1000" placeholder="请输入"
-            class="layui-textarea"></textarea>
+          <div>
+            <label class="layui-form-label">公司介绍：</label>
+            <textarea id="desc" name="desc" style="display: inline-block;width: 50%;"
+              lay-verify="required|length_max_1000"
+              placeholder="请输入" class="layui-textarea">sss</textarea>
+          </div>
+          <div class="layui-form-mid layui-word-aux desc_length" style="margin-left: 110px;"></div>
         </div>
 
       </div>
@@ -500,7 +506,7 @@
   <script src="../../lib/webuploader//webuploader.html5only.min.js"></script>
   <script src="../../scripts/uploader.js"></script>
   <script>
-    layui.use(["laydate", "form","element", "layer", "jquery"], function () {
+    layui.use(["laydate", "form", "element", "layer", "jquery"], function () {
       var form = layui.form;
       var element = layui.element;
       var laydate = layui.laydate;
@@ -510,11 +516,6 @@
         elem: '#date' // 指定日期元素
       });
 
-
-      $('textarea[name="desc"]').on('input', function () {
-        var $this = $(this);
-        console.log($this.val())
-      })
 
       form.render();
       var verifyObj = getCustomVerifyObj();
@@ -531,9 +532,9 @@
       form.on("select", function (data) {
         console.log(data)
         var name = data.elem.name; // name 属性
-        var value = data.value;  //当前选择的值
+        var value = data.value; //当前选择的值
         var $nextSelect;
-        var data;  // ajax 参数
+        var data; // ajax 参数
         if (/province/.test(name)) {
           // 当前选择的是省份
           $nextSelect = $(data.elem).parents('.select-box').siblings('.select-city').find('select');
@@ -550,7 +551,8 @@
         }
         if ($nextSelect && $nextSelect.length) {
           // 效果测试代码
-          var html = '<option value="010">拼接1</option>\
+          var html =
+            '<option value="010">拼接1</option>\
                 <option value="021">拼接2</option>\
                 <option value="0571">拼接3</option>'
           $nextSelect.html(html);
@@ -573,7 +575,7 @@
       })
       var uploader1 = singlePicUploader({
         $fileList: $("#store-fileList"),
-        server: "",  // 文件上传地址
+        server: "", // 文件上传地址
         pick: "#store-filePicker",
         success: function (resp) {
           console.log(resp)
@@ -589,7 +591,7 @@
       })
       var uploader2 = singlePicUploader({
         $fileList: $("#logo-container"),
-        server: "",  // 文件上传地址
+        server: "", // 文件上传地址
         pick: "#logo-filePicker",
         success: function (resp) {
           console.log(resp)
@@ -621,16 +623,22 @@
           if (item.name === 'checkboxs[]') {
             var value = item.value
             if (!value) {
-              layer.msg("请选择半包全包解决方案", { icon: 5 });
+              layer.msg("请选择半包全包解决方案", {
+                icon: 5
+              });
               return false;
             }
             if (!data['textarea_' + value]) {
-              layer.msg("请填写对应的项目说明", { icon: 5 });
+              layer.msg("请填写对应的项目说明", {
+                icon: 5
+              });
               $("[name='textarea_" + value + "']").focus();
               return false;
             }
             if (!data['input_' + value]) {
-              layer.msg("请填写对应的价格", { icon: 5 });
+              layer.msg("请填写对应的价格", {
+                icon: 5
+              });
               $("[name='input_" + value + "']").focus();
               return false;
             }
@@ -643,7 +651,9 @@
           return item.name.indexOf('roomType') !== -1;
         });
         if (!roomTypeFilter.length) {
-          layer.msg("擅长房型至少选择一个", { icon: 5 });
+          layer.msg("擅长房型至少选择一个", {
+            icon: 5
+          });
           return false;
         }
 
@@ -658,7 +668,9 @@
           return item.name.indexOf('roomType') !== -1;
         });
         if (filter.length > 3) {
-          layer.msg("擅长房型最多选择3个", { icon: 5 });
+          layer.msg("擅长房型最多选择3个", {
+            icon: 5
+          });
           $(data.elem).next().trigger('click');
         }
       });
@@ -675,16 +687,19 @@
 
       // 已设为显示地址
       $('body').on('click', '.set-address-btn', function () {
-        if ($(this).hasClass('current')) { return false; }
+        if ($(this).hasClass('current')) {
+          return false;
+        }
 
-        var $btns = $('.form-address-container .layui-form-item').not('.form-address-container-template').find('.set-address-btn')
+        var $btns = $('.form-address-container .layui-form-item').not('.form-address-container-template').find(
+          '.set-address-btn')
         $btns.removeClass('current');
-        $btns.each(function() {
+        $btns.each(function () {
           $(this).text('设为显示地址')
         })
         $(this).addClass('current').text('已设为显示地址');
 
-        $btns.each(function(index) {
+        $btns.each(function (index) {
           if ($(this).hasClass('current')) {
             $('#current_address_index').val(index);
             var order = index + 1;
@@ -696,7 +711,9 @@
       // 删除
       $('body').on('click', '.delete-address-btn', function () {
         if ($('.form-address-container .layui-form-item').length <= 2) {
-          layer.msg("当前只剩一个分店，无法删除", { icon: 5 });
+          layer.msg("当前只剩一个分店，无法删除", {
+            icon: 5
+          });
           return false;
         }
         $(this).parents('.layui-form-item').remove();
@@ -708,7 +725,8 @@
       $('body').on('click', '.add-address-btn', function () {
         createNewAddress();
       })
-      function createNewAddress () {
+
+      function createNewAddress() {
         var $clone = $('.form-address-container-template').clone()
         $clone.removeClass('form-address-container-template');
         $('.form-address-container > div').last().after($clone)
@@ -717,7 +735,8 @@
 
       // 修改店铺名字
       $('.edit-store-name-btn, .cancel-edit-store-name-btn').on('click', function () {
-        $('.store-name-input, .store-name, .cancel-edit-store-name-btn, .edit-store-name-btn').toggleClass('hide')
+        $('.store-name-input, .store-name, .cancel-edit-store-name-btn, .edit-store-name-btn').toggleClass(
+          'hide')
         if ($(this).hasClass('cancel-edit-store-name-btn')) {
           layer.msg("clicked: 取消修改");
           $('.store-name-input input').val('')
@@ -726,6 +745,34 @@
           $('.store-name-input input').focus()
         }
       })
+
+
+      $('#desc').on('input', function () {
+        lengthCount( $(this), $('.desc_length'), 1000 );
+      })
+      lengthCount( $('#desc'), $('.desc_length'), 1000 )
+      function lengthCount ($textarea, $lengthBox, maxLength) {
+        if (!$textarea.length || !$lengthBox.length) {
+          return false;
+        }
+
+        maxLength = maxLength || 1000;
+        
+        var value = $textarea.val();
+        var length = value.length;
+        $lengthBox.text('已输入' + length + '个字');
+
+        if (length > maxLength) {
+          $textarea.val(value.substr(0, maxLength));
+          layer.msg('最多允许 1000 个字', {
+            icon: 5
+          });
+
+          var value = $textarea.val();
+          var length = value.length;
+          $lengthBox.text('已输入' + length + '个字');
+        }
+      }
 
     });
   </script>
