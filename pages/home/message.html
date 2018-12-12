@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>首页</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../lib/layui/css/layui.css"
+    />
+    <style>
+      body {
+        padding: 20px;
+        background-color: #fff;
+      }
+      body > .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+      }
+      .handle-btns > a {
+        margin-left: 10px;
+      }
+      .header a:hover {
+        color: #F0612F!important;
+        border-color: #F0612F!important;
+      }
+
+      .list {
+      }
+      .list .item {
+        border-top: 1px solid #ccc;
+        padding: 10px 0;
+      }
+      .list .item:last-child {
+        border-bottom: 1px solid #ccc;
+      }
+      .list .item .header > * {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .list .item .title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .list .item .header {
+        margin-bottom: 10px;
+      }
+      .tab-btns > a {
+        position: relative;
+      }
+      .tab-btns > a.current {
+        border-color: #FFD6BF;
+        background:rgba(255,246,241,1);
+      }
+      .tab-btns > a       .layui-badge {
+        border-radius: 9px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translate(50%, -70%);
+      }
+
+      .layui-icon {
+        vertical-align: middle;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="tab-btns">
+        <a class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm current">
+          系统消息
+          <span class="layui-badge">99+</span>
+        </a>
+        <a class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm" >
+          消息
+          <span class="layui-badge">99+</span>
+        </a >
+        <a class="layui-btn layui-btn-radius layui-btn-primary layui-btn-sm">
+          私信
+          <span class="layui-badge">99+</span>
+        </a>
+      </div>
+      <div class="handle-btns">
+        <a class="read-btn" href="javascript:;" title="全部标记已读"><i class="layui-icon layui-icon-note"></i> 全部标记已读</a>
+        <a class="delete-btn" href="javascript:;" title="删除所有已读"><i class="layui-icon layui-icon-delete"></i> 删除所有已读</a>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="item">
+        <div class="header">
+          <h4 class="title">美居精选</h4>
+          <span class="type">系统通知</span> <span class="time">两天前</span>
+        </div>
+        <div class="content">你有一个 vip 待领取</div>
+      </div>
+      <div class="item">
+        <div class="header">
+          <h4 class="title">美居精选</h4>
+          <span class="type">系统通知</span> <span class="time">两天前</span>
+        </div>
+        <div class="content">你有一个 vip 待领取</div>
+      </div>
+    </div>
+    <div id="page"></div>
+    <script src="../../lib/layui/layui.js"></script>
+    <script>
+      layui.use(["laypage", "layer", "jquery"], function() {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laypage = layui.laypage;
+
+        //页码 执行一个laypage实例
+        laypage.render({
+          elem: "page", //注意，这里的 test1 是 ID，不用加 # 号
+          count: 500, //数据总数，从服务端得到
+          limit: 10, // 每页显示的条数
+          theme: "#F0612F",
+          jump: function(obj, first) {
+            //obj包含了当前分页的所有参数，比如：
+            console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+            console.log(obj.limit); //得到每页显示的条数
+          }
+        });
+
+        $('.delete-btn').on('click', function () {
+          var str = '彻底删除后将无法恢复，您确定要删除吗？';
+          layer.confirm(str, {icon: 3, title:'提示'}, function(index){
+            //do something
+            
+            layer.close(index);
+          });
+        })
+        $('.read-btn').on('click', function () {
+          var str = '彻底删除后将无法恢复，您确定要删除吗？';
+          layer.confirm(str, {icon: 3, title:'提示'}, function(index){
+            //do something
+            
+            layer.close(index);
+          });
+        })
+      });
+    </script>
+  </body>
+</html>

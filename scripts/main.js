@@ -6,6 +6,12 @@ layui.use(["layer", "form", "element", "jquery", "laytpl",], function() {
 
   })
 
+  // 顶部 header 右侧导航，点击事件
+  $('.layui-header .layui-nav-item a').on('click', function () {
+    var src = $(this).attr('data-url')
+    $("#iframe").attr('src', src)
+  })
+
   //监听导航点击
   element.on("nav(leftNav)", function(elem) {
     if (elem[0].tagName.toLowerCase() === "a") {
