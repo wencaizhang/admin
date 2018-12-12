@@ -136,11 +136,13 @@
     }
 
     /* 上传按钮 */
+    #store-cover-filePicker,
     #store-filePicker {
       position: relative;
       width: 70px;
     }
     #logo-filePicker .webuploader-pick,
+    #store-cover-filePicker .webuploader-pick,
     #store-filePicker .webuploader-pick {
       position: absolute;
       top: 0;
@@ -240,6 +242,16 @@
             </a>
 
             <div id="store-fileList" class="uploader-list">
+              <!--用来存放item-->
+            </div>
+          </p>
+          <p>
+            <span>店铺封面：</span>
+            <a id="store-cover-filePicker" style="color: red;" class="layui-btn layui-btn-primary layui-btn-sm">
+              上传
+            </a>
+
+            <div id="store-cover-fileList" class="uploader-list">
               <!--用来存放item-->
             </div>
           </p>
@@ -563,6 +575,14 @@
         $fileList: $("#store-fileList"),
         server: "",  // 文件上传地址
         pick: "#store-filePicker",
+        success: function (resp) {
+          console.log(resp)
+        }
+      })
+      var uploader3 = multiPicUploader({
+        $fileList: $("#store-cover-fileList"),
+        server: "",  // 文件上传地址
+        pick: "#store-cover-filePicker",
         success: function (resp) {
           console.log(resp)
         }
