@@ -72,6 +72,11 @@
         vertical-align: middle;
       }
 
+
+      .layui-badge-dot {
+        margin-bottom: 10px;
+      }
+
     </style>
   </head>
 
@@ -107,7 +112,9 @@
       </div>
       <div class="item">
         <div class="header">
-          <h4 class="title">美居精选</h4>
+          <h4 class="title">美居精选
+            <span class="layui-badge-dot"></span>
+          </h4>
           <span class="type">系统通知</span> <span class="time">两天前</span>
         </div>
         <div class="content">你有一个 vip 待领取</div>
@@ -138,7 +145,7 @@
           var str = '彻底删除后将无法恢复，您确定要删除吗？';
           layer.confirm(str, {icon: 3, title:'提示'}, function(index){
             //do something
-            
+
             layer.close(index);
           });
         })
